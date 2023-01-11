@@ -1,7 +1,66 @@
 {
   "teacherClasslist": [
-    { "studentId": "Mark", "gender": "guy", "id": 1, "grade": "A" },
-    { "studentId": "Phuong", "gender": "girl", "id": 2, "grade": "A+" },
-    { "studentId": "Joan", "gender": "non-binary", "id": 3, "grade": "B+" }
+    {
+      "id": 2,
+      "studentId": "Phuong",
+      "gender": "Girl",
+      "grade": "8",
+      "mark": "A+"
+    },
+    {
+      "id": 3,
+      "studentId": "Dan",
+      "gender": "Non-Binary",
+      "grade": "8",
+      "mark": "B+"
+    },
+    {
+      "id": 4,
+      "studentId": "Steve",
+      "gender": "Non-Binary",
+      "grade": "8",
+      "mark": "B"
+    },
+    {
+      "id": 5,
+      "studentId": "Alana",
+      "gender": "Non-Binary",
+      "grade": "8",
+      "mark": "B+"
+    },
+    {
+      "id": 6,
+      "studentId": "Scott",
+      "gender": "Non-Binary",
+      "grade": "8",
+      "mark": "B"
+    },
+    {
+      "id": 7,
+      "studentId": "Mike",
+      "gender": "Non-Binary",
+      "grade": "8",
+      "mark": "B-"
+    },
+    {
+      "id": 8,
+      "studentId": "Joanne",
+      "gender": "Non-Binary",
+      "grade": "8",
+      "mark": "B+"
+    },
+    {
+      "id": 9,
+      "studentId": "Sarah",
+      "gender": "Non-Binary",
+      "grade": "8",
+      "mark": "B+"
+    },
+    {
+      "studentId": "gfhgfh",
+      "gender": "girl",
+      "grade": "9",
+      "id": 11
+    }
   ]
 }

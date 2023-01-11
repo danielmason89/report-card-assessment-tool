@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
+import AddStudent from "../views/AddStudent.vue";
 
 const routes = [
   {
@@ -27,6 +28,11 @@ const routes = [
   {
     path: "/all-teacher-classlist",
     redirect: "/teacher-classlist",
+  },
+  {
+    path: "/add",
+    name: "AddStudent",
+    component: AddStudent,
   },
   {
     path: "/:catchAll(.*)",

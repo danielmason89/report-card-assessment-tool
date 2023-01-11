@@ -1,27 +1,34 @@
 <template>
+  <!-- <Header/> -->
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link :to="{ name: 'About' }">About</router-link>
-    <router-link :to="{ name: 'TeacherClasslist' }">Classlist</router-link>
+    <router-link :to="{ name: 'About' }">Parent</router-link>
+    <router-link :to="{ name: 'TeacherClasslist' }">Teacher</router-link>
   </nav>
-  <button @click="redirect">Redirect</button>
+  <!-- <button @click="redirect">Redirect</button>
   <button @click="back">Go Back</button>
-  <button @click="forward">Go Forward</button>
+  <button @click="forward">Go Forward</button> -->
   <router-view/> 
 </template>
 
+
+
 <script>
+// import Header from "././components/Header"
+
 export default {
+  name: "",
+  components: {},
   methods: {
-    redirect(){
-      this.$router.push({ name: "Home"})
-    },
-    back(){
-      this.$router.go(-1)
-    },
-    forward(){
-      this.$router.go(1)
-    }
+    // redirect(){
+    //   this.$router.push({ name: "Home"})
+    // },
+    // back(){
+    //   this.$router.go(-1)
+    // },
+    // forward(){
+    //   this.$router.go(1)
+    // }
   }
 }
 </script>
