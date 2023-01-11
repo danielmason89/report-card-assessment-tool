@@ -1,9 +1,14 @@
 <template>
 <h1>Teacher Class List</h1>
-<div v-for="student in teacherClasslist" :key="student.id" class="job">
-    <router-link :to="{ name: 'TeacherClasslistDetails', params: {id: student.id}}">
-        <h2>{{ student.studentId}}</h2>
-    </router-link>
+<div v-if="teacherClasslist.length">
+    <div v-for="student in teacherClasslist" :key="student.id" class="job">
+        <router-link :to="{ name: 'TeacherClasslistDetails', params: {id: student.id}}">
+            <h2>{{ student.studentId}}</h2>
+        </router-link>
+    </div>
+</div>
+<div v-else>
+    <p>Loading Student Class-List Details...</p>
 </div>
 </template>
 
@@ -11,12 +16,14 @@
 export default {
     data() {
         return {
-            teacherClasslist: [
-                {studentId: "Mark", id:1, grade: "A"},
-                {studentId: "Phuong", id:2, grade: "A+"},
-                {studentId: "Joan", id:3, grade: "B+"},
-            ]
+            teacherClasslist: []
         }
+    },
+    mounted() {
+        fetch('http://localhost:3000/teacherClasslist')
+        .then((res) => res.json())
+        .then((data) => this.teacherClasslist = data)
+        .catch(err => console.log(err.message))
     }
 }
 </script>
