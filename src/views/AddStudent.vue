@@ -67,7 +67,7 @@ export default {
        headers: {"Content-Type" : "application/json"},
        body: JSON.stringify(student)
       }).then(() => {
-        this.$router.push({ <Home/> })
+        this.$router.push()
       })
       }
     }
