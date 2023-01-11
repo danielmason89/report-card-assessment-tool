@@ -1,4 +1,4 @@
-# report-card-assessment-tool-capstone-project-app-test
+# Report-Card-Assessment-Tool-capstone
 
 ## Project setup
 ```
