@@ -52,6 +52,7 @@ export default {
       studentId: "",
       gender:"",
       grade: "",
+      text2Error:null
     }
   },
   methods: {

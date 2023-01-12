@@ -78,7 +78,7 @@ main {
   }
 
 .form {
-  border-left: .25rem #add solid;
+  border-left: .5rem #add solid;
   border-radius: 4px;
   box-shadow: 1px 2px 3px rgb(0 0 0 / 50%);
 }

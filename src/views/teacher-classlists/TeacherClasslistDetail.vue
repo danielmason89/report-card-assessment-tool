@@ -38,8 +38,12 @@ export default {
         uri: 'http://localhost:3000/teacherClasslist/' + this.id
       }
     },
+
+  
     methods: {
       deleteStudent() {
+        this.teacherClasslist = null;
+        this.$router.push('/');
         fetch(this.uri, { method: "DELETE" })
         .then(() => this.$emit("delete", this.id))
         .catch((err) => console.log(err))
@@ -50,7 +54,13 @@ export default {
         .then((res) => res.json())
         .then((data) => this.teacherClasslist = data)
         .catch(err => console.log(err.message))
+
+
     },
+      
+
+    
+
 }
 </script>
 

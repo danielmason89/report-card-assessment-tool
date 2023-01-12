@@ -1,13 +1,6 @@
 {
   "teacherClasslist": [
     {
-      "id": 2,
-      "studentId": "Phuong",
-      "gender": "Girl",
-      "grade": "8",
-      "mark": "C"
-    },
-    {
       "id": 3,
       "studentId": "Dan",
       "gender": "Non-Binary",
@@ -29,22 +22,8 @@
       "mark": "B"
     },
     {
-      "id": 6,
-      "studentId": "Scott",
-      "gender": "Non-Binary",
-      "grade": "8",
-      "mark": "B"
-    },
-    {
       "id": 7,
       "studentId": "Mike",
-      "gender": "Non-Binary",
-      "grade": "8",
-      "mark": "B"
-    },
-    {
-      "id": 9,
-      "studentId": "Sarah",
       "gender": "Non-Binary",
       "grade": "8",
       "mark": "B"
@@ -69,6 +48,24 @@
       "grade": "9",
       "mark": "B",
       "id": 13
+    },
+    {
+      "studentId": "dfgfdfdhf",
+      "gender": "Boy",
+      "grade": "10",
+      "id": 14
+    },
+    {
+      "studentId": "Emilly",
+      "gender": "Girl",
+      "grade": "10",
+      "id": 15
+    },
+    {
+      "studentId": "test123",
+      "gender": "Non-Binary",
+      "grade": "9",
+      "id": 16
     }
   ]
 }
