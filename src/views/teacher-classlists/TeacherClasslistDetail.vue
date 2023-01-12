@@ -1,26 +1,31 @@
 <template>
-<h1>Student Details</h1>
-<div class="student" v-if="teacherClasslist">
-  <div  class="actions">
-    <h3>{{ teacherClasslist.studentId }}</h3>
-    <div class="icons">
-      <router-link :to="{ name: 'UpdateStudent', params: { id: teacherClasslist.id  } }">
-        <span @click="updateStudent" class="material-icons">edit</span>
-      </router-link>
-      <span @click="deleteStudent" class="material-icons">delete</span>
-      <!-- Having issue with delete functionality -->
-      <span @click="showDetails = !showDetails" class="material-icons">expand_more</span>
+  <main>
+      <header>
+        <h1>Student Details</h1>
+      </header>
+    <div class="student" v-if="teacherClasslist">
+      <div  class="actions">
+        <h2>{{ teacherClasslist.studentId }}</h2>
+        <div class="icons">
+          <router-link :to="{ name: 'UpdateStudent', params: { id: teacherClasslist.id  } }">
+            <span @click="updateStudent" class="material-icons">edit</span>
+          </router-link>
+          <span @click="deleteStudent" class="material-icons">delete</span>
+          <!-- Having issue with delete functionality -->
+          <span @click="showDetails = !showDetails" class="material-icons">expand_more</span>
+        </div>
+      </div>
+      <div v-if="showDetails" class="details">
+        <p>Student Id: {{ teacherClasslist.id}}</p>
+        <p>Gender: {{ teacherClasslist.gender}}</p>
+        <p>Grade: {{ teacherClasslist.grade}}</p>
+        <p>Mark: {{ teacherClasslist.mark}}</p>
+      </div>
     </div>
-  </div>
-  <div v-if="showDetails" class="details">
-    <p>Student Id: {{ teacherClasslist.id}}</p>
-    <p>Gender: {{ teacherClasslist.gender}}</p>
-    <p>Grade: {{ teacherClasslist.grade}}</p>
-  </div>
-</div>
-<div v-else>
-  <p>Loading Student Id...</p>
-</div>
+    <div v-else>
+      <p>Loading Student Id...</p>
+    </div>
+</main>
 </template>
 
 <script>
@@ -50,8 +55,18 @@ export default {
 </script>
 
 <style>
+
+  main {
+    padding: 8rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100vh;
+    width: 100%;
+  }
+
   .student{
-    margin: 20px auto;
+    margin: 1rem 2.5rem;
     background: white;
     padding: 10px 20px;
     border-radius: 4px;
@@ -59,9 +74,15 @@ export default {
     border-left: 4px solid #e90074;
   }
 
-  h2 {
-    cursor: pointer;
+  header {
+    font-size: 1.5rem;
+    font-style: bold;
   }
+
+  h2 {
+    padding-bottom: .25rem;
+  }
+  
 
 .actions{
   display: flex;

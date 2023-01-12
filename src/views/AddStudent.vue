@@ -1,46 +1,48 @@
 <template>
-  <form @submit.prevent="handleSubmit">
-    <label>Student Name:</label>
-    <input type="studentId" v-model="studentId"  required>
-    <div v-if="text2Error" class="error">{{ text2Error }}</div>
-    <label>Student Gender:</label>
-    <select v-model="gender">
-      <option value="Girl">Girl</option>
-      <option value="Boy">Boy</option>
-      <option value="Non-Binary">Non-Binary</option>
-      <option value="Other">Other</option>
-    </select>
-    <label>Student Grade:</label>
-    <select v-model="grade">
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
-      <option value="11">11</option>
-    </select>
-    <label>Student Mark:</label>
-    <select v-model="mark">
-      <option value="A">A</option>
-      <option value="B">B</option>
-      <option value="C">C</option>
-      <option value="D">D</option>
-      <option value="F">F</option>
-      <option value="Other">Other</option>
-      <option value="not-complete">Not Completed</option>
-    </select>
-    <div class="terms">
-      <input type="checkbox" v-model="terms" required>
-      <label>All Options are Checked</label>
-    </div>
-    <div class="submit">
-      <button>Add Student</button>
-    </div>
-  </form>
-  <p>Class Name: {{ text1 }}</p>
-  <p>Student Name: {{ text2 }}</p>
-  <p>Student Gender: {{ gender }}</p>
-  <p>Student Grade: {{ grade }}</p>
-  <p>Student Mark: {{ mark }}</p>
-  <p>Terms Accepted: {{ terms }}</p>
+<main>
+    <form @submit.prevent="handleSubmit">
+        <label>Student Name:</label>
+        <input type="studentId" v-model="studentId"  required>
+        <div v-if="text2Error" class="error">{{ text2Error }}</div>
+        <label>Student Gender:</label>
+        <select v-model="gender">
+        <option value="Girl">Girl</option>
+        <option value="Boy">Boy</option>
+        <option value="Non-Binary">Non-Binary</option>
+        <option value="Other">Other</option>
+        </select>
+        <label>Student Grade:</label>
+        <select v-model="grade">
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        </select>
+        <label>Student Mark:</label>
+        <select v-model="mark">
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+        <option value="F">F</option>
+        <option value="Other">Other</option>
+        <option value="not-complete">Not Completed</option>
+        </select>
+        <div class="terms">
+        <input type="checkbox" v-model="terms" required>
+        <label>All Options are Checked</label>
+        </div>
+        <div class="submit">
+        <button>Add Student</button>
+        </div>
+    </form>
+    <p>Class Name: {{ text1 }}</p>
+    <p>Student Name: {{ text2 }}</p>
+    <p>Student Gender: {{ gender }}</p>
+    <p>Student Grade: {{ grade }}</p>
+    <p>Student Mark: {{ mark }}</p>
+    <p>Terms Accepted: {{ terms }}</p>
+</main>
 </template>
 
 <script>

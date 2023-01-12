@@ -1,16 +1,20 @@
 <template>
-<h1>Science Class List</h1>
-<div v-if="teacherClasslist.length">
-    <div v-for="student in teacherClasslist" :key="student.id" class="classlist">
-        <router-link :to="{ name: 'TeacherClasslistDetails', params: {id: student.id}}">
-            <h2 @delete="handleDelete">{{ student.studentId }}</h2>
-            <!-- <SingleStudent :student="student"/> -->
-        </router-link>
+    <main>
+    <header>
+        <h1>Computer Science Class List</h1>
+    </header>
+    <section v-if="teacherClasslist.length">
+        <div  v-for="student in teacherClasslist" :key="student.id" class="classlist">
+            <router-link :to="{ name: 'TeacherClasslistDetails', params: {id: student.id}}">
+                <h2 @delete="handleDelete">{{ student.studentId }}</h2>
+                <!-- <SingleStudent :student="student"/> -->
+            </router-link>
+        </div>
+    </section>
+    <div v-else>
+        <p>Loading Teacher Class List...</p>
     </div>
-</div>
-<div v-else>
-    <p>Loading Teacher Class List...</p>
-</div>
+</main>
 </template>
 
 <script>
@@ -41,10 +45,26 @@ export default {
 }
 </script>
 
-<style>
-.classlist h2{
+<style scoped>
+
+main {
+    padding: 8rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100vh;
+}
+
+header {
+    font-size: 1.5rem;
+    font-style: bold;
+}
+
+.classlist {}
+
+.classlist a {
     background: #f4f4f4;
-    padding: 20px;
+    padding: 1rem;
     border-radius: 10px;
     margin: 10px auto;
     max-width: 600px;
@@ -52,12 +72,15 @@ export default {
     color: #444;
 }
 
-.classlist h2:hover {
+.classlist a:hover {
     background: #add;
 }
 
-.classlist a{
+.classlist a {
+    display: flex;
+    flex-direction: row;
     text-decoration: none;
+    border-radius: 2px #000 solid;
 }
 
 </style>
