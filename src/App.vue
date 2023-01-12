@@ -1,72 +1,37 @@
 <template>
-  <!-- <Header/> -->
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link :to="{ name: 'About' }">Parent</router-link>
-    <router-link :to="{ name: 'TeacherClasslist' }">Teacher</router-link>
-  </nav>
-  <!-- <button @click="redirect">Redirect</button>
-  <button @click="back">Go Back</button>
-  <button @click="forward">Go Forward</button> -->
-  <router-view/> 
+  <div class="app">
+    <Navigation/>
+    <router-view/> 
+  </div>
 </template>
 
-
-
 <script>
-// import Header from "././components/Header"
+import Navigation from "././components/Navigation";
 
 export default {
-  name: "",
-  components: {},
-  methods: {
-    // redirect(){
-    //   this.$router.push({ name: "Home"})
-    // },
-    // back(){
-    //   this.$router.go(-1)
-    // },
-    // forward(){
-    //   this.$router.go(1)
-    // }
-  }
+  name: "App",
+  components: { Navigation }
 }
 </script>
 
-<style>
-body{ 
-  background: #f2f2f2;
-}
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #555;
-}
+<style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,300;1,400;1,700&family=Sevillana&display=swap');
 
-nav {
-  padding: 30px;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
 }
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-  text-decoration: none;
-  padding: 10px;
-  border-radius: 4px;
+.app {
+  min-height: 100vh;
+  position: relative;
+  background-color: #f1f1f1;
 }
-
-nav a.router-link-exact-active {
-  background: crimson;
-  color: white;
-}
-
-button {
-  margin: 0 10px;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  background: #ddd;
+.container {
+  padding: 0 20px;
+  max-width: 1140px;
+  margin: 0 auto;
 }
 </style>

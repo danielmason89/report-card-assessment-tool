@@ -5,10 +5,10 @@
     <div v-if="text2Error" class="error">{{ text2Error }}</div>
     <label>Student Gender:</label>
     <select v-model="gender">
-      <option value="girl">Girl</option>
-      <option value="boy">Boy</option>
-      <option value="non-binary">Non-Binary</option>
-      <option value="other">Other</option>
+      <option value="Girl">Girl</option>
+      <option value="Boy">Boy</option>
+      <option value="Non-Binary">Non-Binary</option>
+      <option value="Other">Other</option>
     </select>
     <label>Student Grade:</label>
     <select v-model="grade">
@@ -19,12 +19,12 @@
     </select>
     <label>Student Mark:</label>
     <select v-model="mark">
-      <option value="a">A</option>
-      <option value="b">B</option>
-      <option value="c">C</option>
-      <option value="d">D</option>
-      <option value="f">F</option>
-      <option value="other">Other</option>
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+      <option value="D">D</option>
+      <option value="F">F</option>
+      <option value="Other">Other</option>
       <option value="not-complete">Not Completed</option>
     </select>
     <div class="terms">
@@ -67,8 +67,8 @@ export default {
        headers: {"Content-Type" : "application/json"},
        body: JSON.stringify(student)
       }).then(() => {
-        this.$router.push()
-      })
+        this.$router.push('/teacher-classlist')
+      }).catch((err) => console.log(err))
       }
     }
   }

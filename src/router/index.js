@@ -9,9 +9,9 @@ const routes = [
     component: Home,
   },
   {
-    path: "/about",
-    name: "About",
-    component: () => import("../views/About"),
+    path: "/parent",
+    name: "Parent",
+    component: () => import("../views/Parent"),
   },
   {
     path: "/teacher-classlist",
@@ -23,6 +23,12 @@ const routes = [
     name: "TeacherClasslistDetails",
     component: () =>
       import("../views/teacher-classlists/TeacherClasslistDetail.vue"),
+    props: true,
+  },
+  {
+    path: "/teacher-classlist/:id",
+    name: "UpdateStudent",
+    component: () => import("../views/UpdateStudent.vue"),
     props: true,
   },
   {
