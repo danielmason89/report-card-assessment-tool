@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import { ref } from "vue";
+
 import SingleStudent from "../../components/SingleStudent";
 export default {
     name: "TeacherClasslist",
@@ -38,7 +40,7 @@ export default {
             this.id = this.id.filter((id) => {
                 return id !== id
             }).then(() => {
-        this.$router.push('/teacher-classlist')
+        this.$router.push('/')
       }).catch((err) => console.log(err))
         }
     }
