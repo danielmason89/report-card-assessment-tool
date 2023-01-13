@@ -44,11 +44,10 @@ export default {
     },
     methods: {
         handleDelete(id) {
-
             this.id = this.id.filter((id) => {
                 return id !== id
             }).then(() => {
-        this.$router.push('/')
+        this.$router.push('/teacher-classlist')
       }).catch((err) => console.log(err))
         }
     }

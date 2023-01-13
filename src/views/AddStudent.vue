@@ -36,12 +36,6 @@
         <button>Add Student</button>
         </div>
     </form>
-    <p>Class Name: {{ text1 }}</p>
-    <p>Student Name: {{ text2 }}</p>
-    <p>Student Gender: {{ gender }}</p>
-    <p>Student Grade: {{ grade }}</p>
-    <p>Student Mark: {{ mark }}</p>
-    <p>Terms Accepted: {{ terms }}</p>
 </main>
 </template>
 

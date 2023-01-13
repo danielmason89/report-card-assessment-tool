@@ -48,7 +48,7 @@
 main {
     padding: 8rem 2.5rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     position: relative;
     height: 100vh;
 }
