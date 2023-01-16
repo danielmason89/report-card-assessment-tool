@@ -12,7 +12,6 @@
         <div  v-for="student in teacherClasslist" :key="student.id" class="classlist">
             <router-link :to="{ name: 'TeacherClasslistDetails', params: {id: student.id}}" >
                 <h2 @delete="handleDelete">{{ student.studentId }}</h2>
-                <!-- <SingleStudent :student="student"/> -->
             </router-link>
         </div>
     </section>

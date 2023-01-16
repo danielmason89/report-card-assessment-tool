@@ -71,13 +71,6 @@
       "id": 20
     },
     {
-      "studentId": "danielle",
-      "gender": "Girl",
-      "grade": "10",
-      "mark": "B",
-      "id": 21
-    },
-    {
       "studentId": "Frankie",
       "gender": "Girl",
       "grade": "9",
@@ -85,10 +78,16 @@
       "mark": "C"
     },
     {
-      "studentId": "markie",
-      "gender": "Non-Binary",
-      "grade": "10",
-      "id": 23,
+      "studentId": "Phuong",
+      "gender": "Girl",
+      "grade": "9",
+      "id": 23
+    },
+    {
+      "studentId": "Vu-Hoang",
+      "gender": "Girl",
+      "grade": "9",
+      "id": 24,
       "mark": "A"
     }
   ]
