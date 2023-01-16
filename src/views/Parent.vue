@@ -11,20 +11,6 @@
           {{ studentId.studentId }}
           </option>
         </select>
-        <label>Student Gender:</label>
-        <select v-model="gender" required>
-          <option value="Girl">Girl</option>
-          <option value="Boy">Boy</option>
-          <option value="Non-Binary">Non-Binary</option>
-          <option value="Other">Other</option>
-        </select>
-        <label>Student Grade:</label>
-       <select v-model="grade" required>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-        </select>
         <div class="terms">
           <input type="checkbox" required>
           <label>All Options are Checked</label>
@@ -52,11 +38,6 @@ export default {
   data() {
     return {
       teacherClasslist: [],
-      studentData : {
-      mark: "",
-      studentId: "",
-      grade: "",
-      },
       formData: {
       mark: "",
       studentId: "",
