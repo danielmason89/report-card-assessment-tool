@@ -13,17 +13,6 @@ const routes = [
     name: "Parent",
     component: () => import("../views/Parent.vue"),
   },
-  // {
-  //   path: "/teacher-classlist/:id",
-  //   name: "ParentClassList",
-  //   component: () => import("../views/parent-classlist/ParentClassList.vue"),
-  //   props: true,
-  // },
-  // {
-  //   path: "/parent",
-  //   name: "Parent",
-  //   component: () => import("../views/parent-classlist/Parent.vue"),
-  // },
   {
     path: "/teacher-classlist",
     name: "TeacherClasslist",

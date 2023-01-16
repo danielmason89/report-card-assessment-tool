@@ -10,7 +10,6 @@
           <router-link :to="{ name: 'UpdateStudent', params: { id: teacherClasslist.id  } }">
             <span @click="updateStudent" class="material-icons" title="click here to update student details">edit</span>
           </router-link>
-          <span @click="deleteStudent" class="material-icons" title="click here to delete student from class list">delete</span>
           <span @click="showDetails = !showDetails" title="see student details/report card" class="material-icons">expand_more</span>
         </div>
       </div>

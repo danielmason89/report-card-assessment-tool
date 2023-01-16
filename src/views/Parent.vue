@@ -20,14 +20,17 @@
         </div>
       </form>
     </section>
-    <header>
-      <h3>Student Report Card</h3>
-    </header>
-    <section>
-      <p>Student Name: {{ this.studentId }}</p>
-      <p>Student Gender: {{ this.gender }}</p>
-      <p>Student Grade: {{ this.grade }}</p>
-      <p>Student Mark: {{ this.mark }}</p>
+      <section class="report-card" >
+      <header>
+        <h3>Student Report Card</h3>
+        <span @click="showDetails = !showDetails" title="see student details/report card" class="material-icons">expand_more</span>
+      </header>
+      <div v-if="showDetails" class="details">
+        <p>{{ results.studentId }}</p>
+        <p>Student ID: {{ results.id }}</p>
+        <p>Student Grade: {{ results.grade }}</p>
+        <p>Student Mark: {{ results.mark }}</p>
+      </div>
     </section>
   </main>
 </template>
@@ -43,33 +46,30 @@ export default {
       studentId: "",
       grade: "",
       },
-      results: []
+      showDetails: null,
+      results: [],
     }
-    
   },
+
   mounted() {
         fetch('http://localhost:3000/teacherClasslist')
         .then((res) => res.json())
         .then((data) => this.teacherClasslist = data)
         .catch(err => console.log(err.message))
-
     },
+
   methods: {
   async handleSubmit() {
-      try {
-      let data =  'http://localhost:3000/teacherClasslist/';
-      if(!data.ok) {
-        throw Error("Student not in ClassList");
-      }
-      fetch(`http://localhost:3000/teacherClasslist?{this.formData.studentId}&mark=${this.formData.mark}&gender=${this.formData.gender}`);
-        this.results = await response.json(url);
-      } catch (err) {err.value = err.message
-        console.log(err.value)
-      }
+      await fetch(`http://localhost:3000/teacherClasslist?studentId=${this.teacherClasslist.studentId}`)
+        .then((res) => res.json())
+        .then(data => {
+          this.results = data[0]
+        })
+        .catch(err => console.log(err.message))
+      result: []
     }
   }
   }
-
 </script>
 
 
@@ -98,6 +98,15 @@ form {
   border-radius: 10px;
 }
 
+.report-card {
+  margin: 1rem 2.5rem;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
+    border-left: 4px solid #e90074;
+}
+
 label {
         color: #aaa;
         display: inline-block;
@@ -115,6 +124,10 @@ label {
         border: none;
         border-bottom: 1px solid #ddd;
         color: #555;
+    }
+
+    header {
+      display: flex;
     }
 
     input[type="checkbox"] {

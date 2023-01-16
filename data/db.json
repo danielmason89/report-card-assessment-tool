@@ -4,7 +4,7 @@
       "id": 3,
       "studentId": "Danny",
       "gender": "Non-Binary",
-      "grade": "9",
+      "grade": "11",
       "mark": "C"
     },
     {
@@ -50,49 +50,35 @@
       "id": 13
     },
     {
-      "studentId": "dfgfdfdhf",
-      "gender": "Boy",
-      "grade": "10",
-      "id": 14
-    },
-    {
       "studentId": "Emilly",
       "gender": "Girl",
       "grade": "10",
+      "mark": "B",
       "id": 15
-    },
-    {
-      "studentId": "test123",
-      "gender": "Non-Binary",
-      "grade": "9",
-      "id": 16
     },
     {
       "studentId": "Daniel",
       "gender": "Boy",
       "grade": "10",
+      "mark": "B",
       "id": 17
-    },
-    {
-      "studentId": "test-12",
-      "gender": "Boy",
-      "grade": "9",
-      "id": 18
     },
     {
       "studentId": "Michelle",
       "gender": "Girl",
       "grade": "9",
+      "mark": "B",
       "id": 20
     },
     {
       "studentId": "danielle",
       "gender": "Girl",
       "grade": "10",
+      "mark": "B",
       "id": 21
     },
     {
-      "studentId": "Daniel",
+      "studentId": "Frankie",
       "gender": "Girl",
       "grade": "9",
       "id": 22,
