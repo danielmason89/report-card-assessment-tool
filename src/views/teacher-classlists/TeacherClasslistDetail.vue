@@ -8,11 +8,10 @@
         <h2>{{ teacherClasslist.studentId }}</h2>
         <div class="icons">
           <router-link :to="{ name: 'UpdateStudent', params: { id: teacherClasslist.id  } }">
-            <span @click="updateStudent" class="material-icons">edit</span>
+            <span @click="updateStudent" class="material-icons" title="click here to update student details">edit</span>
           </router-link>
-          <span @click="deleteStudent" class="material-icons">delete</span>
-          <!-- Having issue with delete functionality -->
-          <span @click="showDetails = !showDetails" class="material-icons">expand_more</span>
+          <span @click="deleteStudent" class="material-icons" title="click here to delete student from class list">delete</span>
+          <span @click="showDetails = !showDetails" title="see student details/report card" class="material-icons">expand_more</span>
         </div>
       </div>
       <div v-if="showDetails" class="details">

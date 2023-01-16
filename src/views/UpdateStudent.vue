@@ -1,6 +1,8 @@
 <template>
 <main>
-    <h1>Update Student</h1>
+  <header>
+    <h1>Update Student Details </h1>
+  </header>
     <form class="form" @submit.prevent="handleSubmit">
       <label>Student Name:</label>
       <input type="studentId" v-model="studentId"  required>
@@ -27,7 +29,7 @@
         <label>All Options are Checked</label>
       </div>
       <div class="submit">
-        <button>Update Student</button>
+        <button title="click here to update details">Update Student Info</button>
       </div>
     </form>
 </main>
@@ -66,7 +68,7 @@ mounted() {
 }
 </script>
 
-<style>
+<style scoped>
 
 main {
     padding: 8rem 2.5rem;
@@ -83,4 +85,59 @@ main {
   box-shadow: 1px 2px 3px rgb(0 0 0 / 50%);
 }
 
+form {
+  max-width: 420px;
+  margin: 30px auto;
+  background: white;
+  text-align: left;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+label {
+        color: #aaa;
+        display: inline-block;
+        margin: 25px 0 15px;
+        font-size: 0.6em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: bold;
+    }
+    input, select {
+        display: block;
+        padding: 20px 6px;
+        width: 100%;
+        box-sizing: border-box;
+        border: none;
+        border-bottom: 1px solid #ddd;
+        color: #555;
+    }
+
+    input[type="checkbox"] {
+      display: inline-block;
+      width: 16px;
+      margin: 0 16px 0 0;
+      position: relative;
+      top: 2px;
+    }
+
+    button {
+      background: #0b6dff;
+      border: 0;
+      padding: 10px 20px;
+      margin-top: 20px;
+      color: white;
+      border-radius: 20px;
+    }
+
+    .submit {
+      text-align: center;
+    }
+
+    .error{
+      color: #ff0062;
+      margin-top: 10px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
 </style>

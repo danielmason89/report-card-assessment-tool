@@ -1,25 +1,28 @@
 <template>
 <main>
-    <form @submit.prevent="handleSubmit">
+  <header>
+    <h1>Add New Student to Class List</h1>
+  </header>
+    <form class="form" @submit.prevent="handleSubmit">
         <label>Student Name:</label>
         <input type="studentId" v-model="studentId"  required>
         <div v-if="text2Error" class="error">{{ text2Error }}</div>
         <label>Student Gender:</label>
-        <select v-model="gender">
+        <select v-model="gender" required>
         <option value="Girl">Girl</option>
         <option value="Boy">Boy</option>
         <option value="Non-Binary">Non-Binary</option>
         <option value="Other">Other</option>
         </select>
         <label>Student Grade:</label>
-        <select v-model="grade">
+        <select v-model="grade" required>
         <option value="8">8</option>
         <option value="9">9</option>
         <option value="10">10</option>
         <option value="11">11</option>
         </select>
         <label>Student Mark:</label>
-        <select v-model="mark">
+        <select v-model="mark" required>
         <option value="A">A</option>
         <option value="B">B</option>
         <option value="C">C</option>
@@ -33,7 +36,7 @@
         <label>All Options are Checked</label>
         </div>
         <div class="submit">
-        <button>Add Student</button>
+        <button title="click here to add student to classlist">Add Student</button>
         </div>
     </form>
 </main>
@@ -72,7 +75,22 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+    main {
+        padding: 8rem 2.5rem;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        height: 100vh;
+        width: 100%;
+    }
+
+    .form {
+  border-left: .5rem #add solid;
+  border-radius: 4px;
+  box-shadow: 1px 2px 3px rgb(0 0 0 / 50%);
+}
+    
     form {
         max-width: 420px;
         margin: 30px auto;

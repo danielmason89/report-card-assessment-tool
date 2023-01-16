@@ -11,8 +11,19 @@ const routes = [
   {
     path: "/parent",
     name: "Parent",
-    component: () => import("../views/Parent"),
+    component: () => import("../views/Parent.vue"),
   },
+  {
+    path: "/teacher-classlist/:id",
+    name: "ParentClassList",
+    component: () => import("../views/parent-classlist/ParentClassList.vue"),
+    props: true,
+  },
+  // {
+  //   path: "/parent",
+  //   name: "Parent",
+  //   component: () => import("../views/parent-classlist/Parent.vue"),
+  // },
   {
     path: "/teacher-classlist",
     name: "TeacherClasslist",
@@ -40,6 +51,11 @@ const routes = [
     name: "AddStudent",
     component: AddStudent,
   },
+  // {
+  //   path: "/single-student",
+  //   name: "SingleStudent",
+  //   component: SingleStudent,
+  // },
   {
     path: "/:catchAll(.*)",
     name: "404",
