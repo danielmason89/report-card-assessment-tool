@@ -8,13 +8,6 @@
       "mark": "C"
     },
     {
-      "id": 4,
-      "studentId": "Steve",
-      "gender": "Non-Binary",
-      "grade": "8",
-      "mark": "B"
-    },
-    {
       "id": 5,
       "studentId": "Alana",
       "gender": "Non-Binary",
@@ -89,6 +82,12 @@
       "grade": "9",
       "id": 24,
       "mark": "A"
+    },
+    {
+      "studentId": "daneil",
+      "gender": "Boy",
+      "grade": "9",
+      "id": 25
     }
   ]
 }

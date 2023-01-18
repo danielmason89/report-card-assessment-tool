@@ -6,7 +6,8 @@
     <section v-if="teacherClasslist.length">
         <div class="classlist">
         <router-link :to="{ name: 'AddStudent' }" title="add student to classlist">
-            <h2 class="material-icons" >add</h2>
+            <h2>Add Student to Class</h2>
+            <h3 class="material-icons">add</h3>
         </router-link>
         </div>
         <div  v-for="student in teacherClasslist" :key="student.id" class="classlist">
@@ -64,7 +65,10 @@ header {
     font-style: bold;
 }
 
-.classlist {}
+.classlist {
+    display: flex;
+    flex-direction: row;
+}
 
 .classlist a {
     background: #f4f4f4;
