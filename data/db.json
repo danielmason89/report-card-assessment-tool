@@ -206,6 +206,14 @@
       "mark": "B",
       "subject": "Computer Science",
       "id": 43
+    },
+    {
+      "studentId": "Betty",
+      "gender": "Girl",
+      "grade": "9",
+      "mark": "Not Completed",
+      "subject": "Computer Science",
+      "id": 44
     }
   ]
 }
