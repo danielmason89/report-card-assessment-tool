@@ -26,7 +26,7 @@
 
 <script>
     export default {
-        name: "navigation",
+        name: "Navigation",
         data() {
             return {
             scrolledNav: null,
@@ -35,18 +35,18 @@
             windowWidth: null
             }
         },
-        created() {
-            window.addEventListener("resize", this.checkScreen);
+       async created() {
+        await window.addEventListener("resize", this.checkScreen);
             this.checkScreen();
         },
-        mounted() {
-            window.addEventListener("scroll", this.updateScroll)
+       async mounted() {
+        await window.addEventListener("scroll", this.updateScroll)
         },
         methods: {
-            toggleMobileNav() {
+          async toggleMobileNav() {
                 this.mobileNav = !this.mobileNav
             },
-            updateScroll() {
+           async updateScroll() {
                 const scrollPosition = window.scrollY;
                 if (scrollPosition > 50) {
                     this.scrolledNav = true;
@@ -54,7 +54,7 @@
                 }
                 this.scrolledNav = false;
             },
-            checkScreen() {
+        async checkScreen() {
                 this.windowWidth = window.innerWidth;
                 if (this.windowWidth <= 750) {
                     this.mobile = true;

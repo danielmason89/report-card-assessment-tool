@@ -18,7 +18,7 @@
         <p>Student Id: {{ teacherClasslist.id}}</p>
         <p>Gender: {{ teacherClasslist.gender}}</p>
         <p>Grade: {{ teacherClasslist.grade}}</p>
-        <p>Mark: {{ teacherClasslist.mark}}</p>
+        <p>{{teacherClasslist.subject }} : {{ teacherClasslist.mark}}</p>
       </div>
     </div>
     <div v-else>
@@ -29,6 +29,7 @@
 
 <script>
 export default {
+  name: "TeacherClasslistDetails",
     props: ["id"],
     data() {
       return {
@@ -38,19 +39,22 @@ export default {
       }
     },
     methods: {
-      deleteStudent() {
-        this.teacherClasslist = null;
+      async deleteStudent() {
+       try { this.teacherClasslist = null;
         this.$router.push('/teacher-classlist');
-        fetch(this.uri, { method: "DELETE" })
+        await fetch(this.uri, { method: "DELETE" })
         .then(() => this.$emit("delete", this.id))
-        .catch((err) => console.log(err))
+       } catch (err) { console.log(err)
+       }
       }
     },
-    mounted() {
-      fetch('http://localhost:3000/teacherClasslist/' + this.id)
+    async created() {
+    try {
+      await fetch('http://localhost:3000/teacherClasslist/' + this.id)
         .then((res) => res.json())
         .then((data) => this.teacherClasslist = data)
-        .catch(err => console.log(err.message))
+    } catch (err) { console.log(err.message)
+    }
     },
 }
 </script>

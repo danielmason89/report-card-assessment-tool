@@ -6,23 +6,38 @@
     <form class="form" @submit.prevent="handleSubmit">
       <label>Student Name:</label>
       <input type="studentId" v-model="studentId"  required>
-      <!-- <div v-if="text2Error" class="error">{{ text2Error }}</div> -->
+      <div v-if="text2Error" class="error">{{ text2Error }}</div>
+      <label>Student Gender:</label>
+        <select v-model="gender" required>
+        <option disabled value>Please Select a Gender to update, if needed</option>
+        <option value="Girl">Girl</option>
+        <option value="Boy">Boy</option>
+        <option value="Non-Binary">Non-Binary</option>
+        <option value="LGBTQ+">LGBTQ+</option>
+        </select>
       <label>Student Grade:</label>
       <select v-model="grade" required>
+        <option disabled value>Please Update Grade, if needed</option>
         <option value="8">8</option>
         <option value="9">9</option>
         <option value="10">10</option>
         <option value="11">11</option>
       </select>
+      <label>Class Subject:</label>
+        <select v-model="subject" required>
+        <option disabled value>Please Select A Subject</option>
+        <option value="Computer Science">Computer Science</option>
+        </select>
       <label>Student Mark:</label>
       <select v-model="mark" required>
+        <option disabled value>Please Select A Mark or Update, if needed</option>
         <option value="A">A</option>
         <option value="B">B</option>
         <option value="C">C</option>
         <option value="D">D</option>
         <option value="F">F</option>
         <option value="other">Other</option>
-        <option value="not-complete">Not Completed</option>
+        <option value="Not Completed">Not Completed</option>
       </select>
       <div class="terms">
         <input type="checkbox" required>
@@ -37,34 +52,53 @@
 
 <script>
 export default {
+  name: "UpdateStudent",
     props: ["id"],
     data() {
      return {
-      studentId: "",
+      studentId: undefined,
       mark:"",
-      grade: "",
+      grade: undefined,
+      subject: undefined,
+      gender: undefined,
+      text2Error:null,
       uri: "http://localhost:3000/teacherClasslist/" + this.id,
     }
 },
-mounted() {
-    fetch(this.uri)
+async created() {
+    await fetch(this.uri)
     .then(res => res.json())
     .then(data => {
         this.studentId = data.studentId
         this.grade = data.grade
-        this.mark = data.mark
+        this.gender = data.gender
+        this.subject = data.subject
     })
     },
     methods: {
-      handleSubmit() {
-        fetch(this.uri, {
+      async handleSubmit(e) {
+        try { this.text2Error = this.studentId.length >= 2 ? '' : "Please Update with a Valid Student Name"
+        e.preventDefault();
+        if(!this.text2Error) {
+       let student = {
+        "studentId": this.studentId,
+        "gender": this.gender,
+        "grade": this.grade,
+        "mark": this.mark,
+        "subject": this.subject
+       }
+      await fetch(this.uri, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ studentId: this.studentId, grade: this.grade, mark: this.mark})
+          body: JSON.stringify(student)
         }).then(() => {this.$router.push('/teacher-classlist')})
-          .catch(err => console.log(err))
       }
+      
     }
+    catch(err) { console.log(err)
+      }
+  }
+  }
 }
 </script>
 

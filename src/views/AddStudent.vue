@@ -9,27 +9,24 @@
         <div v-if="text2Error" class="error">{{ text2Error }}</div>
         <label>Student Gender:</label>
         <select v-model="gender" required>
+        <option disabled value>Please Select A Gender</option>
         <option value="Girl">Girl</option>
         <option value="Boy">Boy</option>
         <option value="Non-Binary">Non-Binary</option>
-        <option value="Other">Other</option>
+        <option value="LGBTQ+">LGBTQ+</option>
         </select>
         <label>Student Grade:</label>
         <select v-model="grade" required>
+        <option disabled value>Please Select A Grade</option>
         <option value="8">8</option>
         <option value="9">9</option>
         <option value="10">10</option>
         <option value="11">11</option>
         </select>
-        <label>Student Mark:</label>
-        <select v-model="mark" required>
-        <option value="A">A</option>
-        <option value="B">B</option>
-        <option value="C">C</option>
-        <option value="D">D</option>
-        <option value="F">F</option>
-        <option value="Other">Other</option>
-        <option value="not-complete">Not Completed</option>
+        <label>Class Subject:</label>
+        <select v-model="subject" required>
+        <option disabled value>Please Select a Subject</option>
+        <option value="Computer Science">Computer Science</option>
         </select>
         <div class="terms">
         <input type="checkbox" v-model="terms" required>
@@ -43,33 +40,41 @@
 </template>
 
 <script>
+import * as axios from "axios";
+
 export default {
+  name: "AddStudent",
   data() {
     return {
-      studentId: "",
+      studentId: undefined,
       gender:"",
+      subject:"",
       grade: "",
+      mark: "Not Completed",
       text2Error:null
     }
   },
   methods: {
-    handleSubmit(e) {
-      e.preventDefault();
-      this.text2Error = this.studentId.length > 5 ? '' : "Student Name must be at least 6 chars long"
+    async handleSubmit() {
+    try {this.text2Error = this.studentId.length >= 2 ? '' : "Please Enter a Valid Student Name"
       if(!this.text2Error) {
        let student = {
         "studentId": this.studentId,
         "gender": this.gender,
-        "grade": this.grade
+        "grade": this.grade,
+        "mark": this.mark,
+        "subject": this.subject,
        }
-       fetch("http://localhost:3000/teacherClasslist", {
+     await fetch("http://localhost:3000/teacherClasslist", {
        method: "POST",
        headers: {"Content-Type" : "application/json"},
        body: JSON.stringify(student)
       }).then(() => {
         this.$router.push('/teacher-classlist')
-      }).catch((err) => console.log(err))
-      }
+        }
+      )} 
+    }
+    catch(err) { console.log(err)}
     }
   }
 }

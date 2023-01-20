@@ -1,13 +1,12 @@
 <template>
     <main>
     <header>
-        <h1>Computer Science Class List</h1>
+        <h1>Computer Science Teacher Class List</h1>
     </header>
     <section v-if="teacherClasslist.length">
         <div class="classlist">
-        <router-link :to="{ name: 'AddStudent' }" title="add student to classlist">
-            <h2>Add Student to Class</h2>
-            <h3 class="material-icons">add</h3>
+        <router-link :to="{ name: 'AddStudent' }" title="add student to classlist" tag="button" class="material-icons">
+        <h3>Add Student to Class</h3>add
         </router-link>
         </div>
         <div  v-for="student in teacherClasslist" :key="student.id" class="classlist">
@@ -31,20 +30,21 @@ export default {
             teacherClasslist: []
         }
     },
-    mounted() {
-        fetch('http://localhost:3000/teacherClasslist')
+    async created() {
+      try { await fetch('http://localhost:3000/teacherClasslist')
         .then((res) => res.json())
         .then((data) => this.teacherClasslist = data)
-        .catch(err => console.log(err.message))
-
+      } catch (err) { console.log(err.message)
+      }
     },
     methods: {
-        handleDelete(id) {
-            this.id = this.id.filter((id) => {
+       async handleDelete(id) {
+           try { this.id = this.id.filter((id) => {
                 return id !== id
             }).then(() => {
-        this.$router.push('/teacher-classlist')
-      }).catch((err) => console.log(err))
+       this.$router.push('/teacher-classlist')
+      })} catch(err) { console.log(err)
+      }
         }
     }
 }
@@ -90,5 +90,4 @@ header {
     text-decoration: none;
     border-radius: 2px #000 solid;
 }
-
 </style>

@@ -39,12 +39,7 @@ const routes = [
     path: "/add",
     name: "AddStudent",
     component: AddStudent,
-  },
-  // {
-  //   path: "/single-student",
-  //   name: "SingleStudent",
-  //   component: SingleStudent,
-  // },
+  }, 
   {
     path: "/:catchAll(.*)",
     name: "404",

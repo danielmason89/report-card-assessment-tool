@@ -7,6 +7,7 @@
       <form class="form" @submit.prevent="handleSubmit">
         <label>Student Name:</label>
         <select v-model="teacherClasslist.studentId" required>
+          <option disabled value>Please Select A Student</option>
           <option v-for="studentId in teacherClasslist" :key="studentId.studentId" :value="studentId.studentId">
           {{ studentId.studentId }}
           </option>
@@ -20,16 +21,16 @@
         </div>
       </form>
     </section>
-      <section class="report-card" >
+      <section v-if="results" class="report-card" >
       <header>
         <h3>Student Report Card</h3>
         <span @click="showDetails = !showDetails" title="see student details/report card" class="material-icons">expand_more</span>
       </header>
-      <div v-if="showDetails" class="details">
+      <div v-show="showDetails" class="details">
         <p>{{ results.studentId }}</p>
         <p>Student ID: {{ results.id }}</p>
         <p>Student Grade: {{ results.grade }}</p>
-        <p>Student Mark: {{ results.mark }}</p>
+        <p>{{results.subject}} : {{ results.mark }}</p>
       </div>
     </section>
   </main>
@@ -37,25 +38,28 @@
 
 <script>
 export default {
+  name: "Parent",
   props: ["id"],
   data() {
     return {
-      teacherClasslist: [],
+      teacherClasslist: "",
       formData: {
       mark: "",
       studentId: "",
       grade: "",
+      subject: "",
       },
       showDetails: null,
-      results: [],
+      results: undefined,
     }
   },
 
-  mounted() {
-        fetch('http://localhost:3000/teacherClasslist')
+  async created() {
+    try {    await fetch('http://localhost:3000/teacherClasslist')
         .then((res) => res.json())
         .then((data) => this.teacherClasslist = data)
-        .catch(err => console.log(err.message))
+    }  catch (err) { console.log(err.message)
+    }
     },
 
   methods: {
@@ -66,7 +70,6 @@ export default {
           this.results = data[0]
         })
         .catch(err => console.log(err.message))
-      result: []
     }
   }
   }
