@@ -80,7 +80,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
     main {
         padding: 8rem 2.5rem;
         display: flex;
@@ -88,7 +89,13 @@ export default {
         position: relative;
         height: 100vh;
         width: 100%;
-    }
+
+     header h1 {
+    font-size: 2rem;
+    font-style: bold;
+}
+
+}
 
     .form {
   border-left: .5rem #add solid;

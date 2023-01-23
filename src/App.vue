@@ -25,6 +25,7 @@ export default {
   box-sizing: border-box;
   font-family: "Raleway", sans-serif;
   font-weight: 400;
+  font-size: 16px;
 }
 .app {
   min-height: 100vh;

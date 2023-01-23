@@ -102,7 +102,8 @@ async created() {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
 
 main {
     padding: 8rem 2.5rem;
@@ -110,7 +111,12 @@ main {
     flex-direction: column;
     position: relative;
     height: 100vh;
-    width: 100%;
+    width: 100vw;
+
+    header h1 {
+    font-size: 2rem;
+    font-style: bold;
+}
   }
 
 .form {

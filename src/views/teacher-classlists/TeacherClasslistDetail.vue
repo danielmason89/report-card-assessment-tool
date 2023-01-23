@@ -59,7 +59,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+
 
   main {
     padding: 8rem 2.5rem;
@@ -68,6 +69,11 @@ export default {
     position: relative;
     height: 100vh;
     width: 100%;
+
+    header h1 {
+    font-size: 2rem;
+    font-style: bold;
+}
   }
 
   .student{
@@ -77,12 +83,10 @@ export default {
     border-radius: 4px;
     box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
     border-left: 4px solid #e90074;
+    margin-bottom: 0.5rem;
   }
 
-  header {
-    font-size: 1.5rem;
-    font-style: bold;
-  }
+  
 
   h2 {
     padding-bottom: .25rem;

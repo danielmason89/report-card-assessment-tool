@@ -26,7 +26,7 @@
         <h3>Student Report Card</h3>
         <span @click="showDetails = !showDetails" title="see student details/report card" class="material-icons">expand_more</span>
       </header>
-      <div v-show="showDetails" class="details">
+      <div v-if="showDetails" class="details">
         <p>{{ results.studentId }}</p>
         <p>Student ID: {{ results.id }}</p>
         <p>Student Grade: {{ results.grade }}</p>
@@ -50,7 +50,7 @@ export default {
       subject: "",
       },
       showDetails: null,
-      results: undefined,
+      results: false,
     }
   },
 
@@ -76,15 +76,29 @@ export default {
 </script>
 
 
-<style scoped>
+<style lang="scss" scoped>
+
 main {
+
     padding: 8rem 2.5rem;
     display: flex;
     flex-direction: column;
     position: relative;
     height: 100vh;
     width: 100%;
+
+    header h1 {
+    font-size: 2rem;
+    font-style: bold;
+}
   }
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
 
 .form {
   border-left: .5rem #add solid;
@@ -103,11 +117,11 @@ form {
 
 .report-card {
   margin: 1rem 2.5rem;
-    background: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
-    border-left: 4px solid #e90074;
+  background: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
+  border-left: 4px solid #e90074;
 }
 
 label {
