@@ -1,17 +1,17 @@
 <template>
   <main>
-      <header>
+    <header>
         <h1>Student Details</h1>
-      </header>
-    <div class="student" v-if="teacherClasslist">
-      <div  class="actions">
+    </header>
+    <section class="student" v-if="teacherClasslist">
+      <div @click="showDetails = !showDetails"  class="actions">
         <h2>{{ teacherClasslist.studentId }}</h2>
         <div class="icons">
           <router-link :to="{ name: 'UpdateStudent', params: { id: teacherClasslist.id  } }">
             <span @click="updateStudent" class="material-icons" title="click here to update student details">edit</span>
           </router-link>
           <span @click="deleteStudent" class="material-icons" title="click here to delete student from class list">delete</span>
-          <span @click="showDetails = !showDetails" title="see student details/report card" class="material-icons">expand_more</span>
+          <span title="see student details/report card" class="material-icons">expand_more</span>
         </div>
       </div>
       <div v-if="showDetails" class="details">
@@ -20,7 +20,7 @@
         <p>Grade: {{ teacherClasslist.grade}}</p>
         <p>{{teacherClasslist.subject }} : {{ teacherClasslist.mark}}</p>
       </div>
-    </div>
+    </section>
     <div v-else>
       <p>Loading Student Id...</p>
     </div>
@@ -85,9 +85,7 @@ export default {
     border-left: 4px solid #e90074;
     margin-bottom: 0.5rem;
   }
-
   
-
   h2 {
     padding-bottom: .25rem;
   }

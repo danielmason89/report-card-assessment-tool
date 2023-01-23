@@ -21,10 +21,10 @@
         </div>
       </form>
     </section>
-      <section v-if="results" class="report-card" >
+      <section  @click="showDetails = !showDetails" v-if="results" class="report-card" >
       <header>
         <h3>Student Report Card</h3>
-        <span @click="showDetails = !showDetails" title="see student details/report card" class="material-icons">expand_more</span>
+        <span  title="see student details/report card" class="material-icons">expand_more</span>
       </header>
       <div v-if="showDetails" class="details">
         <p>{{ results.studentId }}</p>
@@ -55,7 +55,8 @@ export default {
   },
 
   async created() {
-    try {    await fetch('http://localhost:3000/teacherClasslist')
+    try { 
+      await fetch('http://localhost:3000/teacherClasslist')
         .then((res) => res.json())
         .then((data) => this.teacherClasslist = data)
     }  catch (err) { console.log(err.message)
@@ -79,25 +80,22 @@ export default {
 <style lang="scss" scoped>
 
 main {
-
     padding: 8rem 2.5rem;
     display: flex;
     flex-direction: column;
     position: relative;
     height: 100vh;
     width: 100%;
-
-    header h1 {
-    font-size: 2rem;
-    font-style: bold;
-}
-  }
-
-header {
+    header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.5rem;
+    h1 {
+      font-size: 2rem;
+      font-style: bold;
+    } 
+  }  
 }
 
 .form {
@@ -142,11 +140,9 @@ label {
         border-bottom: 1px solid #ddd;
         color: #555;
     }
-
     header {
       display: flex;
     }
-
     input[type="checkbox"] {
       display: inline-block;
       width: 16px;
