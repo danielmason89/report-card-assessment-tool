@@ -3,14 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "json:server": "json-server --watch data/db.json",
+    "preserve": "npm run build-css",
+    "serve": "npm run build-css && concurrently \"npm run json:server\" \"npm run build-css -- --watch\" \"vite\"",
+    "build": "npm run build-css && vite build",
+    "build-css": "postcss ./src/styles/index.scss -o public/styles.css",
+    "preview": "vite preview"
   },
   "dependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
     "axios": "^1.2.3",
+    "concurrently": "^7.6.0",
     "core-js": "^3.8.3",
     "json-server": "^0.17.1",
     "lodash": "^4.17.21",
+    "post-cli": "^1.0.5",
+    "postcss-cli": "^10.1.0",
+    "postcss-scss": "^4.0.6",
+    "postcss-simple-vars": "^7.0.1",
     "sass": "^1.57.1",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
@@ -21,7 +31,15 @@
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "autoprefixer": "^10.4.13",
     "node-sass": "^8.0.0",
-    "sass-loader": "^13.2.0"
+    "postcss": "^8.4.21",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-import": "^15.1.0",
+    "postcss-preset-env": "^7.8.3",
+    "precss": "^4.0.0",
+    "sass-loader": "^13.2.0",
+    "tailwindcss": "^3.2.4",
+    "vite": "^4.0.4"
   }
 }

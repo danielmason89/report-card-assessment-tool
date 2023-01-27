@@ -1,10 +1,9 @@
 <template>
     <header :class="{ 'scrolled-nav': scrolledNav }">
         <nav>
-            <div class="branding">
-                <img src="@/assets/logo.png" alt="">
-                
-            </div>
+            <router-link :to="{name: 'Home'}" class="branding">
+                <img src="@/assets/logo.png" alt="report-card-tool">
+            </router-link>
             <ul v-show="!mobile" class="navigation">
                 <li><router-link class="link" :to="{name: 'Home'}">Home</router-link></li>
                 <li><router-link class="link" :to="{name: 'TeacherClasslist'}">Teacher</router-link></li>

@@ -29,7 +29,7 @@
         <option value="Computer Science">Computer Science</option>
         </select>
         <div class="terms">
-        <input type="checkbox" v-model="terms" required>
+        <input type="checkbox" required>
         <label>All Options are Checked</label>
         </div>
         <div class="submit">
@@ -46,7 +46,7 @@ export default {
   name: "AddStudent",
   data() {
     return {
-      studentId: undefined,
+      studentId: "",
       gender:"",
       subject:"",
       grade: "",
@@ -87,7 +87,7 @@ export default {
         display: flex;
         flex-direction: column;
         position: relative;
-        height: 100vh;
+        height: 110vh;
         width: 100%;
 
      header h1 {

@@ -5,7 +5,7 @@
     </header>
     <section v-if="teacherClasslist.length">
         <div class="classlist">
-        <router-link :to="{ name: 'AddStudent' }" title="add student to classlist" tag="button" class="material-icons">
+        <router-link :to="{ name: 'AddStudent' }" title="add student to classlist" tag="button" class="material-icons students">
         <h3>Add Student to Class</h3>add
         </router-link>
         </div>
@@ -38,62 +38,80 @@ export default {
       }
     },
     methods: {
-       async handleDelete(id) {
+        async handleDelete() {
            try { this.id = this.id.filter((id) => {
                 return id !== id
-            }).then(() => {
-       this.$router.push('/teacher-classlist')
+            }).then(() => { this.$router.push('/teacher-classlist')
       })} catch(err) { console.log(err)
       }
-        }
+    }
     }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 main {
-    padding: 8rem 2.5rem;
+    padding: 10rem 2.5rem;
     display: flex;
     flex-direction: column;
     position: relative;
-    height: 100vh;
+    height: 100%;
+    overflow: auto;
+        header h1 {
+        font-size: 2rem;
+        font-style: bold;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: row;
+        margin-bottom: 1.5rem;
+    }
 }
 
-header h1 {
-    font-size: 2rem;
-    font-style: bold;
+section {
+    display: grid;
+    gap: 1rem 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    padding-bottom: auto;
 }
 
 section h3 {
-    font-size: 1.5rem;
+    font-size: .95rem;
     font-style: bold;
     color: #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 2;
 }
 
-.classlist {
-    display: flex;
-    flex-direction: row;
+.material-icons{
+    font-size: 1rem;
 }
+
+
+.students h2 {
+    text-align: center;
+}
+
 
 .classlist a {
     background: #f4f4f4;
     padding: 1rem;
     border-radius: 10px;
-    margin: 10px auto;
-    max-width: 600px;
+    margin: 1rem;
     cursor: pointer;
     color: #444;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .classlist a:hover {
     background: #add;
-}
-
-.classlist a {
-    display: flex;
-    flex-direction: row;
-    text-decoration: none;
-    border-radius: 2px #000 solid;
+    border: .5px #000 solid
 }
 </style>

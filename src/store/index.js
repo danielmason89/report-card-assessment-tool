@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createStore } from "vuex";
 import {
   ADD_TEACHER_CLASSLIST,
@@ -7,9 +8,15 @@ import {
 } from "./mutation-types";
 
 export default createStore({
+  namespaced: true,
   strict: process.env.NODE_ENV === "production",
   state: {
     teacherClasslist: [],
+    studentId: null,
+    mark: null,
+    grade: null,
+    gender: null,
+    subject: null,
   },
   getters: {
     getTeacherClasslistById: (state) => (id) => {
@@ -42,7 +49,7 @@ export default createStore({
   },
   actions: {
     async getTeacherClasslistAction({ commit }) {
-      const teacherClasslist = await fetch(
+      const teacherClasslist = await axios.get(
         "http://localhost:3000/teacherClasslist"
       );
       commit([GET_TEACHER_CLASSLIST], teacherClasslist);
@@ -78,5 +85,8 @@ export default createStore({
       commit([UPDATE_TEACHER_CLASSLIST], updateStudent);
     },
   },
-  modules: {},
+  modules: {
+    // teacher: teacherModule,
+    // parent: parentModule,
+  },
 });

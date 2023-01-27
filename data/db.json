@@ -5,7 +5,7 @@
       "studentId": "Ana",
       "gender": "Girl",
       "grade": 8,
-      "mark": "Not Completed",
+      "mark": "B",
       "subject": "Computer Science"
     },
     {
@@ -15,22 +15,6 @@
       "grade": 9,
       "subject": "Computer Science",
       "mark": "D"
-    },
-    {
-      "studentId": "Jiff",
-      "gender": "Girl",
-      "grade": 9,
-      "mark": "B",
-      "subject": "Computer Science",
-      "id": 11
-    },
-    {
-      "studentId": "Michael",
-      "gender": "Boy",
-      "grade": 8,
-      "mark": "Not Completed",
-      "subject": "Computer Science",
-      "id": 12
     },
     {
       "studentId": "Scott",
@@ -63,13 +47,6 @@
       "id": 22,
       "subject": "Computer Science",
       "mark": "C"
-    },
-    {
-      "studentId": "Phuong",
-      "gender": "Girl",
-      "grade": 9,
-      "subject": "Computer Science",
-      "id": 23
     },
     {
       "studentId": "Vu-Hoang",
@@ -200,20 +177,20 @@
       "id": 42
     },
     {
-      "studentId": "Polly Pocket",
-      "gender": "Non-Binary",
-      "grade": 9,
-      "mark": "B",
-      "subject": "Computer Science",
-      "id": 43
-    },
-    {
       "studentId": "Betty",
       "gender": "Girl",
       "grade": "9",
       "mark": "Not Completed",
       "subject": "Computer Science",
       "id": 44
+    },
+    {
+      "studentId": "Anna",
+      "gender": "Girl",
+      "grade": "9",
+      "mark": "Not Completed",
+      "subject": "Computer Science",
+      "id": 45
     }
   ]
 }

@@ -1,0 +1,33 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+$primary: rgba(0,0,0,0.5);
+$secondary: #e90074;
+$card: #444;
+$not-hover: rgb(95, 79, 79);
+$hover: #add;
+
+
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+  
+a {
+    text-decoration: none;
+}
+
+
+$base-padding: 0.75rem;
+$base-margin: 0.75rem;
+
+
+$base-border-thickness: 1px;
+$base-border-radius: 20px;
+
+.material-icons:hover {
+    color: $hover;
+  }
+  

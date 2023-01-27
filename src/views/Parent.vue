@@ -1,6 +1,6 @@
 <template>
   <main>
-    <header>
+    <header class="text-yellow-400">
         <h1>Search Student Class List</h1>
     </header>
     <section>

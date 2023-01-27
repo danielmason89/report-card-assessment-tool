@@ -1,20 +1,18 @@
 <template>
-    <div class="home">
-    <section class="hero">
-      <div class="hero-text container">
-        <h4>Report Card Tool</h4>
-        <hr />
-        <h2>
-          Capstone <br />
-          Project
-        </h2>
-        <hr />
-      </div>
-    </section>
-    <section>
-      <p>
-      </p>
-    </section>
+  <div class="content">
+      <section class="hero content">
+        <div class="hero-text container">
+          <header>
+            <h4>Report Card Tool</h4>
+            <hr />
+            <h2>
+              Capstone <br />
+              Project
+            </h2>
+          </header>
+          <img src="../assets/graduation.jpg" alt="dgdfsg" srcset="">
+        </div>
+      </section>
   </div>
 </template>
 
@@ -27,23 +25,41 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+
 .hero {
   background-image: url("../assets/hero-bg.png");
   background-attachment: fixed;
   position: relative;
   height: 100vh;
+  padding-top: 15rem;
+  
 
   img {
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
+    object-fit: fit;
+    position: relative;
+    height: 60vh;
+    width: 30vw;
+    border-radius: 50%;
+    margin-left: 2rem;
+
+    zoom: .5;
+    border: 5px solid rgb(42, 104, 132);
+
+    @media (max-width: 1200px) {
+    object-fit: fit;
+    height: 45vh;
+    width: 60vw;
+    border-radius: 50%;
+    margin-left: 2rem;
+    zoom: .5;
+      }
   }
 
   .hero-text {
-    height: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     color: #fff;
 
     h4 {
@@ -74,4 +90,34 @@ export default {
 
   }
 }
+
+@media (max-width: 550px) {
+  .hero{
+  padding-top: 15rem;
+  }  
+  .hero .hero-text{ 
+      display: flex;
+      flex-direction: column;}
+
+  img{
+   display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero{
+  padding-top: 15rem;
+  }  
+  .hero .hero-text{ 
+      display: flex;
+      flex-direction: column;}
+
+ .hero img{
+   width: 35vw;
+   height: 50vh;
+   border-radius: 50%;
+   border: 4px solid rgb(42, 104, 132);
+  }
+}
+  
 </style>

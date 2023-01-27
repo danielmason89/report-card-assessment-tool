@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: "TeacherClasslistDetails",
     props: ["id"],
@@ -41,18 +43,18 @@ export default {
     methods: {
       async deleteStudent() {
        try { this.teacherClasslist = null;
-        this.$router.push('/teacher-classlist');
-        await fetch(this.uri, { method: "DELETE" })
-        .then(() => this.$emit("delete", this.id))
+        
+        await axios.delete(this.uri)
+        .then(() => { this.$router.push('/teacher-classlist');
+      })
        } catch (err) { console.log(err)
        }
       }
     },
     async created() {
     try {
-      await fetch('http://localhost:3000/teacherClasslist/' + this.id)
-        .then((res) => res.json())
-        .then((data) => this.teacherClasslist = data)
+      const response = await axios.get('http://localhost:3000/teacherClasslist/' + this.id)
+      this.teacherClasslist = response.data
     } catch (err) { console.log(err.message)
     }
     },
@@ -65,6 +67,7 @@ export default {
   main {
     padding: 8rem 2.5rem;
     display: flex;
+    
     flex-direction: column;
     position: relative;
     height: 100vh;
@@ -104,8 +107,5 @@ export default {
   cursor: pointer;
 }
 
-.material-icons:hover {
-  color: rgb(142, 133, 133);
-}
 
 </style>

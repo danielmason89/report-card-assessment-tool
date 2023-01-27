@@ -104,13 +104,12 @@ async created() {
 
 <style lang="scss" scoped>
 
-
 main {
     padding: 8rem 2.5rem;
     display: flex;
     flex-direction: column;
     position: relative;
-    height: 100vh;
+    height: 120vh;
     width: 100vw;
 
     header h1 {
