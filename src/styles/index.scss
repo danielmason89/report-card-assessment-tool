@@ -6,7 +6,7 @@ $primary: rgba(0,0,0,0.5);
 $secondary: #e90074;
 $card: #444;
 $not-hover: rgb(95, 79, 79);
-$hover: #add;
+$hover: #f00;
 
 
 
@@ -27,6 +27,13 @@ $base-margin: 0.75rem;
 $base-border-thickness: 1px;
 $base-border-radius: 20px;
 
+.material-icons{
+    font-size: 24px;
+    margin-left: 10px;
+    color: rgb(95, 79, 79);
+    cursor: pointer;
+  }
+  
 .material-icons:hover {
     color: $hover;
   }

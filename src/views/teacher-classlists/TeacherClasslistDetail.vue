@@ -100,12 +100,6 @@ export default {
   align-items: center;
 }
 
-.material-icons{
-  font-size: 24px;
-  margin-left: 10px;
-  color: rgb(95, 79, 79);
-  cursor: pointer;
-}
 
 
 </style>
