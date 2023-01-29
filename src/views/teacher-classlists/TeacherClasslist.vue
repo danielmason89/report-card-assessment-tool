@@ -1,7 +1,7 @@
 <template>
     <main>
     <header>
-        <h1 class="text-gray-800">Computer Science Teacher Class List</h1>
+        <h1 class="text-blue-800">Computer Science Teacher Class List</h1>
     </header>
     <section v-if="teacherClasslist.length">
         <div class="classlist">
