@@ -1,12 +1,12 @@
 <template>
     <main>
     <header>
-        <h1>Computer Science Teacher Class List</h1>
+        <h1 class="text-gray-800">Computer Science Teacher Class List</h1>
     </header>
     <section v-if="teacherClasslist.length">
         <div class="classlist">
         <router-link :to="{ name: 'AddStudent' }" title="add student to classlist" tag="button" class="material-icons students">
-        <h3>Add Student to Class</h3>add
+        <h3 >Add Student to Class</h3>add
         </router-link>
         </div>
         <div  v-for="student in teacherClasslist" :key="student.id" class="classlist">
