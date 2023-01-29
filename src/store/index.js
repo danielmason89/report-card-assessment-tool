@@ -9,7 +9,7 @@ import {
 
 export default createStore({
   namespaced: true,
-  strict: process.env.NODE_ENV === "production",
+  strict: import.meta.NODE_ENV === "production",
   state: {
     teacherClasslist: [],
     studentId: null,
