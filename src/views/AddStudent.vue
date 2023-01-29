@@ -157,4 +157,15 @@ export default {
       font-size: 0.8rem;
       font-weight: bold;
     }
+
+    .material-icons{
+    font-size: 24px;
+    margin-left: 10px;
+    color: rgb(95, 79, 79);
+    cursor: pointer;
+  }
+  
+.material-icons:hover {
+    color: #add;
+  }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <main>
     <header>
-        <h1 class="text-blue-800">Computer Science Teacher Class List</h1>
+        <h1>Computer Science Teacher Class List</h1>
     </header>
     <section v-if="teacherClasslist.length">
         <div class="classlist">
@@ -114,4 +114,12 @@ section h3 {
     background: #add;
     border: .5px #000 solid
 }
+
+
+.material-icons{
+    font-size: 1rem;
+    margin-left: 10px;
+    color: rgb(95, 79, 79);
+    cursor: pointer;
+  }
 </style>

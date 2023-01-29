@@ -1,6 +1,6 @@
 <template>
   <main>
-    <header class="text-yellow-400">
+    <header>
         <h1>Search Student Class List</h1>
     </header>
     <section>
@@ -170,4 +170,15 @@ label {
       font-size: 0.8rem;
       font-weight: bold;
     }
+
+    .material-icons{
+    font-size: 24px;
+    margin-left: 10px;
+    color: rgb(95, 79, 79);
+    cursor: pointer;
+  }
+  
+.material-icons:hover {
+    color: #add;
+  }
 </style>

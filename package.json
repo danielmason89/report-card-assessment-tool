@@ -5,8 +5,7 @@
   "scripts": {
     "json:server": "json-server --watch data/db.json",
     "serve": "concurrently \"npm run json:server\" \"vite\"",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vite build"
   },
   "dependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
