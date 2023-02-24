@@ -2,7 +2,6 @@
   <div class="app">
     <Navigation/>
     <Footer/>
-    
     <router-view v-slot="{ Component }">
       <transition name="route" mode="out-in">
         <component :is="Component" />
@@ -53,7 +52,7 @@ html,body{
 
 .route-enter-from {
   opacity: 0;
-  transform: translateX(100px); 
+  transform: translateX(0px); 
 }
 
 .route-enter-active {
