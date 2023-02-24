@@ -1,16 +1,22 @@
 <template>
   <div class="content">
       <section class="hero content">
-        <div class="hero-text container">
+        <div class="container hero-text">
           <header>
-            <h4>Report Card Tool</h4>
+            <h4 class="mt-4 font-logoText">Report Card Tool</h4>
             <hr />
             <h2>
               Capstone <br />
               Project
             </h2>
           </header>
-          <img src="../assets/graduation.jpg" alt="dgdfsg" srcset="">
+          <main class="grid-container">
+            <article id="featured">
+              <img class="object-cover w-full" src="../assets/graduation.jpg" alt="landing-page-logo"/> 
+              <h4>Author</h4>
+              <p>quote</p>
+            </article>
+          </main>
         </div>
       </section>
   </div>
@@ -26,34 +32,43 @@ export default {
 
 <style lang="scss" scoped>
 
-
 .hero {
   background-image: url("../assets/hero-bg.png");
   background-attachment: fixed;
   position: relative;
   height: 100vh;
+  object-fit: fill;
   padding-top: 15rem;
   
 
   img {
     object-fit: fit;
     position: relative;
-    height: 60vh;
+    height: 50vhh;
     width: 30vw;
     border-radius: 50%;
-    margin-left: 2rem;
-
+    margin: 2rem;
     zoom: .5;
     border: 5px solid rgb(42, 104, 132);
-
+    overflow: hidden;
     @media (max-width: 1200px) {
     object-fit: fit;
-    height: 45vh;
-    width: 60vw;
+    height: 28vh;
+    width: 25vw;
     border-radius: 50%;
     margin-left: 2rem;
+    margin-right: 2rem;
     zoom: .5;
-      }
+  }
+  }
+
+  #featured {
+    text-align: center;
+    margin-top: 7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .hero-text {
@@ -66,12 +81,13 @@ export default {
       text-transform: uppercase;
       font-size: 22px;
       padding-bottom: 4px;
+      margin-top: .5rem;
     }
 
     h2 {
       font-size: 50px;
       @media (min-width: 550px) {
-        font-size: 80px;
+        font-size: 5rem;
       }
 
     }
@@ -91,7 +107,7 @@ export default {
   }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 750px) {
   .hero{
   padding-top: 15rem;
   }  
@@ -102,22 +118,34 @@ export default {
   img{
    display: none;
   }
+
+  #featured{
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
 }
 
 @media (max-width: 400px) {
   .hero{
-  padding-top: 15rem;
+  padding-top: 10rem;
   }  
   .hero .hero-text{ 
       display: flex;
       flex-direction: column;}
 
  .hero img{
+  overflow: hidden;
    width: 35vw;
    height: 50vh;
    border-radius: 50%;
+   object-fit: fit;
    border: 4px solid rgb(42, 104, 132);
   }
+  
 }
   
 </style>

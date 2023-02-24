@@ -5,7 +5,7 @@
     </header>
     <section class="student" v-if="teacherClasslist">
       <div @click="showDetails = !showDetails"  class="actions">
-        <h2>{{ teacherClasslist.studentId }}</h2>
+        <h2 class="font-bold">{{ teacherClasslist.studentId }}</h2>
         <div class="icons">
           <router-link :to="{ name: 'UpdateStudent', params: { id: teacherClasslist.id  } }">
             <span @click="updateStudent" class="material-icons" title="click here to update student details">edit</span>
@@ -14,12 +14,14 @@
           <span title="see student details/report card" class="material-icons">expand_more</span>
         </div>
       </div>
-      <div v-if="showDetails" class="details">
+      <transition name="fade">
+      <sub-section v-if="showDetails" class="details">
         <p>Student Id: {{ teacherClasslist.id}}</p>
         <p>Gender: {{ teacherClasslist.gender}}</p>
         <p>Grade: {{ teacherClasslist.grade}}</p>
         <p>{{teacherClasslist.subject }} : {{ teacherClasslist.mark}}</p>
-      </div>
+      </sub-section>
+    </transition>
     </section>
     <div v-else>
       <p>Loading Student Id...</p>
@@ -111,5 +113,18 @@ export default {
     color: #add;
   }
 
+/* Animations */
+.fade-enter-from {
+  opacity: 0;
+}
+
+.fade-enter-active, 
+.fade-leave-active {
+  transition: all .5s ease;
+}
+
+.fade-leave-to{
+  opacity: 0;
+}
 
 </style>

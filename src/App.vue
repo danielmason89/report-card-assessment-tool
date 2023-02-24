@@ -2,7 +2,12 @@
   <div class="app">
     <Navigation/>
     <Footer/>
-    <router-view/> 
+    
+    <router-view v-slot="{ Component }">
+      <transition name="route" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view> 
   </div>
 </template>
 
@@ -42,5 +47,25 @@ html,body{
   padding: 0 20px;
   max-width: 1140px;
   margin: 0 auto;
+}
+
+/* Route Animations */
+
+.route-enter-from {
+  opacity: 0;
+  transform: translateX(100px); 
+}
+
+.route-enter-active {
+  transition: all 0.5s ease;
+}
+
+.route-leave-to {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+.route-leave-active {
+  transition: all 0.5s ease-in;
 }
 </style>

@@ -1,14 +1,15 @@
 <template>
   <main>
     <header>
-        <h1>Search Student Class List</h1>
+        <h1 class="light" title="Search Student Class List">Search Student Class List</h1>
     </header>
     <section>
       <form class="form" @submit.prevent="handleSubmit">
-        <label>Student Name:</label>
+        <label title="Student Name">Student Name:</label>
         <select v-model="teacherClasslist.studentId" required>
           <option disabled value>Please Select A Student</option>
-          <option v-for="studentId in teacherClasslist" :key="studentId.studentId" :value="studentId.studentId">
+          <option :title="studentId.studentId
+          " v-for="studentId in teacherClasslist" :key="studentId.studentId" :value="studentId.studentId">
           {{ studentId.studentId }}
           </option>
         </select>
@@ -17,21 +18,23 @@
           <label>All Options are Checked</label>
         </div>
         <div class="submit">
-          <button title="click here to search classlist for child">Search Classlist</button>
+          <button class="transition duration-300 ease-out transform hover:scale-125 hover:bg-opacity-50 hover:shadow-xl" title="click here to search classlist for child">Search Classlist</button>
         </div>
       </form>
     </section>
       <section  @click="showDetails = !showDetails" v-if="results" class="report-card" >
       <header>
-        <h3>Student Report Card</h3>
+        <h3 title="Student Report Card" class="text-xl text-black-400">Student Report Card</h3>
         <span  title="see student details/report card" class="material-icons">expand_more</span>
       </header>
+      <transition name="fade">
       <div v-if="showDetails" class="details">
-        <p>{{ results.studentId }}</p>
-        <p>Student ID: {{ results.id }}</p>
-        <p>Student Grade: {{ results.grade }}</p>
-        <p>{{results.subject}} : {{ results.mark }}</p>
+        <p :title="results.studentId" class="font-bold">{{ results.studentId }}</p>
+        <p :title="results.id"><span title="Student ID">Student ID:</span> {{ results.id }}</p>
+        <p :title="results.grade"><span title="Student Grade">Student Grade:</span> {{ results.grade }}</p>
+        <p :title="results.mark"><span :title="results.subject">{{results.subject}}</span> : {{ results.mark }}</p>
       </div>
+    </transition>
     </section>
   </main>
 </template>
@@ -158,6 +161,7 @@ label {
       margin-top: 20px;
       color: white;
       border-radius: 20px;
+      font-size: .8rem;
     }
 
     .submit {
@@ -181,4 +185,20 @@ label {
 .material-icons:hover {
     color: #add;
   }
+
+/* Animation */
+
+/* Animations */
+.fade-enter-from {
+  opacity: 0;
+}
+
+.fade-enter-active, 
+.fade-leave-active {
+  transition: all .5s ease;
+}
+
+.fade-leave-to{
+  opacity: 0;
+}
 </style>

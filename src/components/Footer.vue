@@ -1,8 +1,8 @@
 <template>
-  <footer>
+  <footer class="mt-2">
     <div id="container">
     <div id="contacts">
-      <div id="contacts--contact">
+      <div class="contacts--contact">
         <p>{{ mail }}</p>
         <p>{{ phone }}</p>
       </div>
@@ -24,9 +24,9 @@ export default {
     name: "Footer",
     data(){
     return{
-      mail : 'created by Daniel Mason | email: daniel.mason@withyouwithme.com',
+      mail : 'Daniel Mason | email: daniel.mason@withyouwithme.com',
       phone : '06.00.00.00.00',
-      mention : '2023 | mentions légales'
+      mention : 'Copyright Daniel Mason - 2023 | All rights reserved'
     }
   }
 }
@@ -35,8 +35,7 @@ export default {
 <style>
 footer {
   width:100%;
-  height:8vh;
-  background-color:#292354;
+  background-color:rgba(0,0,0);
   color:white;
   position: fixed;
   left: 0;
@@ -50,7 +49,6 @@ footer {
 #container{
   width:100vw;
   color:white;
-  background-color:#292354;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -62,7 +60,7 @@ footer {
   align-items:center;
   width:100%;
 }
-#contacts--contact{
+.contacts--contact{
   text-align:right;
 }
 #contacts--social{

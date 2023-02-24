@@ -44,7 +44,7 @@
         <label>All Options are Checked</label>
       </div>
       <div class="submit">
-        <button title="click here to update details">Update Student Info</button>
+        <button class="hover:shadow-xl" title="click here to update details">Update Student Info</button>
       </div>
     </form>
 </main>
@@ -105,16 +105,17 @@ async created() {
 <style lang="scss" scoped>
 
 main {
-    padding: 8rem 2.5rem;
+    padding: 6.5rem 2.5rem;
     display: flex;
     flex-direction: column;
     position: relative;
-    height: 120vh;
+    height: 100vh;
     width: 100vw;
 
     header h1 {
     font-size: 2rem;
     font-style: bold;
+    margin-bottom: .5rem;
 }
   }
 
@@ -126,7 +127,7 @@ main {
 
 form {
   max-width: 420px;
-  margin: 30px auto;
+  margin: .75rem auto;
   background: white;
   text-align: left;
   padding: 40px;
@@ -136,7 +137,7 @@ form {
 label {
         color: #aaa;
         display: inline-block;
-        margin: 25px 0 15px;
+        margin: 15px 0 5px;
         font-size: 0.6em;
         text-transform: uppercase;
         letter-spacing: 1px;
@@ -164,7 +165,8 @@ label {
       background: #0b6dff;
       border: 0;
       padding: 10px 20px;
-      margin-top: 20px;
+      margin-bottom: 0px;
+      margin-top: 15px;
       color: white;
       border-radius: 20px;
     }

@@ -1,22 +1,27 @@
 <template>
     <header :class="{ 'scrolled-nav': scrolledNav }">
         <nav>
-            <router-link :to="{name: 'Home'}" class="branding">
-                <img src="@/assets/logo.png" alt="report-card-tool">
+            <router-link :to="{name: 'Home'}" title="Home" class="branding">
+                <img class="p-.5" src="@/assets/logo.png" alt="report-card-tool">
             </router-link>
             <ul v-show="!mobile" class="navigation">
-                <li><router-link class="link" :to="{name: 'Home'}">Home</router-link></li>
-                <li><router-link class="link" :to="{name: 'TeacherClasslist'}">Teacher</router-link></li>
-                <li><router-link class="link" :to="{name: 'Parent'}">Parent</router-link></li>
+                <li><router-link title="About" class="link" :to="{name: 'About'}">About</router-link></li>
+                <li><router-link title="Teacher" class="link" :to="{name: 'TeacherClasslist'}">Teacher</router-link></li>
+                <li><router-link title="Parent" class="link" :to="{name: 'Parent'}">Parent</router-link></li>
+                <li><router-link title="Contact" class="link" :to="{name: 'Contact'}">Contact</router-link></li>
             </ul>
             <div class="icon">
                 <i @click="toggleMobileNav" v-show="mobile" class="far fa-bars" :class="{'icon-active' : mobileNav }"></i>
             </div>
             <transition name="mobile-nav">
                 <ul v-show="mobileNav" class="dropdown-nav">
-                <li><router-link class="link" :to="{name: 'Home'}">Home</router-link></li>
-                <li><router-link class="link" :to="{name: 'TeacherClasslist'}">Teacher</router-link></li>
-                <li><router-link class="link" :to="{name: 'Parent'}">Parent</router-link></li>
+                <router-link :to="{name: 'Home'}" title="Home" class="branding">
+                    <img class="p-.5" src="@/assets/logo.png" alt="report-card-tool">
+                </router-link>
+                <li><router-link title="About" class="link" :to="{name: 'About'}">About</router-link></li>
+                <li><router-link title="Teacher" class="link" :to="{name: 'TeacherClasslist'}">Teacher</router-link></li>
+                <li><router-link title="Parent" class="link" :to="{name: 'Parent'}">Parent</router-link></li>
+                <li><router-link title="Contact" class="link" :to="{name: 'Contact'}">Contact</router-link></li>
             </ul>
             </transition>
         </nav>
@@ -87,7 +92,7 @@ header {
         position: relative;
         margin: 0 auto;
         @media (min-width: 1140px) {
-            max-width: 1140px;
+            max-width: auto;
         }
 
 
@@ -97,16 +102,17 @@ header {
         color: #fff;
         list-style:none;
         text-decoration: none;
+        margin-right: .5rem;
     }
 
     li {
         text-transform: uppercase;
         padding: 16px;
-        margin-left: 16px;
+        margin-left: 15px;
     }
 
     .link {
-        font-size: 14px;
+        font-size: 1.05rem;
         transition: .5s ease all;
         padding-bottom: 4px;
         border-bottom: 1px solid transparent;
@@ -160,14 +166,13 @@ header {
         width: 100%;
         max-width: 250px;
         height: 100%;
-        background-color: #fff;
+        background-color: rgba(0,0,0,0.8);
         top: 0;
         left: 0;
-
         li {
             margin-left: 0;
             .link {
-                color: #000;
+                color: #ffffff;
             }
         }
     }
