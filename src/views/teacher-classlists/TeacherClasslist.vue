@@ -30,6 +30,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import gsap from 'gsap';
+import { CButton, CBox } from "@chakra-ui/vue-next"
 
 const teacherClasslist = ref([]);
 
@@ -43,7 +44,7 @@ const enter = (el, done) => {
     gsap.to(el, {
         y: 0,
         autoAlpha: 1,
-        duration: 1,
+        duration: 0.75,
         ease: "bounce.out",
         onComplete: done
     })
