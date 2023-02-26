@@ -3,10 +3,15 @@
     {
       "id": 5,
       "studentId": "Ana",
-      "gender": "Girl",
+      "gender": "Boy",
       "grade": 8,
-      "mark": "B",
-      "subject": "Computer Science"
+      "mark": "C",
+      "subject": "Computer Science",
+      "method": "PATCH",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "{\"studentId\":\"Ana\",\"gender\":\"LGBTQ+\",\"grade\":8,\"mark\":\"Not Completed\",\"subject\":\"Computer Science\"}"
     },
     {
       "id": 7,
@@ -161,36 +166,12 @@
       "id": 40
     },
     {
-      "studentId": "Belle",
-      "gender": "Girl",
-      "grade": 10,
-      "mark": "Not Completed",
-      "subject": "Computer Science",
-      "id": 41
-    },
-    {
       "studentId": "Me Thuy",
       "gender": "Girl",
       "grade": 10,
       "mark": "A",
       "subject": "Computer Science",
       "id": 42
-    },
-    {
-      "studentId": "Betty",
-      "gender": "Girl",
-      "grade": "9",
-      "mark": "Not Completed",
-      "subject": "Computer Science",
-      "id": 44
-    },
-    {
-      "studentId": "Anna",
-      "gender": "Girl",
-      "grade": "9",
-      "mark": "Not Completed",
-      "subject": "Computer Science",
-      "id": 45
     }
   ]
 }

@@ -1,19 +1,25 @@
 <template>
     <main>
-    <header>
-        <h1>Computer Science Teacher Class List</h1>
-    </header>
+        <header>
+            <transition appear @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter" @before-leave="beforeLeave" @leave="leave" @after-appear="afterLeave" >
+            <h1 v-if="showTitle">Computer Science Teacher Class List</h1>
+            </transition>
+        </header>
     <section v-if="teacherClasslist.length">
-        <div class="classlist">
-        <router-link :to="{ name: 'AddStudent' }" title="add student to classlist" tag="button" class="material-icons students">
-        <h3 >Add Student to Class</h3>add
-        </router-link>
-        </div>
-        <div  v-for="student in teacherClasslist" :key="student.id" class="classlist">
-            <router-link :to="{ name: 'TeacherClasslistDetails', params: {id: student.id}}" >
-                <h2 @delete="handleDelete">{{ student.studentId }}</h2>
+        <transition name="list" @before-enter="pageBeforeEnter" @enter="pageEnter" appear>
+            <div class="overflow-hidden classlist">
+            <router-link :to="{ name: 'AddStudent' }" title="Add a student to Classlist" tag="button" class="material-icons students">
+            <h3 >Add Student to Class</h3>add
             </router-link>
-        </div>
+            </div>
+        </transition>
+            <transition-group name="list" @before-enter="pageBeforeEnter" @enter="pageEnter" appear>
+            <div  v-for="(student, index) in teacherClasslist" :key="student.id" :data-index="index" class="classlist">
+                <router-link :to="{ name: 'TeacherClasslistDetails', params: {id: student.id}}" >
+                    <h2 @delete="handleDelete">{{ student.studentId }}</h2>
+                </router-link>
+            </div>
+            </transition-group>
     </section>
     <div v-else>
         <p>Loading Teacher Class List...</p>
@@ -21,33 +27,100 @@
 </main>
 </template>
 
-<script>
-export default {
-    name: "TeacherClasslist",
-    components: { },
-    data() {
-        return {
-            teacherClasslist: []
-        }
-    },
-    async created() {
-      try { await fetch('http://localhost:3000/teacherClasslist')
-        .then((res) => res.json())
-        .then((data) => this.teacherClasslist = data)
-      } catch (err) { console.log(err.message)
-      }
-    },
-    methods: {
-        async handleDelete() {
-           try { this.id = this.id.filter((id) => {
-                return id !== id
-            }).then(() => { this.$router.push('/teacher-classlist')
-      })} catch(err) { console.log(err)
-      }
-    }
-    }
+<script setup>
+import { ref, onMounted } from 'vue';
+import gsap from 'gsap';
+
+const teacherClasslist = ref([]);
+
+const showTitle = ref(true);
+
+const beforeEnter = (el) => {
+    el.style.transform = 'translateY(-60px)';
+    el.style.opacity = 0;
+};
+const enter = (el, done) => {
+    gsap.to(el, {
+        y: 0,
+        autoAlpha: 1,
+        duration: 1,
+        ease: "bounce.out",
+        onComplete: done
+    })
+};
+const afterEnter = () => {
+    setTimeout(() => showTitle.value = false, 2000)
 }
+
+const beforeLeave = () => {};
+const leave = () => {};
+const afterLeave = () => {};
+
+const pageEnter = (el, done) => {
+    el.style.opacity = 0;
+    el.style.transform = "translateY(0px)";
+    gsap.to(el, { 
+        y: 0,
+        autoAlpha: 1,
+        duration: 1,
+        delay: el.dataset.index * 0.2,
+        ease: "bounce.out",
+        onComplete: done
+    })
+}
+const pageBeforeEnter = (el) => {}
+
+const fetchTeacherClasslist = async () => {
+      try { 
+        const res = await fetch('http://localhost:3000/teacherClasslist');
+        const data = await res.json();
+        teacherClasslist.value = data;
+      } catch (err) { 
+        console.log(err.message);
+      }
+    };
+
+    onMounted(() => {
+      fetchTeacherClasslist();
+    });
+
+    async (id) => {
+      try {
+        teacherClasslist.value = teacherClasslist.value.filter((student) => {
+          return student.id !== id;
+        });
+    try {
+        await fetch(`http://localhost:3000/teacherClasslist/${this.id}`, {
+            method: 'DELETE'
+        });
+        this.teacherClasslist = this.teacherClasslist.filter((student) => {
+            return student.id !== this.id;
+        });
+        this.$router.push('/teacher-classlist');
+    } catch(err) {
+        console.log(err);
+    }
+      } catch (err) {
+        console.log(err);
+      }
+      return {
+      teacherClasslist,
+      handleDelete,
+      beforeEnter,
+      enter,
+      afterEnter,
+      showTitle,
+      beforeLeave,
+      leave,
+      afterLeave,
+      pageEnter,
+      pageBeforeEnter
+    };
+    };
+
+    
 </script>
+
 
 <style lang="scss" scoped>
 
@@ -71,9 +144,10 @@ main {
 
 section {
     display: grid;
-    gap: 1rem 1rem;
+    gap: 1.5rem 1.5rem;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    padding-bottom: auto;
+    overflow: auto;
+    list-style: none;
 }
 
 section h3 {
@@ -96,7 +170,6 @@ section h3 {
     text-align: center;
 }
 
-
 .classlist a {
     background: #f4f4f4;
     padding: 1rem;
@@ -108,11 +181,11 @@ section h3 {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    border: .25px #000 solid;
 }
 
 .classlist a:hover {
     background: #add;
-    border: .5px #000 solid
 }
 
 

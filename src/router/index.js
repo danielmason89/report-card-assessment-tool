@@ -11,6 +11,16 @@ export default createRouter({
       component: Home,
     },
     {
+      path: "/about",
+      name: "About",
+      component: () => import("../views/About.vue"),
+    },
+    {
+      path: "/contact",
+      name: "Contact",
+      component: () => import("../views/Contact.vue"),
+    },
+    {
       path: "/parent",
       name: "Parent",
       component: () => import("../views/Parent.vue"),
