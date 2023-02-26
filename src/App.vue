@@ -53,7 +53,7 @@ html,body{
 
 .route-enter-from {
   opacity: 0;
-  transform: translateX(100px); 
+  transform: translateX(0px); 
 }
 
 .route-enter-active {
