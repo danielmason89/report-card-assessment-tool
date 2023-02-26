@@ -75,7 +75,7 @@
 <style lang="scss" scoped>
 
 header {
-    background-color: rgba(0,0,0,0.8);
+    /* background-color: rgba(0,0,0,0.8); */
     z-index: 99;
     width: 100%;
     position: fixed;
@@ -94,8 +94,7 @@ header {
         @media (min-width: 1140px) {
             max-width: auto;
         }
-
-
+        
     ul,
     .link {
         font-weight: 500;
@@ -116,7 +115,7 @@ header {
         transition: .5s ease all;
         padding-bottom: 4px;
         border-bottom: 1px solid transparent;
-
+        color: rgb(178, 162, 162);
         &:hover{
             color: #00afea;
             border-color: #00afea;
@@ -147,10 +146,10 @@ header {
         top: 0;
         right: 24px;
         height: 100%;
-
+        color:#5e95a8;
         i {
             cursor: pointer;
-            font-size: 24px;
+            font-size: 2rem;
             transition: 0.8s ease all; 
         }
     }
