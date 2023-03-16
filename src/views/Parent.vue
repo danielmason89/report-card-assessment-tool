@@ -39,46 +39,49 @@
   </main>
 </template>
 
-<script>
-export default {
-  name: "Parent",
-  props: ["id"],
-  data() {
-    return {
-      teacherClasslist: "",
-      formData: {
-      mark: "",
-      studentId: "",
-      grade: "",
-      subject: "",
-      },
-      showDetails: null,
-      results: false,
-    }
-  },
+<script setup>
+import { ref, onMounted } from 'vue';
 
-  async created() {
-    try { 
-      await fetch('http://localhost:3000/teacherClasslist')
-        .then((res) => res.json())
-        .then((data) => this.teacherClasslist = data)
-    }  catch (err) { console.log(err.message)
-    }
-    },
+const teacherClasslist = ref('');
+const formData = ref({
+  mark: '',
+  studentId: '',
+  grade: '',
+  subject: '',
+});
+const showDetails = ref(null);
+const results = ref(false);
 
-  methods: {
-  async handleSubmit() {
-      await fetch(`http://localhost:3000/teacherClasslist?studentId=${this.teacherClasslist.studentId}`)
-        .then((res) => res.json())
-        .then(data => {
-          this.results = data[0]
-        })
-        .catch(err => console.log(err.message))
-    }
+const fetchTeacherClasslist = async () => {
+  try {
+    const response = await fetch('http://localhost:3000/teacherClasslist');
+    const data = await response.json();
+    teacherClasslist.value = data;
+  } catch (err) {
+    console.log(err.message);
   }
+};
+
+const handleSubmit = async () => {
+  try {
+    const response = await fetch(`http://localhost:3000/teacherClasslist?studentId=${teacherClasslist.value.studentId}`);
+    const data = await response.json();
+    results.value = data[0];
+  } catch (err) {
+    console.log(err.message);
   }
+};
+
+onMounted(fetchTeacherClasslist);
+
+defineExpose({
+  teacherClasslist,
+  formData,
+  showDetails,
+  results,
+  handleSubmit,
+});
 </script>
-
 
 <style lang="scss" scoped>
 

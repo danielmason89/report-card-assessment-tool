@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "json:server": "json-server --watch data/db.json",
     "serve": "concurrently \"npm run json:server\" \"vite\"",
-    "build": "vite build"
+    "build": "vite build",
+    "json:server": "json-server --watch data/db.json"
   },
   "dependencies": {
+    "@chakra-ui/vue": "^0.13.0",
     "@chakra-ui/vue-next": "^1.0.0-alpha.16",
+    "@emotion/css": "^11.10.6",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/compiler-sfc": "^3.2.47",
     "axios": "^1.2.3",
@@ -23,11 +25,12 @@
     "postcss-simple-vars": "^7.0.1",
     "sass": "^1.57.1",
     "vue": "^3.2.13",
-    "vue-router": "^4.0.3",
+    "vue-router": "^4.1.6",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-pwa": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",

@@ -1,11 +1,13 @@
 <template>
     <header :class="{ 'scrolled-nav': scrolledNav }">
         <nav>
-            <router-link :to="{name: 'Home'}" title="Home" class="branding">
-                <img class="p-.5" src="@/assets/logo.png" alt="report-card-tool">
+            <router-link :to="{name: 'Home'}" title="Home" class="branding" aria-label="Primary Navigation">
+                <img class="p-.5 m-4 focus:outline-none focus-visible:ring-4 rounded-full transition-shadow" src="@/assets/logo.png" aria-label="Go Home" alt="Assessify-Logo">
+                <h1 class="navigation ml-0 pr-2 font-logoText tracking-wide drop-shadow-text-sm">Assessify</h1>
             </router-link>
-            <ul v-show="!mobile" class="navigation">
-                <li><router-link title="About" class="link" :to="{name: 'About'}">About</router-link></li>
+            <ul v-show="!mobile" class="navigation not-mobile-nav">
+                <li><router-link title="About" class="link" :to="{name: 'About'}">About Us</router-link></li>
+                <li><router-link title="Assessment" class="link" :to="{name: 'Assessment'}">Assessments</router-link></li>
                 <li><router-link title="Teacher" class="link" :to="{name: 'TeacherClasslist'}">Teacher</router-link></li>
                 <li><router-link title="Parent" class="link" :to="{name: 'Parent'}">Parent</router-link></li>
                 <li><router-link title="Contact" class="link" :to="{name: 'Contact'}">Contact</router-link></li>
@@ -18,7 +20,8 @@
                 <router-link :to="{name: 'Home'}" title="Home" class="branding">
                     <img class="p-.5" src="@/assets/logo.png" alt="report-card-tool">
                 </router-link>
-                <li><router-link title="About" class="link" :to="{name: 'About'}">About</router-link></li>
+                <li><router-link title="About" class="link" :to="{name: 'About'}">About Us</router-link></li>
+                <li><router-link title="Assessment" class="link" :to="{name: 'Assessment'}">Assessments</router-link></li>
                 <li><router-link title="Teacher" class="link" :to="{name: 'TeacherClasslist'}">Teacher</router-link></li>
                 <li><router-link title="Parent" class="link" :to="{name: 'Parent'}">Parent</router-link></li>
                 <li><router-link title="Contact" class="link" :to="{name: 'Contact'}">Contact</router-link></li>
@@ -29,47 +32,62 @@
 </template>
 
 <script>
-    export default {
-        name: "Navigation",
-        data() {
-            return {
-            scrolledNav: null,
-            mobile: null,
-            mobileNav: null,
-            windowWidth: null
-            }
-        },
-       async created() {
-        await window.addEventListener("resize", this.checkScreen);
-            this.checkScreen();
-        },
-       async mounted() {
-        await window.addEventListener("scroll", this.updateScroll)
-        },
-        methods: {
-          async toggleMobileNav() {
-                this.mobileNav = !this.mobileNav
-            },
-           async updateScroll() {
-                const scrollPosition = window.scrollY;
-                if (scrollPosition > 50) {
-                    this.scrolledNav = true;
-                    return; 
-                }
-                this.scrolledNav = false;
-            },
-        async checkScreen() {
-                this.windowWidth = window.innerWidth;
-                if (this.windowWidth <= 750) {
-                    this.mobile = true;
-                    return;
-                }
-                this.mobile = false;
-                this.mobileNav = false;
-                return;
-            }
-        }
+import { ref, onMounted, onUnmounted } from 'vue';
+
+export default {
+  name: "Navigation",
+  setup() {
+    const scrolledNav = ref(null);
+    const mobile = ref(null);
+    const mobileNav = ref(null);
+    const windowWidth = ref(null);
+
+    const toggleMobileNav = () => {
+      mobileNav.value = !mobileNav.value;
     };
+
+    const updateScroll = () => {
+      const scrollPosition = window.scrollY;
+      if (scrollPosition > 50) {
+        scrolledNav.value = true;
+        return;
+      }
+      scrolledNav.value = false;
+    };
+
+    const checkScreen = () => {
+      windowWidth.value = window.innerWidth;
+      if (windowWidth.value <= 940) {
+        mobile.value = true;
+        return;
+      }
+      mobile.value = false;
+      mobileNav.value = false;
+      return;
+    };
+
+    onMounted(async () => {
+      await window.addEventListener("resize", checkScreen);
+      checkScreen();
+      await window.addEventListener("scroll", updateScroll);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener("resize", checkScreen);
+      window.removeEventListener("scroll", updateScroll);
+    });
+
+    return {
+      scrolledNav,
+      mobile,
+      mobileNav,
+      windowWidth,
+      toggleMobileNav,
+      updateScroll,
+      checkScreen
+    };
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -82,6 +100,10 @@ header {
     transition: 0.5s ease all;
     color: #fff;
 
+    h1 {
+        color: rgb(178, 162, 162);
+        font-size: 1.5rem;
+    }
 
     nav {
         display: flex;
@@ -111,12 +133,12 @@ header {
     }
 
     .link {
-        font-size: 1.05rem;
+        font-size: .9rem;
         transition: .5s ease all;
         padding-bottom: 4px;
         border-bottom: 1px solid transparent;
         color: rgb(178, 162, 162);
-        &:hover{
+        &:hover, &:focus{
             color: #00afea;
             border-color: #00afea;
         }
@@ -127,8 +149,9 @@ header {
         align-items: center;
 
         img {
-            width: 50px;
+            width: 40px;
             transition: 0.5s ease all;
+            margin-left: 0rem;
         }
     }
 
@@ -189,6 +212,13 @@ header {
         transform: translateX(0px)
     }
   }
+}
+
+
+@media only screen and (max-width: 940px) {
+    .not-mobile-nav {
+        visibility: hidden
+    }
 }
 
 .scrolled-nav {

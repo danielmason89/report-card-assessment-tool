@@ -50,56 +50,69 @@
 </main>
 </template>
 
-<script>
-export default {
-  name: "UpdateStudent",
-    props: ["id"],
-    data() {
-     return {
-      studentId: undefined,
-      mark:"",
-      grade: undefined,
-      subject: undefined,
-      gender: undefined,
-      text2Error:null,
-      uri: "http://localhost:3000/teacherClasslist/" + this.id,
-    }
-},
-async created() {
-    await fetch(this.uri)
-    .then(res => res.json())
-    .then(data => {
-        this.studentId = data.studentId
-        this.grade = data.grade
-        this.gender = data.gender
-        this.subject = data.subject
-    })
-    },
-    methods: {
-      async handleSubmit(e) {
-        try { this.text2Error = this.studentId.length >= 2 ? '' : "Please Update with a Valid Student Name"
-        e.preventDefault();
-        if(!this.text2Error) {
-       let student = {
-        "studentId": this.studentId,
-        "gender": this.gender,
-        "grade": this.grade,
-        "mark": this.mark,
-        "subject": this.subject
-       }
-      await fetch(this.uri, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(student)
-        }).then(() => {this.$router.push('/teacher-classlist')})
-      }
-      
-    }
-    catch(err) { console.log(err)
-      }
+<script setup>
+import { ref, onMounted, defineProps } from 'vue';
+import { useRouter } from 'vue-router';
+
+const props = defineProps(['id']);
+const router = useRouter();
+
+const studentId = ref(undefined);
+const mark = ref("");
+const grade = ref(undefined);
+const subject = ref(undefined);
+const gender = ref(undefined);
+const text2Error = ref(null);
+const uri = `http://localhost:3000/teacherClasslist/${props.id}`;
+
+const fetchStudent = async () => {
+  try {
+    const response = await fetch(uri);
+    const data = await response.json();
+    studentId.value = data.studentId;
+    grade.value = data.grade;
+    gender.value = data.gender;
+    subject.value = data.subject;
+  } catch (err) {
+    console.error(err);
   }
+};
+
+const handleSubmit = async (e) => {
+  try {
+    text2Error.value = studentId.value.length >= 2 ? '' : 'Please Update with a Valid Student Name';
+    e.preventDefault();
+    if (!text2Error.value) {
+      const student = {
+        studentId: studentId.value,
+        gender: gender.value,
+        grade: grade.value,
+        mark: mark.value,
+        subject: subject.value,
+      };
+      await fetch(uri, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(student),
+      });
+    }
+    router.push('/teacher-classlist');
+  } catch (err) {
+    console.error(err);
   }
-}
+};
+
+onMounted(fetchStudent);
+
+defineExpose({
+  studentId,
+  mark,
+  grade,
+  subject,
+  gender,
+  text2Error,
+  handleSubmit,
+});
 </script>
 
 <style lang="scss" scoped>

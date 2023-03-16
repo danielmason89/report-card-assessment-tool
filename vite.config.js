@@ -6,7 +6,7 @@ import {ViteEjsPlugin} from "vite-plugin-ejs";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(), ViteEjsPlugin({
-    title: 'Report Card Assessment Tool Capstone Project',
+    title: 'Assessify',
   })],
   resolve: {
     alias: {
