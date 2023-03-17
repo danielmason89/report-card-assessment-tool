@@ -18,6 +18,7 @@ module.exports = {
         bkg: "#171819",
         muted: "#C9CbCF",
         accent: "rgb(178, 162, 162)",
+        dark: "#00afea"
       },
       dropShadow: {
         "text-sm": "1px 1px 0px rgba(0, 0, 0, 0.90)",
@@ -50,6 +51,7 @@ module.exports = {
       require("tailwindcss"),
       require("precss"),
       require("autoprefixer"),
+      require("@headlessui/tailwindcss"),
     ],
   },
 };

@@ -1,7 +1,9 @@
 <template>
   <main>
     <header>
+      <transition appear @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter" @before-leave="beforeLeave" @leave="leave" @after-appear="afterLeave" >
         <h1 class="light" title="Search Student Class List">Search Student Class List</h1>
+      </transition>
     </header>
     <section>
       <form class="form" @submit.prevent="handleSubmit">
@@ -41,6 +43,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import gsap from 'gsap';
 
 const teacherClasslist = ref('');
 const formData = ref({
@@ -51,6 +54,26 @@ const formData = ref({
 });
 const showDetails = ref(null);
 const results = ref(false);
+
+const beforeEnter = (el) => {
+    el.style.transform = 'translateY(-60px)';
+    el.style.opacity = 0;
+};
+const enter = (el, done) => {
+    gsap.to(el, {
+        y: 0,
+        autoAlpha: 1,
+        duration: 0.75,
+        ease: "bounce.out",
+        onComplete: done
+    });
+};
+const afterEnter = () => {
+    setTimeout(() => showTitle.value = false, 2000);
+};
+const beforeLeave = () => {};
+const leave = () => {};
+const afterLeave = () => {};
 
 const fetchTeacherClasslist = async () => {
   try {
@@ -80,6 +103,12 @@ defineExpose({
   showDetails,
   results,
   handleSubmit,
+  beforeEnter,
+  enter,
+  afterEnter,
+  beforeLeave,
+  leave,
+  afterLeave
 });
 </script>
 

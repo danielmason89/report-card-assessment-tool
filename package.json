@@ -29,6 +29,8 @@
     "vuex": "^4.0.0"
   },
   "devDependencies": {
+    "@headlessui/tailwindcss": "^0.1.2",
+    "@headlessui/vue": "^1.7.12",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-pwa": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",

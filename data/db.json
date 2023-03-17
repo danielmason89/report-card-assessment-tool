@@ -97,10 +97,10 @@
       "id": 39
     },
     {
-      "studentId": "Fin",
-      "gender": "Non-Binary",
-      "grade": 9,
-      "mark": "Not Completed",
+      "studentId": "Finny",
+      "gender": "Girl",
+      "grade": "8",
+      "mark": "C",
       "subject": "Computer Science",
       "id": 40
     },
