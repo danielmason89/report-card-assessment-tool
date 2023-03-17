@@ -4,20 +4,10 @@
     </div>
 </template>
 
-<script>
-import { reactive, toRefs } from 'vue'
+<script setup>
+import { ref } from 'vue';
 
-export default {
-    setup () {
-        const state = reactive({
-            count: 0,
-        })
-    
-        return {
-            ...toRefs(state),
-        }
-    }
-}
+const count = ref(0);
 </script>
 
 <style lang="scss" scoped>

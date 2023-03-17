@@ -8,59 +8,56 @@
         <h2 class="font-bold">{{ teacherClasslist.studentId }}</h2>
         <div class="icons">
           <router-link :to="{ name: 'UpdateStudent', params: { id: teacherClasslist.id  } }">
-            <span @click="updateStudent" class="material-icons" title="click here to update student details">edit</span>
+            <span @click="updateStudent" class="material-icons" title="click to update student details">edit</span>
           </router-link>
-          <span @click="deleteStudent" class="material-icons" title="click here to delete student from class list">delete</span>
+          <span @click="deleteStudent" class="material-icons" title="click to delete student from class list">delete</span>
           <span title="see student details/report card" class="material-icons">expand_more</span>
         </div>
       </div>
       <transition name="fade">
-      <sub-section v-if="showDetails" class="details">
+      <section v-if="showDetails" class="details">
         <p>Student Id: {{ teacherClasslist.id}}</p>
         <p>Gender: {{ teacherClasslist.gender}}</p>
         <p>Grade: {{ teacherClasslist.grade}}</p>
         <p>{{teacherClasslist.subject }} : {{ teacherClasslist.mark}}</p>
-      </sub-section>
+      </section>
     </transition>
     </section>
-    <div v-else>
-      <p>Loading Student Id...</p>
-    </div>
 </main>
 </template>
 
-<script>
+<script setup>
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
+import { useRouter, useRoute } from 'vue-router';
 
-export default {
-  name: "TeacherClasslistDetails",
-    props: ["id"],
-    data() {
-      return {
-        teacherClasslist: null,
-        showDetails: false,
-        uri: 'http://localhost:3000/teacherClasslist/' + this.id
-      }
-    },
-    methods: {
-      async deleteStudent() {
-       try { this.teacherClasslist = null;
-        
-        await axios.delete(this.uri)
-        .then(() => { this.$router.push('/teacher-classlist');
-      })
-       } catch (err) { console.log(err)
-       }
-      }
-    },
-    async created() {
-    try {
-      const response = await axios.get('http://localhost:3000/teacherClasslist/' + this.id)
-      this.teacherClasslist = response.data
-    } catch (err) { console.log(err.message)
-    }
-    },
-}
+const router = useRouter();
+const route = useRoute();
+const id = route.params.id;
+const teacherClasslist = ref(null);
+const showDetails = ref(false);
+const uri = `http://localhost:3000/teacherClasslist/${id}`;
+
+const deleteStudent = async () => {
+  try {
+    
+    await axios.delete(uri).then(() => {
+      router.push('/teacher-classlist');
+      teacherClasslist.value = null;
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+onMounted(async () => {
+  try {
+    const response = await axios.get(`http://localhost:3000/teacherClasslist/${id}`);
+    teacherClasslist.value = response.data;
+  } catch (err) {
+    console.log(err.message);
+  }
+});
 </script>
 
 <style lang="scss" scoped>

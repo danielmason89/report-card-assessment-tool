@@ -2,7 +2,6 @@
   <div class="app">
     <Navigation/>
     <Footer/>
-    
     <router-view v-slot="{ Component }">
       <transition name="route" mode="out-in">
         <component :is="Component" />
@@ -11,14 +10,13 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Navigation from "./components/Navigation.vue";
 import Footer from "./components/Footer.vue";
 
-export default {
-  name: "App",
+defineExpose({
   components: { Navigation, Footer }
-}
+});
 </script>
 
 <style lang="scss">
@@ -45,7 +43,7 @@ html,body{
 }
 .container {
   padding: 0 20px;
-  max-width: 1140px;
+  max-width: 80vw;
   margin: 0 auto;
 }
 
@@ -62,7 +60,7 @@ html,body{
 
 .route-leave-to {
   opacity: 0;
-  transform: translateX(-100px);
+  transition: all 0.5s ease-in;
 }
 
 .route-leave-active {

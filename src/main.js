@@ -2,6 +2,12 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import ChakraUIVuePlugin from '@chakra-ui/vue-next'
+import ChakraUIVuePlugin from "@chakra-ui/vue-next";
+import "./registerServiceWorker";
 
-createApp(App).use(store).use(router).use(ChakraUIVuePlugin).mount("#app");
+const app = createApp(App);
+
+app.use(store);
+app.use(router);
+app.use(ChakraUIVuePlugin);
+app.mount("#app");

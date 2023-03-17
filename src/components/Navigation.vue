@@ -1,87 +1,106 @@
 <template>
     <header :class="{ 'scrolled-nav': scrolledNav }">
         <nav>
-            <router-link :to="{name: 'Home'}" title="Home" class="branding">
-                <img class="p-.5" src="@/assets/logo.png" alt="report-card-tool">
+            <router-link :to="{ name: 'Home' }" title="Home" class="branding" aria-label="Primary Navigation">
+                <img class="p-.5 m-4 focus:outline-none focus-visible:ring-4 rounded-full transition-shadow"
+                    src="@/assets/logo.png" aria-label="Go Home" alt="Assessify-Logo">
+                <h1 class="pr-2 ml-0 tracking-wide navigation font-logoText drop-shadow-text-sm">Assessify</h1>
             </router-link>
-            <ul v-show="!mobile" class="navigation">
-                <li><router-link title="About" class="link" :to="{name: 'About'}">About</router-link></li>
-                <li><router-link title="Teacher" class="link" :to="{name: 'TeacherClasslist'}">Teacher</router-link></li>
-                <li><router-link title="Parent" class="link" :to="{name: 'Parent'}">Parent</router-link></li>
-                <li><router-link title="Contact" class="link" :to="{name: 'Contact'}">Contact</router-link></li>
+            <ul v-show="!mobile" class="navigation not-mobile-nav">
+                <Switch v-model="enabled" as="template" v-slot="{ checked }">
+                    <button class="relative inline-flex h-6 w-11 items-center rounded-full"
+                        :class="checked ? 'bg-dark' : 'bg-accent'">
+                        <span class="sr-only">Enable notifications</span>
+                        <span :class="checked ? 'translate-x-6' : 'translate-x-1'"
+                            class="inline-block h-4 w-4 transform rounded-full bg-white transition" />
+                    </button>
+                </Switch>
+                <li><router-link title="About" class="link" :to="{ name: 'About' }">About Us</router-link></li>
+                <li><router-link title="Assessment" class="link" :to="{ name: 'Assessment' }">Assessments</router-link></li>
+                <li><router-link title="Teacher" class="link" :to="{ name: 'TeacherClasslist' }">Teacher</router-link></li>
+                <li><router-link title="Parent" class="link" :to="{ name: 'Parent' }">Parent</router-link></li>
+                <li><router-link title="Contact" class="link" :to="{ name: 'Contact' }">Contact</router-link></li>
             </ul>
             <div class="icon">
-                <i @click="toggleMobileNav" v-show="mobile" class="far fa-bars" :class="{'icon-active' : mobileNav }"></i>
+                <i @click="toggleMobileNav" v-show="mobile" class="far fa-bars" :class="{ 'icon-active': mobileNav }"></i>
             </div>
             <transition name="mobile-nav">
                 <ul v-show="mobileNav" class="dropdown-nav">
-                <router-link :to="{name: 'Home'}" title="Home" class="branding">
-                    <img class="p-.5" src="@/assets/logo.png" alt="report-card-tool">
-                </router-link>
-                <li><router-link title="About" class="link" :to="{name: 'About'}">About</router-link></li>
-                <li><router-link title="Teacher" class="link" :to="{name: 'TeacherClasslist'}">Teacher</router-link></li>
-                <li><router-link title="Parent" class="link" :to="{name: 'Parent'}">Parent</router-link></li>
-                <li><router-link title="Contact" class="link" :to="{name: 'Contact'}">Contact</router-link></li>
-            </ul>
+                    <router-link :to="{ name: 'Home' }" title="Home" class="branding">
+                        <img class="p-.5" src="@/assets/logo.png" alt="report-card-tool">
+                    </router-link>
+                    <li><router-link title="About" class="link" :to="{ name: 'About' }">About Us</router-link></li>
+                    <li><router-link title="Assessment" class="link" :to="{ name: 'Assessment' }">Assessments</router-link>
+                    </li>
+                    <li><router-link title="Teacher" class="link" :to="{ name: 'TeacherClasslist' }">Teacher</router-link>
+                    </li>
+                    <li><router-link title="Parent" class="link" :to="{ name: 'Parent' }">Parent</router-link></li>
+                    <li><router-link title="Contact" class="link" :to="{ name: 'Contact' }">Contact</router-link></li>
+                </ul>
             </transition>
         </nav>
     </header>
 </template>
 
-<script>
-    export default {
-        name: "Navigation",
-        data() {
-            return {
-            scrolledNav: null,
-            mobile: null,
-            mobileNav: null,
-            windowWidth: null
-            }
-        },
-       async created() {
-        await window.addEventListener("resize", this.checkScreen);
-            this.checkScreen();
-        },
-       async mounted() {
-        await window.addEventListener("scroll", this.updateScroll)
-        },
-        methods: {
-          async toggleMobileNav() {
-                this.mobileNav = !this.mobileNav
-            },
-           async updateScroll() {
-                const scrollPosition = window.scrollY;
-                if (scrollPosition > 50) {
-                    this.scrolledNav = true;
-                    return; 
-                }
-                this.scrolledNav = false;
-            },
-        async checkScreen() {
-                this.windowWidth = window.innerWidth;
-                if (this.windowWidth <= 750) {
-                    this.mobile = true;
-                    return;
-                }
-                this.mobile = false;
-                this.mobileNav = false;
-                return;
-            }
-        }
-    };
+<script setup>
+import { ref, onMounted, onUnmounted } from 'vue';
+import { Switch } from '@headlessui/vue'
+
+const enabled = ref(false)
+const scrolledNav = ref(null);
+const mobile = ref(null);
+const mobileNav = ref(null);
+const windowWidth = ref(null);
+
+const toggleMobileNav = () => {
+    mobileNav.value = !mobileNav.value;
+};
+
+const updateScroll = () => {
+    const scrollPosition = window.scrollY;
+    if (scrollPosition > 50) {
+        scrolledNav.value = true;
+        return;
+    }
+    scrolledNav.value = false;
+};
+
+const checkScreen = () => {
+    windowWidth.value = window.innerWidth;
+    if (windowWidth.value <= 940) {
+        mobile.value = true;
+        return;
+    }
+    mobile.value = false;
+    mobileNav.value = false;
+    return;
+};
+
+onMounted(async () => {
+    await window.addEventListener("resize", checkScreen);
+    checkScreen();
+    await window.addEventListener("scroll", updateScroll);
+});
+
+onUnmounted(() => {
+    window.removeEventListener("resize", checkScreen);
+    window.removeEventListener("scroll", updateScroll);
+});
 </script>
 
 <style lang="scss" scoped>
-
 header {
-    background-color: rgba(0,0,0,0.8);
+    /* background-color: rgba(0,0,0,0.8); */
     z-index: 99;
     width: 100%;
     position: fixed;
     transition: 0.5s ease all;
     color: #fff;
 
+    h1 {
+        color: rgb(178, 162, 162);
+        font-size: 1.5rem;
+    }
 
     nav {
         display: flex;
@@ -91,105 +110,119 @@ header {
         width: 90%;
         position: relative;
         margin: 0 auto;
+
         @media (min-width: 1140px) {
             max-width: auto;
         }
 
-
-    ul,
-    .link {
-        font-weight: 500;
-        color: #fff;
-        list-style:none;
-        text-decoration: none;
-        margin-right: .5rem;
-    }
-
-    li {
-        text-transform: uppercase;
-        padding: 16px;
-        margin-left: 15px;
-    }
-
-    .link {
-        font-size: 1.05rem;
-        transition: .5s ease all;
-        padding-bottom: 4px;
-        border-bottom: 1px solid transparent;
-
-        &:hover{
-            color: #00afea;
-            border-color: #00afea;
+        ul,
+        .link {
+            font-weight: 500;
+            color: #fff;
+            list-style: none;
+            text-decoration: none;
+            margin-right: .5rem;
         }
-    }
 
-    .branding {
-        display: flex;
-        align-items: center;
-
-        img {
-            width: 50px;
-            transition: 0.5s ease all;
-        }
-    }
-
-    .navigation {
-        display: flex;
-        align-items: center;
-        flex: 1;
-        justify-content: flex-end;
-    }
-
-    .icon {
-        display: flex;
-        align-items: center;
-        position: absolute;
-        top: 0;
-        right: 24px;
-        height: 100%;
-
-        i {
-            cursor: pointer;
-            font-size: 24px;
-            transition: 0.8s ease all; 
-        }
-    }
-
-    .icon-active {
-        transform: rotate(180deg);
-    }
-
-    .dropdown-nav {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        width: 100%;
-        max-width: 250px;
-        height: 100%;
-        background-color: rgba(0,0,0,0.8);
-        top: 0;
-        left: 0;
         li {
-            margin-left: 0;
-            .link {
-                color: #ffffff;
+            text-transform: uppercase;
+            padding: 16px;
+            margin-left: 15px;
+        }
+
+        .link {
+            font-size: .9rem;
+            transition: .5s ease all;
+            padding-bottom: 4px;
+            border-bottom: 1px solid transparent;
+            color: rgb(178, 162, 162);
+
+            &:hover,
+            &:focus {
+                color: #00afea;
+                border-color: #00afea;
             }
         }
-    }
-    .mobile-nav-enter-active,
-    .mobile-nav-leave-active {
-        transition: 1s ease all;
-    }
 
-    .mobile-nav-enter-from,
-    .mobile-nav-leave-to {
-        transform: translateX(-250px)
-    }
+        .branding {
+            display: flex;
+            align-items: center;
 
-    .mobile-nav-enter-to {
-        transform: translateX(0px)
+            img {
+                width: 40px;
+                transition: 0.5s ease all;
+                margin-left: 0rem;
+            }
+        }
+
+        .navigation {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            right: 24px;
+            height: 100%;
+            color: #5e95a8;
+
+            i {
+                cursor: pointer;
+                font-size: 2rem;
+                transition: 0.8s ease all;
+            }
+        }
+
+        .icon-active {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-nav {
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            width: 100%;
+            max-width: 250px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            top: 0;
+            left: 0;
+
+            li {
+                margin-left: 0;
+
+                .link {
+                    color: #ffffff;
+                }
+            }
+        }
+
+        .mobile-nav-enter-active,
+        .mobile-nav-leave-active {
+            transition: 1s ease all;
+        }
+
+        .mobile-nav-enter-from,
+        .mobile-nav-leave-to {
+            transform: translateX(-250px)
+        }
+
+        .mobile-nav-enter-to {
+            transform: translateX(0px)
+        }
     }
-  }
+}
+
+
+@media only screen and (max-width: 940px) {
+    .not-mobile-nav {
+        visibility: hidden
+    }
 }
 
 .scrolled-nav {
@@ -197,14 +230,14 @@ header {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
     nav {
-       padding: 8px 0;
+        padding: 8px 0;
 
-       .branding {
-        img {
-            width: 40px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        .branding {
+            img {
+                width: 40px;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            }
         }
-       } 
     }
 }
 </style>

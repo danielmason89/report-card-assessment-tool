@@ -19,17 +19,12 @@
   </footer>
 </template>
 
-<script>
-export default {
-    name: "Footer",
-    data(){
-    return{
-      mail : 'Daniel Mason | email: daniel.mason@withyouwithme.com',
-      phone : '06.00.00.00.00',
-      mention : 'Copyright Daniel Mason - 2023 | All rights reserved'
-    }
-  }
-}
+<script setup>
+import { ref } from 'vue';
+
+const mail = ref('Daniel Mason | email: daniel.mason@withyouwithme.com');
+const phone = ref('06.00.00.00.00');
+const mention = ref('Copyright Daniel Mason - 2023 | All rights reserved');
 </script>
 
 <style>
@@ -43,6 +38,7 @@ footer {
   color: white;
   text-align: center;
   z-index: 100;
+  min-height: 8%;
   /* opacity:0.8; */
 }
 

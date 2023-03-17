@@ -30,10 +30,10 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import gsap from 'gsap';
-import { CButton, CBox } from "@chakra-ui/vue-next"
+import { useRoute } from 'vue-router';
 
+const router = useRoute();
 const teacherClasslist = ref([]);
-
 const showTitle = ref(true);
 
 const beforeEnter = (el) => {
@@ -47,12 +47,11 @@ const enter = (el, done) => {
         duration: 0.75,
         ease: "bounce.out",
         onComplete: done
-    })
+    });
 };
 const afterEnter = () => {
-    setTimeout(() => showTitle.value = false, 2000)
-}
-
+    setTimeout(() => showTitle.value = false, 2000);
+};
 const beforeLeave = () => {};
 const leave = () => {};
 const afterLeave = () => {};
@@ -67,64 +66,55 @@ const pageEnter = (el, done) => {
         delay: el.dataset.index * 0.2,
         ease: "bounce.out",
         onComplete: done
-    })
-}
-const pageBeforeEnter = (el) => {}
+    });
+};
+
+const pageBeforeEnter = (el) => {};
 
 const fetchTeacherClasslist = async () => {
-      try { 
+    try { 
         const res = await fetch('http://localhost:3000/teacherClasslist');
         const data = await res.json();
         teacherClasslist.value = data;
-      } catch (err) { 
+    } catch (err) { 
         console.log(err.message);
-      }
-    };
+    }
+};
 
-    onMounted(() => {
-      fetchTeacherClasslist();
-    });
+onMounted(() => {
+    fetchTeacherClasslist();
+});
 
-    async (id) => {
-      try {
-        teacherClasslist.value = teacherClasslist.value.filter((student) => {
-          return student.id !== id;
-        });
+const handleDelete = async (id) => {
     try {
-        await fetch(`http://localhost:3000/teacherClasslist/${this.id}`, {
+        teacherClasslist.value = teacherClasslist.value.filter((student) => {
+            return student.id !== id;
+        });
+        await fetch(`http://localhost:3000/teacherClasslist/${id}`, {
             method: 'DELETE'
         });
-        this.teacherClasslist = this.teacherClasslist.filter((student) => {
-            return student.id !== this.id;
-        });
-        this.$router.push('/teacher-classlist');
+        router.push('/teacher-classlist');
     } catch(err) {
         console.log(err);
     }
-      } catch (err) {
-        console.log(err);
-      }
-      return {
-      teacherClasslist,
-      handleDelete,
-      beforeEnter,
-      enter,
-      afterEnter,
-      showTitle,
-      beforeLeave,
-      leave,
-      afterLeave,
-      pageEnter,
-      pageBeforeEnter
-    };
-    };
+};
 
-    
+defineExpose({
+    teacherClasslist,
+    handleDelete,
+    beforeEnter,
+    enter,
+    afterEnter,
+    showTitle,
+    beforeLeave,
+    leave,
+    afterLeave,
+    pageEnter,
+    pageBeforeEnter
+});
 </script>
 
-
 <style lang="scss" scoped>
-
 main {
     padding: 10rem 2.5rem;
     display: flex;

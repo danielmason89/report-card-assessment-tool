@@ -1,7 +1,9 @@
 <template>
   <main>
     <header>
+      <transition appear @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter" @before-leave="beforeLeave" @leave="leave" @after-appear="afterLeave" >
         <h1 class="light" title="Search Student Class List">Search Student Class List</h1>
+      </transition>
     </header>
     <section>
       <form class="form" @submit.prevent="handleSubmit">
@@ -39,46 +41,76 @@
   </main>
 </template>
 
-<script>
-export default {
-  name: "Parent",
-  props: ["id"],
-  data() {
-    return {
-      teacherClasslist: "",
-      formData: {
-      mark: "",
-      studentId: "",
-      grade: "",
-      subject: "",
-      },
-      showDetails: null,
-      results: false,
-    }
-  },
+<script setup>
+import { ref, onMounted } from 'vue';
+import gsap from 'gsap';
 
-  async created() {
-    try { 
-      await fetch('http://localhost:3000/teacherClasslist')
-        .then((res) => res.json())
-        .then((data) => this.teacherClasslist = data)
-    }  catch (err) { console.log(err.message)
-    }
-    },
+const teacherClasslist = ref('');
+const formData = ref({
+  mark: '',
+  studentId: '',
+  grade: '',
+  subject: '',
+});
+const showDetails = ref(null);
+const results = ref(false);
 
-  methods: {
-  async handleSubmit() {
-      await fetch(`http://localhost:3000/teacherClasslist?studentId=${this.teacherClasslist.studentId}`)
-        .then((res) => res.json())
-        .then(data => {
-          this.results = data[0]
-        })
-        .catch(err => console.log(err.message))
-    }
+const beforeEnter = (el) => {
+    el.style.transform = 'translateY(-60px)';
+    el.style.opacity = 0;
+};
+const enter = (el, done) => {
+    gsap.to(el, {
+        y: 0,
+        autoAlpha: 1,
+        duration: 0.75,
+        ease: "bounce.out",
+        onComplete: done
+    });
+};
+const afterEnter = () => {
+    setTimeout(() => showTitle.value = false, 2000);
+};
+const beforeLeave = () => {};
+const leave = () => {};
+const afterLeave = () => {};
+
+const fetchTeacherClasslist = async () => {
+  try {
+    const response = await fetch('http://localhost:3000/teacherClasslist');
+    const data = await response.json();
+    teacherClasslist.value = data;
+  } catch (err) {
+    console.log(err.message);
   }
+};
+
+const handleSubmit = async () => {
+  try {
+    const response = await fetch(`http://localhost:3000/teacherClasslist?studentId=${teacherClasslist.value.studentId}`);
+    const data = await response.json();
+    results.value = data[0];
+  } catch (err) {
+    console.log(err.message);
   }
+};
+
+onMounted(fetchTeacherClasslist);
+
+defineExpose({
+  teacherClasslist,
+  formData,
+  showDetails,
+  results,
+  handleSubmit,
+  beforeEnter,
+  enter,
+  afterEnter,
+  beforeLeave,
+  leave,
+  afterLeave
+});
 </script>
-
 
 <style lang="scss" scoped>
 

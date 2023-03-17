@@ -39,45 +39,41 @@
 </main>
 </template>
 
-<script>
-import * as axios from "axios";
+<script setup>
+import { ref } from 'vue';
+import axios from 'axios';
+import { useRouter } from 'vue-router';
 
-export default {
-  name: "AddStudent",
-  data() {
-    return {
-      studentId: "",
-      gender:"",
-      subject:"",
-      grade: "",
-      mark: "Not Completed",
-      text2Error:null
+const router = useRouter();
+const studentId = ref('');
+const gender = ref('');
+const subject = ref('');
+const grade = ref('');
+const mark = ref('Not Completed');
+const text2Error = ref(null);
+
+const handleSubmit = async () => {
+  try {
+    text2Error.value = studentId.value.length >= 2 ? '' : 'Please Enter a Valid Student Name';
+
+    if (!text2Error.value) {
+      let student = {
+        studentId: studentId.value,
+        gender: gender.value,
+        grade: grade.value,
+        mark: mark.value,
+        subject: subject.value,
+      };
+
+      await axios.post('http://localhost:3000/teacherClasslist', student)
+        .then(() => {
+          router.push('/teacher-classlist');
+        });
     }
-  },
-  methods: {
-    async handleSubmit() {
-    try {this.text2Error = this.studentId.length >= 2 ? '' : "Please Enter a Valid Student Name"
-      if(!this.text2Error) {
-       let student = {
-        "studentId": this.studentId,
-        "gender": this.gender,
-        "grade": this.grade,
-        "mark": this.mark,
-        "subject": this.subject,
-       }
-     await fetch("http://localhost:3000/teacherClasslist", {
-       method: "POST",
-       headers: {"Content-Type" : "application/json"},
-       body: JSON.stringify(student)
-      }).then(() => {
-        this.$router.push('/teacher-classlist')
-        }
-      )} 
-    }
-    catch(err) { console.log(err)}
-    }
+  } catch (err) {
+    console.log(err);
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

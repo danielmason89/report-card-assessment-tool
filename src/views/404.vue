@@ -3,10 +3,10 @@
   <h3>Page not Found</h3>
 </template>
 
-<script>
-export default {
+<script setup>
+import { ref } from 'vue';
 
-}
+
 </script>
 
 <style>
