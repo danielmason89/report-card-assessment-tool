@@ -16,4 +16,4 @@ import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
 const count = ref(0);
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped></style> 

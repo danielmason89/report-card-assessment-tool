@@ -28,6 +28,14 @@
                 <ul v-show="mobileNav" class="dropdown-nav">
                     <router-link :to="{ name: 'Home' }" title="Home" class="branding">
                         <img class="p-.5" src="@/assets/logo.png" alt="report-card-tool">
+                        <Switch v-model="enabled" as="template" v-slot="{ checked }">
+                            <button class="relative inline-flex h-6 w-11 items-center rounded-full"
+                                :class="checked ? 'bg-dark' : 'bg-accent'">
+                                <span class="sr-only">Enable notifications</span>
+                                <span :class="checked ? 'translate-x-6' : 'translate-x-1'"
+                                    class="inline-block h-4 w-4 transform rounded-full bg-white transition" />
+                            </button>
+                        </Switch>
                     </router-link>
                     <li><router-link title="About" class="link" :to="{ name: 'About' }">About Us</router-link></li>
                     <li><router-link title="Assessment" class="link" :to="{ name: 'Assessment' }">Assessments</router-link>
@@ -107,7 +115,7 @@ header {
         flex-direction: row;
         padding: 12px 0;
         transition: .5s ease all;
-        width: 90%;
+        width: 95%;
         position: relative;
         margin: 0 auto;
 
