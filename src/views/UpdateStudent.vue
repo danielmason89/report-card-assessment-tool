@@ -1,20 +1,20 @@
 <template>
-<main>
-  <header>
-    <h1>Update Student Details </h1>
-  </header>
+  <main>
+    <header>
+      <h1>Update Student Details </h1>
+    </header>
     <form class="form" @submit.prevent="handleSubmit">
       <label>Student Name:</label>
-      <input type="studentId" v-model="studentId"  required>
+      <input type="studentId" v-model="studentId" required>
       <div v-if="text2Error" class="error">{{ text2Error }}</div>
       <label>Student Gender:</label>
-        <select v-model="gender" required>
+      <select v-model="gender" required>
         <option disabled value>Please Select a Gender to update, if needed</option>
         <option value="Girl">Girl</option>
         <option value="Boy">Boy</option>
         <option value="Non-Binary">Non-Binary</option>
         <option value="LGBTQ+">LGBTQ+</option>
-        </select>
+      </select>
       <label>Student Grade:</label>
       <select v-model="grade" required>
         <option disabled value>Please Update Grade, if needed</option>
@@ -24,10 +24,10 @@
         <option value="11">11</option>
       </select>
       <label>Class Subject:</label>
-        <select v-model="subject" required>
+      <select v-model="subject" required>
         <option disabled value>Please Select A Subject</option>
         <option value="Computer Science">Computer Science</option>
-        </select>
+      </select>
       <label>Student Mark:</label>
       <select v-model="mark" required>
         <option disabled value>Please Select A Mark or Update, if needed</option>
@@ -47,7 +47,7 @@
         <button class="hover:shadow-xl" title="click here to update details">Update Student Info</button>
       </div>
     </form>
-</main>
+  </main>
 </template>
 
 <script setup>
@@ -116,21 +116,20 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
-
 main {
-    padding: 6.5rem 2.5rem;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    height: 100vh;
-    width: 100vw;
+  padding: 10rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 120vh;
+  width: 100%;
 
-    header h1 {
+  header h1 {
     font-size: 2rem;
     font-style: bold;
     margin-bottom: .5rem;
-}
   }
+}
 
 .form {
   border-left: .5rem #add solid;
@@ -148,61 +147,63 @@ form {
 }
 
 label {
-        color: #aaa;
-        display: inline-block;
-        margin: 15px 0 5px;
-        font-size: 0.6em;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: bold;
-    }
-    input, select {
-        display: block;
-        padding: 20px 6px;
-        width: 100%;
-        box-sizing: border-box;
-        border: none;
-        border-bottom: 1px solid #ddd;
-        color: #555;
-    }
+  color: #aaa;
+  display: inline-block;
+  margin: 15px 0 5px;
+  font-size: 0.6em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
 
-    input[type="checkbox"] {
-      display: inline-block;
-      width: 16px;
-      margin: 0 16px 0 0;
-      position: relative;
-      top: 2px;
-    }
+input,
+select {
+  display: block;
+  padding: 20px 6px;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  color: #555;
+}
 
-    button {
-      background: #0b6dff;
-      border: 0;
-      padding: 10px 20px;
-      margin-bottom: 0px;
-      margin-top: 15px;
-      color: white;
-      border-radius: 20px;
-    }
+input[type="checkbox"] {
+  display: inline-block;
+  width: 16px;
+  margin: 0 16px 0 0;
+  position: relative;
+  top: 2px;
+}
 
-    .submit {
-      text-align: center;
-    }
+button {
+  background: #0b6dff;
+  border: 0;
+  padding: 10px 20px;
+  margin-bottom: 0px;
+  margin-top: 15px;
+  color: white;
+  border-radius: 20px;
+}
 
-    .error{
-      color: #ff0062;
-      margin-top: 10px;
-      font-size: 0.8rem;
-      font-weight: bold;
-    }
+.submit {
+  text-align: center;
+}
 
-    .material-icons{
-    font-size: 24px;
-    margin-left: 10px;
-    color: rgb(95, 79, 79);
-    cursor: pointer;
-  }
-  
+.error {
+  color: #ff0062;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.material-icons {
+  font-size: 24px;
+  margin-left: 10px;
+  color: rgb(95, 79, 79);
+  cursor: pointer;
+}
+
 .material-icons:hover {
-    color: #add;
-  }
+  color: #add;
+}
 </style>
