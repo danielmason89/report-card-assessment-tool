@@ -2,10 +2,10 @@
 
 module.exports = {
   mode: "jit",
-  purge: [
-    "./src/components/**/*.js",
-    "./src/components/**/*.vue",
-    "./src/views/**/*.vue",
+  content: [
+    "./src/components/**/*.{vue,ts,tsx,js}",
+    "./src/components/**/*.{vue,ts,tsx,js}",
+    "./src/views/**/*.{vue,ts,tsx,js}",
   ],
   media: false, // or 'media' or 'class'
   content: ["./src/**/*.{html,js,vue,ts}"],
@@ -52,7 +52,6 @@ module.exports = {
         },
       },
     },
-    variants: {},
     plugins: [
       require("tailwindcss"),
       require("precss"),

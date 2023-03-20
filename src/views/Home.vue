@@ -140,7 +140,7 @@ provide("mirrored", false)
   position: relative;
   height: 95vh;
   object-fit: fill;
-  padding-top: 10rem;
+  padding-top: 12.5rem;
 
   .hero-img {
     object-fit: fit;
