@@ -1,9 +1,9 @@
 <template>
-  <div class="content top-1/3 overflow-hidden min-h-screen">
-    <header class="hero content bg-gradient-to-b inset-0 bottom-3/4 from-accent to-transparent">
-      <div class="container hero-text inset-0 ">
+  <div class="min-h-screen overflow-hidden content top-1/3">
+    <header class="inset-0 hero content bg-gradient-to-b bottom-3/4 from-accent to-transparent">
+      <div class="container inset-0 hero-text ">
         <section>
-          <h1 class="mt-4 font-logoText text-5xl tracking-wide drop-shadow-text-sm lg:drop-shadow-text-lg">Assessify</h1>
+          <h1 class="mt-4 text-5xl tracking-wide font-logoText drop-shadow-text-sm lg:drop-shadow-text-lg">Assessify</h1>
           <hr />
           <h2 class="font-medium tracking-small drop-shadow-text-sm lg:drop-shadow-text-lg">
             Your Report Card. <br />
@@ -14,17 +14,17 @@
           <article id="featured">
             <img class="object-cover w-full hero-img" src="../assets/graduation.jpg" alt="landing-page-logo" />
             <router-link :to="{ name: 'Assessment' }" title="Assessment"
-              class="branding bg-accent text-bkg font-medium py-3 px-8 rounded-full border border-bkg focus:outline-none focus-visible:ring-4 ring-accent ring-offset-bkg ring-offset-2 hover:bg-accent/90 active:bg-accent/50 flex space-x-2 hover:drop-shadow-none transition-shadow items-center ">
-              <span class="uppercase tracking-wide font-bold">Get started Today</span>
+              class="flex items-center px-8 py-3 space-x-2 font-medium transition-shadow border rounded-full branding bg-accent text-bkg border-bkg focus:outline-none focus-visible:ring-4 ring-accent ring-offset-bkg ring-offset-2 hover:bg-accent/90 active:bg-accent/50 hover:drop-shadow-none ">
+              <span class="font-bold tracking-wide uppercase">Get started Today</span>
             </router-link>
           </article>
         </section>
       </div>
     </header>
-    <main class="relative text-base mt-16 sm:mt-24 lg:mt-40 pb-16 -mb-16 grid gap-16 sm:gap-24 lg:gap-40 overflow-hidden">
-      <section class="container grid gap-4 text-center max-w-prose min-h-full" aria-label="headline">
+    <main class="relative grid gap-16 pb-16 mt-16 -mb-16 overflow-hidden text-base sm:mt-24 lg:mt-40 sm:gap-24 lg:gap-40">
+      <section class="container grid min-h-full gap-4 text-center max-w-prose" aria-label="headline">
         <div>
-          <small class="tracking-widest text-accent uppercase drop-shadow-text-sm">Industry-Grade Assessment Tooling
+          <small class="tracking-widest uppercase text-accent drop-shadow-text-sm">Industry-Grade Assessment Tooling
           </small>
           <h2 id="headline" class="text-3xl font-bold tracking-wide drop-shadow-text-md">Digital Solution for Today's
             Digital Organizations</h2>
@@ -42,16 +42,16 @@
           dignissimos sunt consectetur alias exercitationem ipsum nesciunt eius, magnam et iusto quo fugiat, repellat
           architecto.</p>
       </section>
-      <section class="container grid gap-4 text-center lg:text-left min-h-full" aria-label="slider">
+      <section class="container grid min-h-full gap-4 text-center lg:text-left" aria-label="slider">
         <div class="relative">
-          <div class="hidden lg:block absolute w-8 bg-accent/10 -left-4 h-full"></div>
+          <div class="absolute hidden w-8 h-full lg:block bg-accent/10 -left-4"></div>
           <div>
-            <small class="tracking-widest text-accent uppercase drop-shadow-text-sm">Assessment Toolings for Modern
+            <small class="tracking-widest uppercase text-accent drop-shadow-text-sm">Assessment Toolings for Modern
               Organizations</small>
             <h2 id="slider" class="text-3xl font-bold tracking-wide drop-shadow-text-md">Get back Time for Better
               Relationships</h2>
           </div>
-          <div class="flex flex-wrap lg:flex-nowrap justify-center lg:justify-between items-center space-x-4 space-y-4">
+          <div class="flex flex-wrap items-center justify-center space-x-4 space-y-4 lg:flex-nowrap lg:justify-between">
             <p class="text-muted md:max-w-xl drop-shadow-text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing
               elit.
               Quis amet
@@ -68,49 +68,49 @@
               consequuntur.</p>
             <div class="flex space-x-10">
               <button data-slideBtn id="prev" aria-label="show previous image"
-                class="grid place-items-center bg-accent hover:bg-dark/90 text-bkg rounded-full p-2 focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-dark disabled:bg-accent/20 disabled:text-accent"
+                class="grid p-2 rounded-full place-items-center bg-accent hover:bg-dark/90 text-bkg focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-dark disabled:bg-accent/20 disabled:text-accent"
                 disabled>
                 <PhArrowCircleLeft class="pointer-events-none" />
               </button>
               <button data-slideBtn id="next" aria-label="show next image"
-                class="grid place-items-center bg-accent hover:bg-dark/90 text-bkg rounded-full p-2 focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-dark disabled:bg-accent/20 disabled:text-accent">
+                class="grid p-2 rounded-full place-items-center bg-accent hover:bg-dark/90 text-bkg focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-dark disabled:bg-accent/20 disabled:text-accent">
                 <PhArrowCircleRight class="pointer-events-none" />
               </button>
             </div>
           </div>
         </div>
       </section>
-      <div class="-mt-10 sm:-mt-20 lg:-mt-36 container xs:w-screen">
+      <div class="container -mt-10 sm:-mt-20 lg:-mt-36 xs:w-screen">
         <div class="flex transition-transform duration-500" data-slideContainer>
-          <div class="relative w-full xs:w-auto flex-grow flex-shrink-0 xs:basis-96 pr-4" data-slide>
+          <div class="relative flex-grow flex-shrink-0 w-full pr-4 xs:w-auto xs:basis-96" data-slide>
             <img class="object-cover h-full [@media(hover:hover)]:grayscale-0 hover:grayscale-50 transition-all peer"
               src="../assets/pexels-mart-production-8472879-min.jpg" alt="Teacher & Student" />
             <p
               class="absolute bottom-4 py-2 px-4 left-4 bg-bkg text-muted font-bold text-lg pointer-events-none tracking-wide [@media(hover:hover)]:opacity-100 peer-hover:opacity-0 transition-opacity">
               Professor/Student</p>
           </div>
-          <div class="relative w-full xs:w-auto flex-grow flex-shrink-0 xs:basis-96 pr-4" data-slide>
+          <div class="relative flex-grow flex-shrink-0 w-full pr-4 xs:w-auto xs:basis-96" data-slide>
             <img class="object-cover h-full [@media(hover:hover)]:grayscale-0 hover:grayscale-50 transition-all peer"
               src="../assets/pexels-august-de-richelieu-4260325-min.jpg" alt="Teacher & Student" />
             <p
               class="absolute bottom-4 py-2 px-4 left-4 bg-bkg text-muted font-bold text-lg pointer-events-none tracking-wide [@media(hover:hover)]:opacity-100 peer-hover:opacity-0 transition-opacity">
               Parent/Child</p>
           </div>
-          <div class="relative w-full xs:w-auto flex-grow flex-shrink-0 xs:basis-96 pr-4" data-slide>
+          <div class="relative flex-grow flex-shrink-0 w-full pr-4 xs:w-auto xs:basis-96" data-slide>
             <img class="object-cover h-full [@media(hover:hover)]:grayscale-0 hover:grayscale-50 transition-all peer"
               src="../assets/pexels-kampus-production-5940713-min.jpg" alt="Teacher & Student" />
             <p
               class="absolute bottom-4 py-2 px-4 left-4 bg-bkg text-muted font-bold text-lg pointer-events-none tracking-wide [@media(hover:hover)]:opacity-100 peer-hover:opacity-0 transition-opacity">
               Manager/Assistant</p>
           </div>
-          <div class="relative w-full xs:w-auto flex-grow flex-shrink-0 xs:basis-96 pr-4" data-slide>
+          <div class="relative flex-grow flex-shrink-0 w-full pr-4 xs:w-auto xs:basis-96" data-slide>
             <img class="object-cover h-full [@media(hover:hover)]:grayscale-0 hover:grayscale-50 transition-all peer"
               src="../assets/pexels-ketut-subiyanto-4308096-min.jpg" alt="Teacher & Student" />
             <p
               class="absolute bottom-4 py-2 px-4 left-4 bg-bkg text-muted font-bold text-lg pointer-events-none tracking-wide [@media(hover:hover)]:opacity-100 peer-hover:opacity-0 transition-opacity">
               Lead Dev./Developer</p>
           </div>
-          <div class="relative w-full xs:w-auto flex-grow flex-shrink-0 xs:basis-96 pr-4" data-slide>
+          <div class="relative flex-grow flex-shrink-0 w-full pr-4 xs:w-auto xs:basis-96" data-slide>
             <img class="object-cover h-full [@media(hover:hover)]:grayscale-0 hover:grayscale-50 transition-all peer"
               src="../assets/pexels-karolina-grabowska-7692549-min.jpg" alt="Teacher & Student" />
             <p
