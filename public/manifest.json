@@ -1,15 +1,23 @@
 {
   "name": "Assessify",
   "short_name": "Assessify",
-  "start_url": "https://report-card-assessment-capstone.netlify.app/",
+  "id": "/?source=pwa",
+  "start_url": "index.html",
   "scope": ".",
   "display": "standalone",
-  "background_color": "#555",
+  "orientation": "portrait-primary",
+  "background_color": "#fff",
   "theme_color": "#555",
-  "description": "Assessify is an application that allows users to create and manage assessments for their students.",
+  "icons": [
+    {
+      "src": "./logo.png",
+      "sizes": "346x361",
+      "type": "image/png"
+    }
+  ],
+  "description": "Assessify is an application that allows users to create and manage assessments.",
   "dir": "ltr",
   "lang": "en-US",
-  "icons": [],
   "related_applications": [
     {
       "platform": "webapp",
