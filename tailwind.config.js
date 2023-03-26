@@ -2,15 +2,21 @@
 
 module.exports = {
   mode: "jit",
-  purge: [
-    "./src/components/**/*.js",
-    "./src/components/**/*.vue",
-    "./src/views/**/*.vue",
+  content: [
+    "./src/components/**/*.{vue,ts,tsx,js}",
+    "./src/components/**/*.{vue,ts,tsx,js}",
+    "./src/views/**/*.{vue,ts,tsx,js}",
   ],
   media: false, // or 'media' or 'class'
   content: ["./src/**/*.{html,js,vue,ts}"],
   theme: {
     extend: {
+      screens: {
+        xs: "425px",
+      },
+      grayscale: {
+        50: "50%",
+      },
       fontFamily: {
         logoText: ["Itim"],
       },
@@ -18,7 +24,7 @@ module.exports = {
         bkg: "#171819",
         muted: "#C9CbCF",
         accent: "rgb(178, 162, 162)",
-        dark: "#00afea"
+        dark: "#00afea",
       },
       dropShadow: {
         "text-sm": "1px 1px 0px rgba(0, 0, 0, 0.90)",
@@ -46,7 +52,6 @@ module.exports = {
         },
       },
     },
-    variants: {},
     plugins: [
       require("tailwindcss"),
       require("precss"),

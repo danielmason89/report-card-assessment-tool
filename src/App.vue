@@ -1,12 +1,12 @@
 <template>
   <div class="app">
-    <Navigation/>
-    <Footer/>
+    <Navigation />
     <router-view v-slot="{ Component }">
       <transition name="route" mode="out-in">
         <component :is="Component" />
       </transition>
-    </router-view> 
+    </router-view>
+    <Footer />
   </div>
 </template>
 
@@ -32,7 +32,8 @@ defineExpose({
   font-size: 16px;
 }
 
-html,body{
+html,
+body {
   height: 100%;
 }
 
@@ -41,17 +42,19 @@ html,body{
   min-height: 100vh;
   position: relative;
 }
+
 .container {
   padding: 0 20px;
   max-width: 80vw;
   margin: 0 auto;
 }
 
+
 /* Route Animations */
 
 .route-enter-from {
   opacity: 0;
-  transform: translateX(0px); 
+  transform: translateX(0px);
 }
 
 .route-enter-active {
