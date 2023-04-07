@@ -13,9 +13,22 @@ const routes = [
     },
   },
   {
+    path: "/login",
+    name: "Login",
+    component: () => import("@/views/Login.vue"),
+    meta: {
+      permission: "any",
+      fail: "/error",
+    },
+  },
+  {
     path: "/about",
     name: "About",
     component: () => import("@/views/About.vue"),
+    meta: {
+      permission: "any",
+      fail: "/error",
+    },
   },
   {
     path: "/assessment",
@@ -26,6 +39,10 @@ const routes = [
     path: "/contact",
     name: "Contact",
     component: () => import("@/views/Contact.vue"),
+    meta: {
+      permission: "any",
+      fail: "/error",
+    },
   },
   {
     path: "/parent",
@@ -38,14 +55,14 @@ const routes = [
     component: () => import("@/views/teacher-classlists/TeacherClasslist.vue"),
   },
   {
-    path: "/teacher-classlist/:id",
+    path: "/teacher-classlist/:id(\\d+)",
     name: "TeacherClasslistDetails",
     component: () =>
       import("@/views/teacher-classlists/TeacherClasslistDetail.vue"),
     props: true,
   },
   {
-    path: "/teacher-classlist/:id",
+    path: "/teacher-classlist/:id(\\d+)",
     name: "UpdateStudent",
     component: () => import("@/views/UpdateStudent.vue"),
     props: true,

@@ -12,7 +12,8 @@
         </section>
         <section class="grid-container">
           <article id="featured">
-            <img class="object-cover w-full hero-img" src="../assets/graduation.jpg" alt="landing-page-logo" />
+            <img class="object-cover w-full hero-img" src="/assets/graduation.jpg" alt="landing-page-logo"
+              aria-label="Assessify Logo/Home" />
             <router-link :to="{ name: 'Assessment' }" title="Assessment"
               class="flex items-center px-8 py-3 space-x-2 font-medium transition-shadow border rounded-full branding bg-accent text-bkg border-bkg focus:outline-none focus-visible:ring-4 ring-accent ring-offset-bkg ring-offset-2 hover:bg-accent/90 active:bg-accent/50 hover:drop-shadow-none ">
               <span class="font-bold tracking-wide uppercase">Get started Today</span>
@@ -24,7 +25,7 @@
     <main class="relative grid gap-16 pb-16 mt-16 -mb-16 overflow-hidden text-base sm:mt-24 lg:mt-40 sm:gap-24 lg:gap-40">
       <section class="container grid min-h-full gap-4 text-center max-w-prose" aria-label="headline">
         <div>
-          <small class="tracking-widest uppercase text-accent drop-shadow-text-sm">Industry-Grade Assessment Tooling
+          <small class="tracking-widest uppercase text-accent drop-shadow-text-sm">Industry-Grade Assessment Tooling.
           </small>
           <h2 id="headline" class="text-3xl font-bold tracking-wide drop-shadow-text-md">Digital Solution for Today's
             Digital Organizations</h2>
@@ -42,12 +43,12 @@
           dignissimos sunt consectetur alias exercitationem ipsum nesciunt eius, magnam et iusto quo fugiat, repellat
           architecto.</p>
       </section>
-      <section class="container grid min-h-full gap-4 text-center lg:text-left" aria-label="slider">
+      <section class="container grid min-h-full gap-4 text-center lg:text-left" aria-label="slider-section">
         <div class="relative">
           <div class="absolute hidden w-8 h-full lg:block bg-accent/10 -left-4"></div>
           <div>
             <small class="tracking-widest uppercase text-accent drop-shadow-text-sm">Assessment Toolings for Modern
-              Organizations</small>
+              Organizations.</small>
             <h2 id="slider" class="text-3xl font-bold tracking-wide drop-shadow-text-md">Get back Time for Better
               Relationships</h2>
           </div>
@@ -67,13 +68,13 @@
               aliquam, molestiae a, rerum odit rem assumenda est amet! Rem dolorum expedita quas tempore! Maxime,
               consequuntur.</p>
             <div class="flex space-x-10">
-              <button data-slideBtn id="prev" aria-label="show previous image"
+              <button data-slideBtn id="prev" @click="prevSlide" aria-label="show previous image"
                 class="grid p-2 rounded-full place-items-center bg-accent hover:bg-dark/90 text-bkg focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-dark disabled:bg-accent/20 disabled:text-accent"
                 disabled>
                 <PhArrowCircleLeft class="pointer-events-none" />
               </button>
-              <button data-slideBtn id="next" aria-label="show next image"
-                class="grid p-2 rounded-full place-items-center bg-accent hover:bg-dark/90 text-bkg focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-dark disabled:bg-accent/20 disabled:text-accent">
+              <button data-slideBtn id="next" @click="nextSlide" aria-label="show next image"
+                class="grid p-2 rounded-full place-items-center bg-accent hover:bg-dark/90 hover:rounded-full text-bkg focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-dark disabled:bg-accent/20 disabled:text-accent">
                 <PhArrowCircleRight class="pointer-events-none" />
               </button>
             </div>
@@ -81,51 +82,81 @@
         </div>
       </section>
       <div class="container -mt-10 sm:-mt-20 lg:-mt-36 xs:w-screen">
-        <div class="flex transition-transform duration-500" data-slideContainer>
-          <div class="relative flex-grow flex-shrink-0 w-full pr-4 xs:w-auto xs:basis-96" data-slide>
-            <img class="object-cover h-full [@media(hover:hover)]:grayscale-0 hover:grayscale-50 transition-all peer"
-              src="../assets/pexels-mart-production-8472879-min.jpg" alt="Teacher & Student" />
+        <Carousel ref="carouselRef" class="carousel flex transition-transform duration-500" v-slot="{ currentSlide }">
+          <Slide v-show="currentSlide === id + 1" v-for="(slide, id) in carouselSlides" :key="id" :index="id"
+            :image="slide.image" :title="slide.title"
+            class="slide-info relative flex-grow flex-shrink-0 w-full xs:w-auto xs:basis-96">
+            <img loading="lazy"
+              class="carousel-image object-cover h-full [@media(hover:hover)]:grayscale-0 hover:grayscale-50 transition-all peer"
+              :src="slide.image" alt="slide.title" />
             <p
               class="absolute bottom-4 py-2 px-4 left-4 bg-bkg text-muted font-bold text-lg pointer-events-none tracking-wide [@media(hover:hover)]:opacity-100 peer-hover:opacity-0 transition-opacity">
-              Professor/Student</p>
-          </div>
-          <div class="relative flex-grow flex-shrink-0 w-full pr-4 xs:w-auto xs:basis-96" data-slide>
-            <img class="object-cover h-full [@media(hover:hover)]:grayscale-0 hover:grayscale-50 transition-all peer"
-              src="../assets/pexels-august-de-richelieu-4260325-min.jpg" alt="Teacher & Student" />
-            <p
-              class="absolute bottom-4 py-2 px-4 left-4 bg-bkg text-muted font-bold text-lg pointer-events-none tracking-wide [@media(hover:hover)]:opacity-100 peer-hover:opacity-0 transition-opacity">
-              Parent/Child</p>
-          </div>
-          <div class="relative flex-grow flex-shrink-0 w-full pr-4 xs:w-auto xs:basis-96" data-slide>
-            <img class="object-cover h-full [@media(hover:hover)]:grayscale-0 hover:grayscale-50 transition-all peer"
-              src="../assets/pexels-kampus-production-5940713-min.jpg" alt="Teacher & Student" />
-            <p
-              class="absolute bottom-4 py-2 px-4 left-4 bg-bkg text-muted font-bold text-lg pointer-events-none tracking-wide [@media(hover:hover)]:opacity-100 peer-hover:opacity-0 transition-opacity">
-              Manager/Assistant</p>
-          </div>
-          <div class="relative flex-grow flex-shrink-0 w-full pr-4 xs:w-auto xs:basis-96" data-slide>
-            <img class="object-cover h-full [@media(hover:hover)]:grayscale-0 hover:grayscale-50 transition-all peer"
-              src="../assets/pexels-ketut-subiyanto-4308096-min.jpg" alt="Teacher & Student" />
-            <p
-              class="absolute bottom-4 py-2 px-4 left-4 bg-bkg text-muted font-bold text-lg pointer-events-none tracking-wide [@media(hover:hover)]:opacity-100 peer-hover:opacity-0 transition-opacity">
-              Lead Dev./Developer</p>
-          </div>
-          <div class="relative flex-grow flex-shrink-0 w-full pr-4 xs:w-auto xs:basis-96" data-slide>
-            <img class="object-cover h-full [@media(hover:hover)]:grayscale-0 hover:grayscale-50 transition-all peer"
-              src="../assets/pexels-karolina-grabowska-7692549-min.jpg" alt="Teacher & Student" />
-            <p
-              class="absolute bottom-4 py-2 px-4 left-4 bg-bkg text-muted font-bold text-lg pointer-events-none tracking-wide [@media(hover:hover)]:opacity-100 peer-hover:opacity-0 transition-opacity">
-              Teacher/Child</p>
-          </div>
-        </div>
+              {{ slide.title }}</p>
+          </Slide>
+        </Carousel>
       </div>
+      <section aria-labelledby="info"
+        class="container flex flex-wrap md:space-x-16 md:space-y-0 justify-between items-center">
+        <img src="/assets/pexels-august-de-richelieu-4260325-min.jpg" alt="mentor and mentee" width="400"
+          class="grow md:flex-1" loading="lazy" />
+        <article class="grid gap-4 text-center md:text-left grow md:flex-1">
+          <div class="relative">
+            <div class="hidden md:block absolute w-8 bg-accent/10 -left-4 h-full"></div>
+            <small class="tracking-widest text-accent uppercase">
+              Hello
+            </small>
+            <h2 id="info" class="text-3xl font-bold tracking-wide">
+              Hello <br /> there
+            </h2>
+          </div>
+          <p class="text-muted drop-shadow-text-sm max-w-2xl">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, in minus labore rerum esse doloribus ullam
+            aspernatur voluptates, aliquam similique cupiditate ipsa laudantium cum dignissimos! Nihil ut quia eum
+            numquam.
+            At reprehenderit, eius doloremque dolorum commodi deleniti! Eius, maiores? Doloribus quis libero architecto
+            delectus, dolore modi corrupti harum cupiditate consectetur repellat ratione eligendi ut adipisci, blanditiis
+            nam laborum in officia!
+          </p>
+        </article>
+      </section>
+      <Cta />
     </main>
   </div>
 </template>
 
 <script setup>
-import { PhArrowCircleLeft, PhArrowCircleRight } from "@phosphor-icons/vue"
-import { ref, provide } from "vue";
+import Carousel from "../components/Carousel.vue";
+import Slide from "../components/Slide.vue";
+import Cta from "../components/Cta.vue";
+import { PhArrowCircleLeft, PhArrowCircleRight } from "@phosphor-icons/vue";
+import { provide, ref } from "vue";
+
+const carouselRef = ref();
+const nextSlide = () => carouselRef.value.nextSlide();
+const prevSlide = () => carouselRef.value.prevSlide();
+
+
+const carouselSlides = [{
+  id: 1,
+  title: "Professor/Student",
+  image: "/assets/pexels-mart-production-8472879-min.jpg"
+}, {
+  id: 2,
+  title: "Parent/Child",
+  image: "/assets/pexels-august-de-richelieu-4260325-min.jpg"
+}, {
+  id: 3,
+  title: "Manager/Assistant",
+  image: "/assets/pexels-kampus-production-5940713-min.jpg"
+}, {
+  id: 4,
+  title: "Mentor/Mentee",
+  image: "/assets/pexels-ketut-subiyanto-4308096-min.jpg"
+}, {
+  id: 5,
+  title: "Teacher/Child",
+  image: "/assets/pexels-karolina-grabowska-7692549-min.jpg"
+}]
 
 provide("color", "#171819")
 provide("size", 36)
@@ -135,7 +166,7 @@ provide("mirrored", false)
 
 <style lang="scss" scoped>
 .hero {
-  background-image: url("../assets/hero-bg.png");
+  background-image: url("/assets/hero-bg.png");
   background-attachment: fixed;
   position: relative;
   height: 95vh;
@@ -164,9 +195,18 @@ provide("mirrored", false)
     }
   }
 
+  .carousel {
+    position: relative;
+  }
+
+  .slide-info {
+    position: absolute;
+  }
+
+
   #featured {
     text-align: center;
-    margin-top: 7rem;
+    padding-top: 4.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -254,5 +294,17 @@ provide("mirrored", false)
     border: 4px solid rgb(42, 104, 132);
   }
 
+}
+
+.carousel-image {
+
+  @media (min-width: 700px) {
+    display: flex;
+    align-self: center;
+    width: 100%;
+    height: 65vh;
+    object-fit: cover;
+    object-position: center;
+  }
 }
 </style>

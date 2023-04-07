@@ -2,19 +2,11 @@
     <header :class="{ 'scrolled-nav': scrolledNav }">
         <nav>
             <router-link :to="{ name: 'Home' }" title="Home" class="branding" aria-label="Primary Navigation">
-                <img class="p-.5 m-4 focus:outline-none focus-visible:ring-4 rounded-full transition-shadow"
-                    src="@/assets/logo.png" aria-label="Go Home" alt="Assessify-Logo">
+                <img class="p-.5 m-4 mr-1 focus:outline-none focus-visible:ring-4 rounded-full transition-shadow"
+                    src="/assets/logo.png" aria-label="Go Home" alt="Assessify-Logo">
                 <h1 class="pr-2 ml-0 tracking-wide navigation font-logoText drop-shadow-text-sm">Assessify</h1>
             </router-link>
             <ul v-show="!mobile" class="navigation not-mobile-nav">
-                <Switch v-model="enabled" as="template" v-slot="{ checked }">
-                    <button class="relative inline-flex h-6 w-11 items-center rounded-full"
-                        :class="checked ? 'bg-dark' : 'bg-accent'">
-                        <span class="sr-only">Enable notifications</span>
-                        <span :class="checked ? 'translate-x-6' : 'translate-x-1'"
-                            class="inline-block h-4 w-4 transform rounded-full bg-white transition" />
-                    </button>
-                </Switch>
                 <li><router-link title="About" class="link" :to="{ name: 'About' }">About Us</router-link></li>
                 <li><router-link title="Assessment" class="link" :to="{ name: 'Assessment' }">Assessments</router-link></li>
                 <li><router-link title="Teacher" class="link" :to="{ name: 'TeacherClasslist' }">Teacher</router-link></li>
@@ -27,15 +19,8 @@
             <transition name="mobile-nav">
                 <ul v-show="mobileNav" class="dropdown-nav">
                     <router-link :to="{ name: 'Home' }" title="Home" class="branding">
-                        <img class="p-.5" src="@/assets/logo.png" alt="report-card-tool">
-                        <Switch v-model="enabled" as="template" v-slot="{ checked }">
-                            <button class="relative inline-flex h-6 w-11 items-center rounded-full"
-                                :class="checked ? 'bg-dark' : 'bg-accent'">
-                                <span class="sr-only">Enable notifications</span>
-                                <span :class="checked ? 'translate-x-6' : 'translate-x-1'"
-                                    class="inline-block h-4 w-4 transform rounded-full bg-white transition" />
-                            </button>
-                        </Switch>
+                        <img class="p-.5" src="/assets/logo.png" alt="report-card-tool">
+
                     </router-link>
                     <li><router-link title="About" class="link" :to="{ name: 'About' }">About Us</router-link></li>
                     <li><router-link title="Assessment" class="link" :to="{ name: 'Assessment' }">Assessments</router-link>
@@ -46,6 +31,16 @@
                     <li><router-link title="Contact" class="link" :to="{ name: 'Contact' }">Contact</router-link></li>
                 </ul>
             </transition>
+            <span class="flex items-center switch">
+                <Switch v-model="enabled" as="template" v-slot="{ checked }">
+                    <button class="relative inline-flex h-6 w-11 items-center rounded-full"
+                        :class="checked ? 'bg-dark' : 'bg-accent'">
+                        <span class="sr-only">Enable notifications</span>
+                        <span :class="checked ? 'translate-x-6' : 'translate-x-1'"
+                            class="inline-block h-4 w-4 transform rounded-full bg-white transition" />
+                    </button>
+                </Switch>
+            </span>
         </nav>
     </header>
 </template>
@@ -209,6 +204,7 @@ header {
                 }
             }
         }
+
         .mobile-nav-enter-active,
         .mobile-nav-leave-active {
             transition: 1s ease all;
@@ -224,11 +220,22 @@ header {
         }
     }
 }
+
 @media only screen and (max-width: 940px) {
     .not-mobile-nav {
         visibility: hidden
     }
+
+    .switch {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        right: 100px;
+        height: 100%;
+    }
 }
+
 .scrolled-nav {
     background-color: #000;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
