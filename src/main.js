@@ -11,23 +11,10 @@ if ("serviceWorker" in navigator) {
 }
 
 router.beforeEach((to, from) => {
-  console.log(`Global beforeEach", from ${from.name}`);
   if (["Login", "Home", "About", "Contact"].includes(to.name)) {
     return true;
   }
   return { name: "Login", query: { redirect: to.fullPath } };
-  // if (to.matched.some((record) => record.meta.requiresAuth)) {
-  //   if (!store.getters["auth/isAuthenticated"]) {
-  //     next({
-  //       path: "/login",
-  //       query: { redirect: to.fullPath },
-  //     });
-  //   } else {
-  //     next();
-  //   }
-  // } else {
-  //   next();
-  // }
 });
 
 const app = createApp(App);

@@ -7,6 +7,7 @@
                 <h1 class="pr-2 ml-0 tracking-wide navigation font-logoText drop-shadow-text-sm">Assessify</h1>
             </router-link>
             <ul v-show="!mobile" class="navigation not-mobile-nav">
+                <li><router-link title="Login" class="link" :to="{ name: 'Login' }">Login</router-link></li>
                 <li><router-link title="About" class="link" :to="{ name: 'About' }">About Us</router-link></li>
                 <li><router-link title="Assessment" class="link" :to="{ name: 'Assessment' }">Assessments</router-link></li>
                 <li><router-link title="Teacher" class="link" :to="{ name: 'TeacherClasslist' }">Teacher</router-link></li>
@@ -22,6 +23,7 @@
                         <img class="p-.5" src="/assets/logo.png" alt="report-card-tool">
 
                     </router-link>
+                    <li><router-link title="Login" class="link" :to="{ name: 'Login' }">Login</router-link></li>
                     <li><router-link title="About" class="link" :to="{ name: 'About' }">About Us</router-link></li>
                     <li><router-link title="Assessment" class="link" :to="{ name: 'Assessment' }">Assessments</router-link>
                     </li>
@@ -32,7 +34,7 @@
                 </ul>
             </transition>
             <span class="flex items-center switch">
-                <Switch v-model="enabled" as="template" v-slot="{ checked }">
+                <Switch v-model:done="enabled.done" v-model:priority="enabled.priority" as="template" v-slot="{ checked }">
                     <button class="relative inline-flex h-6 w-11 items-center rounded-full"
                         :class="checked ? 'bg-dark' : 'bg-accent'">
                         <span class="sr-only">Enable notifications</span>

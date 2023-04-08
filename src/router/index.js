@@ -1,6 +1,15 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import AddStudent from "../views/AddStudent.vue";
+import { isAuthenticated } from "../store/auth"; // Replace this with your actual authentication method or store
+
+const requireAuth = (to, from, next) => {
+  if (!isAuthenticated()) {
+    next({ name: "Login" });
+  } else {
+    next();
+  }
+};
 
 const routes = [
   {
@@ -34,6 +43,7 @@ const routes = [
     path: "/assessment",
     name: "Assessment",
     component: () => import("@/views/Assessment.vue"),
+    beforeEnter: requireAuth,
   },
   {
     path: "/contact",
@@ -48,17 +58,20 @@ const routes = [
     path: "/parent",
     name: "Parent",
     component: () => import("@/views/Parent.vue"),
+    beforeEnter: requireAuth,
   },
   {
     path: "/teacher-classlist",
     name: "TeacherClasslist",
     component: () => import("@/views/teacher-classlists/TeacherClasslist.vue"),
+    beforeEnter: requireAuth,
   },
   {
     path: "/teacher-classlist/:id(\\d+)",
     name: "TeacherClasslistDetails",
     component: () =>
       import("@/views/teacher-classlists/TeacherClasslistDetail.vue"),
+    beforeEnter: requireAuth,
     props: true,
   },
   {
@@ -67,6 +80,7 @@ const routes = [
     component: () => import("@/views/UpdateStudent.vue"),
     props: true,
     beforeEnter: (to, from, next) => {
+      requireAuth;
       const isValidId = Number.isInteger(Number(to.params.id));
       next(isValidId);
     },
@@ -79,6 +93,7 @@ const routes = [
     path: "/add",
     name: "AddStudent",
     component: AddStudent,
+    beforeEnter: requireAuth,
   },
   {
     path: "/:catchAll(.*)",
