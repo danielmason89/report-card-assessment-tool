@@ -8,10 +8,10 @@
             </router-link>
             <ul v-show="!mobile" class="navigation not-mobile-nav">
                 <li><router-link title="Login" class="link" :to="{ name: 'Login' }">Login</router-link></li>
-                <li><router-link title="About" class="link" :to="{ name: 'About' }">About Us</router-link></li>
                 <li><router-link title="Assessment" class="link" :to="{ name: 'Assessment' }">Assessments</router-link></li>
                 <li><router-link title="Teacher" class="link" :to="{ name: 'TeacherClasslist' }">Teacher</router-link></li>
                 <li><router-link title="Parent" class="link" :to="{ name: 'Parent' }">Parent</router-link></li>
+                <li><router-link title="About" class="link" :to="{ name: 'About' }">About Us</router-link></li>
                 <li><router-link title="Contact" class="link" :to="{ name: 'Contact' }">Contact</router-link></li>
             </ul>
             <div class="icon">
@@ -35,11 +35,11 @@
             </transition>
             <span class="flex items-center switch">
                 <Switch v-model:done="enabled.done" v-model:priority="enabled.priority" as="template" v-slot="{ checked }">
-                    <button class="relative inline-flex h-6 w-11 items-center rounded-full"
+                    <button class="relative inline-flex items-center h-6 rounded-full w-11"
                         :class="checked ? 'bg-dark' : 'bg-accent'">
                         <span class="sr-only">Enable notifications</span>
                         <span :class="checked ? 'translate-x-6' : 'translate-x-1'"
-                            class="inline-block h-4 w-4 transform rounded-full bg-white transition" />
+                            class="inline-block w-4 h-4 transition transform bg-white rounded-full" />
                     </button>
                 </Switch>
             </span>

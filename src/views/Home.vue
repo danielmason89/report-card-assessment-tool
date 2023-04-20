@@ -82,10 +82,10 @@
         </div>
       </section>
       <div class="container -mt-10 sm:-mt-20 lg:-mt-36 xs:w-screen">
-        <Carousel ref="carouselRef" class="carousel flex transition-transform duration-500" v-slot="{ currentSlide }">
+        <Carousel ref="carouselRef" class="flex transition-transform duration-500 carousel" v-slot="{ currentSlide }">
           <Slide v-show="currentSlide === id + 1" v-for="(slide, id) in carouselSlides" :key="id" :index="id"
             :image="slide.image" :title="slide.title"
-            class="slide-info relative flex-grow flex-shrink-0 w-full xs:w-auto xs:basis-96">
+            class="relative flex-grow flex-shrink-0 w-full slide-info xs:w-auto xs:basis-96">
             <img loading="lazy"
               class="carousel-image object-cover h-full [@media(hover:hover)]:grayscale-0 hover:grayscale-50 transition-all peer"
               :src="slide.image" alt="slide.title" />
@@ -96,20 +96,20 @@
         </Carousel>
       </div>
       <section aria-labelledby="info"
-        class="container flex flex-wrap md:space-x-16 md:space-y-0 justify-between items-center">
+        class="container flex flex-wrap items-center justify-between md:space-x-16 md:space-y-0">
         <img src="/assets/pexels-august-de-richelieu-4260325-min.jpg" alt="mentor and mentee" width="400"
           class="grow md:flex-1" loading="lazy" />
         <article class="grid gap-4 text-center md:text-left grow md:flex-1">
           <div class="relative">
-            <div class="hidden md:block absolute w-8 bg-accent/10 -left-4 h-full"></div>
-            <small class="tracking-widest text-accent uppercase">
+            <div class="absolute hidden w-8 h-full md:block bg-accent/10 -left-4"></div>
+            <small class="tracking-widest uppercase text-accent">
               Hello
             </small>
             <h2 id="info" class="text-3xl font-bold tracking-wide">
               Hello <br /> there
             </h2>
           </div>
-          <p class="text-muted drop-shadow-text-sm max-w-2xl">
+          <p class="max-w-2xl text-muted drop-shadow-text-sm">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, in minus labore rerum esse doloribus ullam
             aspernatur voluptates, aliquam similique cupiditate ipsa laudantium cum dignissimos! Nihil ut quia eum
             numquam.
@@ -169,7 +169,7 @@ provide("mirrored", false)
   background-image: url("/assets/hero-bg.png");
   background-attachment: fixed;
   position: relative;
-  height: 95vh;
+  height: 100vh;
   object-fit: fill;
   padding-top: 12.5rem;
 

@@ -11,6 +11,7 @@ export default createStore({
   namespaced: true,
   strict: import.meta.NODE_ENV === "production",
   state: {
+    user: null,
     teacherClasslist: [],
     studentId: null,
     mark: null,
@@ -19,6 +20,9 @@ export default createStore({
     subject: null,
   },
   getters: {
+    authenticated(state) {
+      return !!state.user;
+    },
     getTeacherClasslistById: (state) => (id) => {
       return state.teacherClasslist.find(
         (teacherClasslist) => teacherClasslist.id === id
@@ -26,6 +30,10 @@ export default createStore({
     },
   },
   mutations: {
+    login(state, user) {},
+    setUser(state, userData) {
+      state.user = userData;
+    },
     [GET_TEACHER_CLASSLIST](state, teacherClasslist) {
       state.teacherClasslist = teacherClasslist;
     },
