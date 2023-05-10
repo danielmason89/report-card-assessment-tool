@@ -1,7 +1,7 @@
 
 <template>
     <main class="container">
-        <h1 class="title">Hello there</h1>
+        <h1 class="title">Welcome back to Assessify!</h1>
         <div class="main">
             <input type="checkbox" id="chk" aria-hidden="true">
             <div class="login">
@@ -88,7 +88,6 @@ export default {
 .container {
     width: 100vw;
     height: 82.5vh;
-    max-width: 420px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -207,5 +206,12 @@ label {
 
 .form button:hover {
     background-color: #6d44b8;
+}
+
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 1.95rem;
+    }
 }
 </style>

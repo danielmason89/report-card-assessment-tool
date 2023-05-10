@@ -99,7 +99,7 @@ main {
 }
 
 form {
-  max-width: 420px;
+  width: 420px;
   margin: 30px auto;
   background: white;
   text-align: left;
