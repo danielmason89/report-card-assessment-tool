@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main v-if="isAuthenticated">
     <header>
       <transition appear @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter" @before-leave="beforeLeave"
         @leave="leave" @after-appear="afterLeave">
@@ -41,12 +41,20 @@
       </transition>
     </section>
   </main>
+  <main v-else>
+    <!-- Content for users who are not logged in -->
+    <div>
+      <h1>Please log in to access this page.</h1>
+    </div>
+  </main>
 </template>
 
 <script setup>
+import { useAuth0 } from '@auth0/auth0-vue';
 import { ref, onMounted } from 'vue';
 import gsap from 'gsap';
 
+const { user, isAuthenticated } = useAuth0();
 const teacherClasslist = ref('');
 const formData = ref({
   mark: '',

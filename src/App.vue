@@ -39,13 +39,13 @@ body {
 
 
 .app {
-  min-height: 100vh;
+  min-height: 100svh;
+  height: 100vh;
   position: relative;
 }
 
 .container {
   padding: 0 20px;
-  max-width: 80vw;
   margin: 0 auto;
 }
 

@@ -47,7 +47,7 @@ const deleteStudent = async () => {
       teacherClasslist.value = null;
     });
   } catch (err) {
-    console.log(err);
+    console.log(err.message);
   }
 };
 

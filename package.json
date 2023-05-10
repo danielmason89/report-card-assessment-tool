@@ -1,6 +1,6 @@
 {
-  "name": "report-card-assessment-tool-capstone-project-app-test",
-  "version": "0.1.0",
+  "name": "report-card-assessment-app",
+  "version": "0.4.0",
   "private": true,
   "scripts": {
     "serve": "concurrently \"npm run json:server\" \"vite\"",
@@ -8,12 +8,13 @@
     "json:server": "json-server --watch data/db.json"
   },
   "dependencies": {
+    "@auth0/auth0-vue": "^2.2.0",
     "@chakra-ui/vue": "^0.13.0",
     "@chakra-ui/vue-next": "^1.0.0-alpha.16",
     "@emotion/css": "^11.10.6",
     "@phosphor-icons/vue": "^2.0.1",
-    "@vitejs/plugin-vue": "^4.0.0",
     "@vue/compiler-sfc": "^3.2.47",
+    "auth0-js": "^9.20.2",
     "axios": "^1.2.3",
     "concurrently": "^7.6.0",
     "core-js": "^3.8.3",
@@ -27,11 +28,12 @@
     "sass": "^1.57.1",
     "vue": "^3.2.13",
     "vue-router": "^4.1.6",
-    "vuex": "^4.0.0"
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@headlessui/tailwindcss": "^0.1.2",
     "@headlessui/vue": "^1.7.12",
+    "@vitejs/plugin-vue": "^4.1.0",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-pwa": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",

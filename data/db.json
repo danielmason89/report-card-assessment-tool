@@ -1,14 +1,6 @@
 {
   "teacherClasslist": [
     {
-      "id": 7,
-      "studentId": "Mike",
-      "gender": "Non-Binary",
-      "grade": "11",
-      "subject": "Computer Science",
-      "mark": "D"
-    },
-    {
       "studentId": "Vu-Hoang",
       "gender": "Girl",
       "grade": 9,
@@ -47,14 +39,6 @@
       "subject": "Computer Science",
       "id": 32,
       "mark": "C"
-    },
-    {
-      "studentId": "Sam",
-      "gender": "Boy",
-      "grade": 10,
-      "mark": "F",
-      "subject": "Computer Science",
-      "id": 33
     },
     {
       "studentId": "Molly",
