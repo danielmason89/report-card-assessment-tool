@@ -95,12 +95,12 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 header {
-    /* background-color: rgba(0,0,0,0.8); */
+    background-color: #000;
     z-index: 99;
     width: 100%;
     position: fixed;
+    top: 0;
     transition: 0.5s ease all;
-    color: #fff;
 
     h1 {
         color: rgb(178, 162, 162);
@@ -117,7 +117,7 @@ header {
         margin: 0 auto;
 
         @media (min-width: 1140px) {
-            max-width: auto;
+            max-width: 100%;
         }
 
         ul,
@@ -131,7 +131,7 @@ header {
 
         li {
             text-transform: uppercase;
-            padding: 16px;
+            padding: 10px;
             margin-left: 15px;
         }
 
@@ -239,7 +239,7 @@ header {
 }
 
 .scrolled-nav {
-    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.8);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
     nav {

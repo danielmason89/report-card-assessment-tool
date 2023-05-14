@@ -1,8 +1,8 @@
 <template>
-  <footer class="py-1 mt-10 border-t border-accent sm:mt-24 lg:mt-5 sm:py-8 md:py-1">
+  <footer class="py-1 mt-10 border-t border-accent sm:mt-24 lg:mt-5 sm:py-0 sm:pt-3 md:py-0 md:pt-5">
     <div class="container flex flex-wrap items-center gap-12 md:justify-between md:items-start md:gap-4 sm:gap-4">
       <div class="grid gap-2 sm:gap-1 grow justify-items-center md:justify-items-start basis-full md:basis-1/4">
-        <router-link :to="{ name: 'Home' }" title="Home" class="branding">
+        <router-link :to="{ name: 'Home' }" title="Home" class="footer-branding">
           <img class="w-12 rounded-full sm:w-12 lg:w-12 hero-img" src="/assets/logo.png" alt="landing-page-logo"
             aria-label="Assessify Logo/Home" />
           <span class="pl-1 pr-2 ml-0 tracking-wide navigation font-logoText drop-shadow-text-sm">Assessify</span>
@@ -107,7 +107,6 @@ footer {
   width: 100%;
   background-color: rgba(0, 0, 0);
   min-height: 10svh;
-  padding-top: auto;
   left: 0;
   bottom: 0;
   color: white;
@@ -119,7 +118,8 @@ footer {
 }
 
 
-.branding {
+.footer-branding {
+  padding-top: 0.5rem;
   display: flex;
   align-items: center;
 }
