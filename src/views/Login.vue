@@ -86,13 +86,10 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-    width: 100vw;
-    height: 82.5vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    top: 50%;
-    left: 50%;
 }
 
 .title {
@@ -103,7 +100,7 @@ export default {
 }
 
 main {
-    padding-top: 6rem;
+    padding-top: 12.5rem;
 }
 
 .main {
@@ -211,7 +208,7 @@ label {
 
 @media (max-width: 768px) {
     .title {
-        font-size: 1.95rem;
+        font-size: 1.75rem;
     }
 }
 </style>

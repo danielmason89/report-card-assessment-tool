@@ -22,7 +22,7 @@
         </section>
       </div>
     </header>
-    <main class="relative grid gap-16 pb-16 mt-16 -mb-16 overflow-hidden text-base sm:mt-24 lg:mt-40 sm:gap-24 lg:gap-40">
+    <main class="relative grid gap-16 pb-16 mt-16 -mb-16 overflow-hidden text-base sm:mt-24 lg:mt-10 sm:gap-24 lg:gap-20">
       <section class="container grid min-h-full gap-4 text-center max-w-prose" aria-label="headline">
         <div>
           <small class="tracking-widest uppercase text-accent drop-shadow-text-sm">Industry-Grade Assessment Tooling.
@@ -81,7 +81,7 @@
           </div>
         </div>
       </section>
-      <div class="container -mt-10 sm:-mt-20 lg:-mt-36 xs:w-screen">
+      <div class="container -mt-10 sm:-mt-20 lg:-mt-46 xs:w-90">
         <Carousel ref="carouselRef" class="flex transition-transform duration-500 carousel" v-slot="{ currentSlide }">
           <Slide v-show="currentSlide === id + 1" v-for="(slide, id) in carouselSlides" :key="id" :index="id"
             :image="slide.image" :title="slide.title"
@@ -96,18 +96,18 @@
         </Carousel>
       </div>
       <section aria-labelledby="info"
-        class="container flex flex-wrap items-center justify-between md:space-x-16 md:space-y-0">
+        class="container flex flex-col flex-wrap items-start justify-between md:space-x-16 md:space-y-0">
         <img src="/assets/pexels-august-de-richelieu-4260325-min.jpg" alt="mentor and mentee" width="400"
           class="grow md:flex-1" loading="lazy" />
         <article class="grid gap-4 text-center md:text-left grow md:flex-1">
           <div class="relative">
             <div class="absolute hidden w-8 h-full md:block bg-accent/10 -left-4"></div>
-            <small class="tracking-widest uppercase text-accent">
-              Hello
-            </small>
             <h2 id="info" class="text-3xl font-bold tracking-wide">
               Hello <br /> there
             </h2>
+            <small class="tracking-widest uppercase text-accent">
+              Hello
+            </small>
           </div>
           <p class="max-w-2xl text-muted drop-shadow-text-sm">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, in minus labore rerum esse doloribus ullam
@@ -171,7 +171,7 @@ provide("mirrored", false)
   position: relative;
   height: 100vh;
   object-fit: fill;
-  padding-top: 12.5rem;
+  padding-top: 5.5rem;
 
   .hero-img {
     object-fit: fit;
@@ -179,7 +179,7 @@ provide("mirrored", false)
     height: 50vhh;
     width: 30vw;
     border-radius: 50%;
-    margin: 2rem;
+    margin: 3.5rem;
     zoom: .5;
     border: 5px solid rgb(42, 104, 132);
     overflow: hidden;
@@ -206,7 +206,7 @@ provide("mirrored", false)
 
   #featured {
     text-align: center;
-    padding-top: 4.5rem;
+    padding-top: 11.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -216,6 +216,7 @@ provide("mirrored", false)
   .hero-text {
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
     color: #fff;
 
@@ -252,9 +253,6 @@ provide("mirrored", false)
 }
 
 @media (max-width: 1350px) {
-  .hero {
-    padding-top: 15rem;
-  }
 
   .hero .hero-text {
     display: flex;
@@ -272,6 +270,7 @@ provide("mirrored", false)
     justify-content: center;
     align-items: center;
   }
+
 
 }
 
@@ -301,10 +300,11 @@ provide("mirrored", false)
   @media (min-width: 700px) {
     display: flex;
     align-self: center;
-    width: 100%;
+    width: 90vw;
     height: 65vh;
     object-fit: cover;
     object-position: center;
+    align-items: center;
   }
 }
 </style>
