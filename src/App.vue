@@ -45,10 +45,15 @@ body {
 }
 
 .container {
-  padding: 0 20px;
+  padding: 0 1rem;
   margin: 0 auto;
 }
 
+@media (min-width: 768px) {
+  .container {
+    width: 90vw;
+  }
+}
 
 /* Route Animations */
 

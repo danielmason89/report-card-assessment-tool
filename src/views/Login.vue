@@ -100,7 +100,7 @@ export default {
 }
 
 main {
-    padding-top: 6rem;
+    padding-top: 12.5rem;
 }
 
 .main {
