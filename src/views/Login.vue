@@ -14,7 +14,6 @@
                         @click="login">Log in</button>
                 </form>
             </div>
-
             <div class="register">
                 <form method="POST" class="form">
                     <label for="chk" aria-hidden="true">Register</label>
@@ -100,7 +99,11 @@ export default {
 }
 
 main {
-    padding-top: 12.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 .main {

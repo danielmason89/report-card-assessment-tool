@@ -3,7 +3,7 @@
         <nav>
             <router-link :to="{ name: 'Home' }" title="Home" class="branding" aria-label="Primary Navigation">
                 <img class="p-.5 m-4 mr-1 focus:outline-none focus-visible:ring-4 rounded-full transition-shadow"
-                    src="/assets/logo.png" aria-label="Go Home" alt="Assessify-Logo">
+                    src="/windows11/StoreLogo.scale-150.png" aria-label="Go Home" alt="Assessify-Logo">
                 <h1 class="pr-2 ml-0 tracking-wide navigation font-logoText drop-shadow-text-sm">Assessify</h1>
             </router-link>
             <ul v-show="!mobile" class="navigation not-mobile-nav">
