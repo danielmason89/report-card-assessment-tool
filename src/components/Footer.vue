@@ -1,11 +1,12 @@
 <template>
-  <footer class="py-1 mt-10 border-t border-accent sm:mt-24 lg:mt-5 sm:py-0 sm:pt-3 md:py-0 md:pt-5">
+  <footer class="py-1 border-t border-accent sm:py-0 sm:pt-3 md:py-0 md:pt-5">
     <div class="container flex flex-wrap items-center gap-12 md:justify-between md:items-start md:gap-4 sm:gap-4">
       <div class="grid gap-2 sm:gap-1 grow justify-items-center md:justify-items-start basis-full md:basis-1/4">
         <router-link :to="{ name: 'Home' }" title="Home" class="footer-branding">
           <img class="w-12 rounded-full sm:w-12 lg:w-12 hero-img" src="/assets/logo.png" alt="landing-page-logo"
             aria-label="Assessify Logo/Home" />
-          <span class="pl-1 pr-2 ml-0 tracking-wide navigation font-logoText drop-shadow-text-sm">Assessify</span>
+          <span
+            class="pl-1 pr-2 ml-0 tracking-wide text-accent navigation font-logoText drop-shadow-text-sm">Assessify</span>
         </router-link>
         <p class="text-sm text-center text-muted md:text-left">We curate unique assessment solution<br />for modern global
           organizations.</p>
@@ -13,12 +14,17 @@
       <nav aria-label="Footer navigation"
         class="flex flex-col items-center justify-between gap-6 mt-2 text-sm text-center sm:items-start sm:flex-row sm:text-left sm:gap-1 md:justify-around grow basis-full md:basis-1/2">
         <div class="grid gap-3">
-          <p class="px-0 font-bold tracking-wide underline decoration-accent decoration-4 underline-offset-2">About Us</p>
+          <p class="px-0 font-bold tracking-wide decoration-accent decoration-4 -offset-2">About Us</p>
           <ul aria-label="About Assessify">
             <li>
               <router-link
                 class="px-0 transition-colors rounded-full hover:text-accent focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-accent"
                 :to="{ name: 'About' }" title="About Us">Our Story</router-link>
+            </li>
+            <li>
+              <router-link
+                class="px-0 transition-colors rounded-full hover:text-accent focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-accent"
+                :to="{ name: 'Contact' }" title="Contact Us">Contact</router-link>
             </li>
             <li>
               <router-link
@@ -33,7 +39,7 @@
           </ul>
         </div>
         <div class="grid gap-3">
-          <p class="px-0 font-bold tracking-wide underline decoration-accent decoration-4 underline-offset-2">Locations
+          <p class="px-0 font-bold tracking-wide decoration-accent decoration-4 -offset-2">Locations
           </p>
           <ul aria-label="Assessify's Office Locations">
             <li>
@@ -51,7 +57,7 @@
           </ul>
         </div>
         <div class="grid gap-3">
-          <p class="px-0 font-bold tracking-wide underline decoration-accent decoration-4 underline-offset-2">Contact Us
+          <p class="px-0 font-bold tracking-wide decoration-accent decoration-4 -offset-2">Contact Us
           </p>
           <ul aria-label="Contact Assessify">
             <li>
@@ -109,8 +115,9 @@ footer {
   min-height: 10svh;
   left: 0;
   bottom: 0;
-  color: white;
+  color: var(--text-primary-color);
   text-align: center;
+  margin-top: auto;
 }
 
 .copyright {

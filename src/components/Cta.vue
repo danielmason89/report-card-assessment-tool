@@ -101,6 +101,18 @@ const handleFormSubmit = async (e) => {
 </script>
 
 <style lang="scss" scoped>
+section {
+    margin-bottom: 2.5rem;
+}
+
+button {
+    transition: background-color 0.3s, box-shadow 0.3s;
+
+    &:active {
+        transform: translateY(1px);
+    }
+}
+
 @keyframes pulse {
     0% {
         transform: scale(1);

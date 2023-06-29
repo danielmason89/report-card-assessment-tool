@@ -9,13 +9,17 @@
   },
   "dependencies": {
     "@auth0/auth0-vue": "^2.2.0",
-    "@chakra-ui/vue": "^0.13.0",
-    "@chakra-ui/vue-next": "^1.0.0-alpha.16",
+    "@azure/msal-browser": "^2.8.0",
     "@emotion/css": "^11.10.6",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/vue-fontawesome": "^3.0.0-5",
     "@phosphor-icons/vue": "^2.0.1",
     "@vue/compiler-sfc": "^3.2.47",
     "auth0-js": "^9.20.2",
     "axios": "^1.2.3",
+    "bulma": "^0.9.4",
     "concurrently": "^7.6.0",
     "core-js": "^3.8.3",
     "gsap": "^3.11.4",
@@ -28,7 +32,8 @@
     "sass": "^1.57.1",
     "vue": "^3.2.13",
     "vue-router": "^4.1.6",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "vuex-persist": "^3.1.3"
   },
   "devDependencies": {
     "@headlessui/tailwindcss": "^0.1.2",

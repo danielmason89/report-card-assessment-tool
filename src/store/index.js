@@ -1,100 +1,42 @@
-import axios from "axios";
 import { createStore } from "vuex";
-import {
-  ADD_TEACHER_CLASSLIST,
-  DELETE_TEACHER_CLASSLIST,
-  GET_TEACHER_CLASSLIST,
-  UPDATE_TEACHER_CLASSLIST,
-} from "./mutation-types";
+import classlist from "./classlist";
 
 export default createStore({
   namespaced: true,
   strict: import.meta.NODE_ENV === "production",
   state: {
     user: null,
-    teacherClasslist: [],
-    studentId: null,
-    mark: null,
-    grade: null,
-    gender: null,
-    subject: null,
+    isAuthenticated: false,
   },
   getters: {
-    authenticated(state) {
-      return !!state.user;
+    user(state) {
+      return state.user;
     },
-    getTeacherClasslistById: (state) => (id) => {
-      return state.teacherClasslist.find(
-        (teacherClasslist) => teacherClasslist.id === id
-      );
+    isAuthenticated(state) {
+      return state.isAuthenticated;
     },
   },
   mutations: {
-    login(state, user) {},
-    setUser(state, userData) {
-      state.user = userData;
+    SET_USER(state, user) {
+      state.user = user;
+      state.isAuthenticated = true;
     },
-    [GET_TEACHER_CLASSLIST](state, teacherClasslist) {
-      state.teacherClasslist = teacherClasslist;
-    },
-    [ADD_TEACHER_CLASSLIST](state, teacherClasslist) {
-      state.teacherClasslist.push(teacherClasslist);
-    },
-    [DELETE_TEACHER_CLASSLIST](state, teacherClasslist) {
-      state.teacherClasslists = [
-        ...state.teacherClasslists.filter(
-          (classList) => classList.id !== teacherClasslist.id
-        ),
-      ];
-    },
-    [UPDATE_TEACHER_CLASSLIST](state, teacherClasslist) {
-      const index = state.teacherClasslist.findIndex(
-        (teacherClasslist) => teacherClasslist.id === id
-      );
-      state.teacherClasslist.splice(index, 1, teacherClasslist);
-      state.teacherClasslist = [...state.teacherClasslist];
+    REMOVE_USER(state) {
+      state.user = null;
+      state.isAuthenticated = false;
     },
   },
   actions: {
-    async getTeacherClasslistAction({ commit }) {
-      const teacherClasslist = await axios.get(
-        "http://localhost:3000/teacherClasslist"
-      );
-      commit([GET_TEACHER_CLASSLIST], teacherClasslist);
+    loginAction({ commit, state }, user) {
+      commit("SET_USER", user);
+      // Set isAuthenticated to true after successful login
     },
-    async addTeacherClasslistAction({ commit }, teacherClasslist) {
-      const addStudent = await fetch("http://localhost:3000/teacherClasslist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(teacherClasslist),
-      });
-      commit([ADD_TEACHER_CLASSLIST], addStudent);
-    },
-    async deleteTeacherClasslistAction({ commit }, teacherClasslist) {
-      const deleteStudentId = await fetch(
-        "http://localhost:3000/teacherClasslist",
-        {
-          method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(teacherClasslist),
-        }
-      );
-      commit([DELETE_TEACHER_CLASSLIST], deleteStudentId);
-    },
-    async updateTeacherClasslistAction({ commit }, teacherClasslist) {
-      const updateStudent = await fetch(
-        "http://localhost:3000/teacherClasslist",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(teacherClasslist),
-        }
-      );
-      commit([UPDATE_TEACHER_CLASSLIST], updateStudent);
+    logoutAction({ commit, state }) {
+      commit("REMOVE_USER");
+      // Set isAuthenticated to true after successful logged out
     },
   },
   modules: {
-    // teacher: teacherModule,
-    // parent: parentModule,
+    classlist,
   },
 });

@@ -7,16 +7,16 @@
           <hr />
           <h2 class="font-medium tracking-small drop-shadow-text-sm lg:drop-shadow-text-lg">
             Your Report Card. <br />
-            Solution.
+            Digitalization Solution.
           </h2>
         </section>
         <section class="grid-container">
           <article id="featured">
             <img class="object-cover w-full hero-img" src="/assets/graduation.jpg" alt="landing-page-logo"
               aria-label="Assessify Logo/Home" />
-            <router-link :to="{ name: 'Assessment' }" title="Assessment"
+            <router-link :to="{ name: 'Dashboard' }" title="Dashboard"
               class="flex items-center px-8 py-3 space-x-2 font-medium transition-shadow border rounded-full branding bg-accent text-bkg border-bkg focus:outline-none focus-visible:ring-4 ring-accent ring-offset-bkg ring-offset-2 hover:bg-accent/90 active:bg-accent/50 hover:drop-shadow-none ">
-              <span class="font-bold tracking-wide uppercase">Get started Today</span>
+              <button class="font-bold tracking-wide uppercase">Get started Today</button>
             </router-link>
           </article>
         </section>
@@ -195,6 +195,14 @@ provide("mirrored", false)
     }
   }
 
+  button {
+    transition: background-color 0.3s, box-shadow 0.3s;
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+
   .carousel {
     position: relative;
   }
@@ -257,6 +265,7 @@ provide("mirrored", false)
   .hero .hero-text {
     display: flex;
     flex-direction: column;
+    padding-top: 7.5rem;
   }
 
   .hero-img {
