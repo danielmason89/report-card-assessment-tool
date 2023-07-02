@@ -1,35 +1,39 @@
 import { createApp } from "vue";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import ChakraUIVuePlugin from "@chakra-ui/vue-next";
 import { registerSW } from "virtual:pwa-register";
-import { createAuth0 } from "@auth0/auth0-vue";
+import {
+  faTwitter,
+  faLinkedin,
+  faInstagram,
+  faFacebook,
+} from "@fortawesome/free-brands-svg-icons";
 
 if ("serviceWorker" in navigator) {
   // && !/localhost/.test(window.location)) {
   registerSW();
 }
 
-router.beforeEach((to, from) => {
-  if (["Login", "Home", "About", "Contact"].includes(to.name)) {
-    return true;
+library.add(fas, faTwitter, faLinkedin, faInstagram, faFacebook);
+
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = store.getters["isAuthenticated"];
+  if (isAuthenticated === true) {
+    console.log("isAuthenticated", isAuthenticated);
+    next();
+  } else if (["Home", "About", "Contact"].includes(to.name)) {
+    next();
+  } else {
+    next({ name: "Home", query: { redirect: to.fullPath } });
   }
-  return { name: "Login", query: { redirect: to.fullPath } };
 });
 
 const app = createApp(App);
-
-app.use(
-  createAuth0({
-    domain: "dev-pf5fvbt7nec7q7ia.us.auth0.com",
-    clientId: "pNnKOxRuqTSWKml9Y1vshMRg59MdhQOh",
-    authorizationParams: {
-      redirect_uri: window.location.origin,
-    },
-  })
-);
 app.use(store);
 app.use(router);
-app.use(ChakraUIVuePlugin);
+app.component("font-awesome-icon", FontAwesomeIcon);
 app.mount("#app");

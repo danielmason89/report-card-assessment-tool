@@ -6,6 +6,7 @@
                 <Tab>Parent</Tab>
             </TabList>
         </Tabs> -->
+        <h1>Hello World!</h1>
     </main>
 </template>
 

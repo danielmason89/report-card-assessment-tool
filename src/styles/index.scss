@@ -3,6 +3,21 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+:root {
+  --background-color-primary: rgb(15, 8, 8);
+  --background-color-secondary: #fafafa89;
+  --accent-color: #ddd;
+  --text-primary-color: #2891b5;
+  --element-size: 4rem;
+}
+
+:root.dark-theme {
+  --background-color-primary: #1e1e1e;
+  --background-color-secondary: #6b6b75;
+  --accent-color: #00afea;
+  --text-primary-color: rgb(141, 127, 127);
+}
+
 
 *, *::before, *::after {
     box-sizing: border-box;
@@ -38,6 +53,7 @@ html, body {
   
   p, h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;
+    color: var(--text-primary-color);
   }
   
   #root, #__next {

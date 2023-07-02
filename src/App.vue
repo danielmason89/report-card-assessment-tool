@@ -35,8 +35,10 @@ defineExpose({
 html,
 body {
   height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
-
 
 .app {
   min-height: 100svh;
