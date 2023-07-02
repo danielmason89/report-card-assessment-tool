@@ -183,6 +183,10 @@ button {
   margin-top: 15px;
   color: white;
   border-radius: 20px;
+
+  &:active {
+    transform: translateY(1px);
+  }
 }
 
 .submit {

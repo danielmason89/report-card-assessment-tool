@@ -176,6 +176,10 @@ section h3 {
     justify-content: center;
     align-items: center;
     border: .25px #000 solid;
+
+    &:active {
+        transform: translateY(1.25px);
+    }
 }
 
 .classlist a:hover {

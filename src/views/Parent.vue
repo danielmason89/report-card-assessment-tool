@@ -10,7 +10,7 @@
       <form class="form" @submit.prevent="handleSubmit">
         <label title="Student Name">Student Name:</label>
         <select v-model="teacherClasslist.studentId" required>
-          <option disabled value>Please Select A Student</option>
+          <option disabled selected>Please Select A Student</option>
           <option :title="studentId.studentId
             " v-for="studentId in teacherClasslist" :key="studentId.studentId" :value="studentId.studentId">
             {{ studentId.studentId }}
@@ -21,7 +21,7 @@
           <label>All Options are Checked</label>
         </div>
         <div class="submit">
-          <button class="transition duration-300 ease-out transform hover:scale-125 hover:bg-opacity-50 hover:shadow-xl"
+          <button class="transition duration-300 ease-out transform hover:bg-opacity-50 hover:shadow-xl"
             title="click here to search classlist for child">Search Classlist</button>
         </div>
       </form>
@@ -201,6 +201,13 @@ button {
   color: white;
   border-radius: 20px;
   font-size: .8rem;
+
+  &:active {
+    transform: translateY(1.25px);
+    border-color: var(--background-color-primary);
+    color: var(--background-color-secondary);
+    background-color: var(--background-color-primary);
+  }
 }
 
 .submit {

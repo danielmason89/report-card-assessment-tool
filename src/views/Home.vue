@@ -12,10 +12,10 @@
         </section>
         <section class="grid-container">
           <article id="featured">
-            <img class="object-cover w-full hero-img" src="/assets/graduation.jpg" alt="landing-page-logo"
+            <img class="object-cover w-full hero-img" src="/assets/group.png" alt="landing-page-logo"
               aria-label="Assessify Logo/Home" />
             <router-link :to="{ name: 'Dashboard' }" title="Dashboard"
-              class="flex items-center px-8 py-3 space-x-2 font-medium transition-shadow border rounded-full branding bg-accent text-bkg border-bkg focus:outline-none focus-visible:ring-4 ring-accent ring-offset-bkg ring-offset-2 hover:bg-accent/90 active:bg-accent/50 hover:drop-shadow-none ">
+              class="flex items-center px-8 py-3 space-x-2 font-medium transition-shadow border rounded-full branding bg-muted text-bkg border-bkg focus:outline-none focus-visible:ring-4 ring-accent ring-offset-bkg ring-offset-2 hover:bg-accent/90 active:bg-accent/50 hover:drop-shadow-none ">
               <button class="font-bold tracking-wide uppercase">Get started Today</button>
             </router-link>
           </article>
@@ -171,32 +171,30 @@ provide("mirrored", false)
   position: relative;
   height: 100vh;
   object-fit: fill;
-  padding-top: 5.5rem;
+  padding-top: 5rem;
 
   .hero-img {
-    object-fit: fit;
     position: relative;
-    height: 50vhh;
-    width: 30vw;
-    border-radius: 50%;
-    margin: 3.5rem;
-    zoom: .5;
-    border: 5px solid rgb(42, 104, 132);
-    overflow: hidden;
+    border-radius: 35%;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    zoom: .65;
+    border: 5px solid rgb(23, 25, 26);
+    background-color: rgb(42, 104, 132);
 
-    @media (max-width: 1200px) {
+    @media (min-width: 1200px) {
       object-fit: fit;
-      height: 28vh;
-      width: 25vw;
-      border-radius: 50%;
+      border-radius: 25%;
       margin-left: 2rem;
       margin-right: 2rem;
-      zoom: .5;
+      zoom: .65;
     }
   }
 
   button {
     transition: background-color 0.3s, box-shadow 0.3s;
+    color: var(--text-primary-color);
 
     &:active {
       transform: translateY(1px);
@@ -214,7 +212,7 @@ provide("mirrored", false)
 
   #featured {
     text-align: center;
-    padding-top: 11.5rem;
+    padding-top: 4rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -227,19 +225,23 @@ provide("mirrored", false)
     align-items: center;
     justify-content: space-between;
     color: #fff;
+    padding: 0 3rem;
+    padding-top: 8rem;
+
 
     h1 {
       text-transform: uppercase;
-      font-size: 3rem;
+      font-size: 2.5rem;
       padding-bottom: 4px;
-      margin-top: .5rem;
+      margin-top: -8.75rem;
+
     }
 
     h2 {
       font-size: 1.5rem;
 
       @media (min-width: 550px) {
-        font-size: 3.5rem;
+        font-size: 2.5rem;
       }
 
     }
@@ -265,15 +267,11 @@ provide("mirrored", false)
   .hero .hero-text {
     display: flex;
     flex-direction: column;
-    padding-top: 7.5rem;
-  }
-
-  .hero-img {
-    display: none;
+    padding-top: 14.5rem;
+    font-size: 3rem;
   }
 
   #featured {
-    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -283,10 +281,12 @@ provide("mirrored", false)
 
 }
 
-@media (max-width: 400px) {
+@media (max-width: 0px) {
   .hero {
     padding-top: 10rem;
   }
+
+
 
   .hero .hero-text {
     display: flex;
@@ -302,6 +302,17 @@ provide("mirrored", false)
     border: 4px solid rgb(42, 104, 132);
   }
 
+  .hero-img {
+    display: flex;
+    position: relative;
+    border-radius: 35%;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    zoom: .65;
+    border: 5px solid rgb(23, 25, 26);
+    background-color: rgb(42, 104, 132);
+  }
 }
 
 .carousel-image {

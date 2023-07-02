@@ -143,6 +143,10 @@ button {
   margin-top: 20px;
   color: white;
   border-radius: 20px;
+
+  &:active {
+    transform: translateY(1px);
+  }
 }
 
 .submit {
