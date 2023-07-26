@@ -25,7 +25,7 @@ router.beforeEach((to, from, next) => {
   if (isAuthenticated === true) {
     console.log("isAuthenticated", isAuthenticated);
     next();
-  } else if (["Home", "About", "Contact"].includes(to.name)) {
+  } else if (["Home", "About", "Contact", "Quiz"].includes(to.name)) {
     next();
   } else {
     next({ name: "Home", query: { redirect: to.fullPath } });

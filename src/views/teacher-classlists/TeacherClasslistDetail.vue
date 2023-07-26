@@ -12,7 +12,8 @@
           </router-link>
           <span @click="deleteStudent" class="material-icons"
             title="click to delete student from class list">delete</span>
-          <span title="see student details/report card" class="material-icons">expand_more</span>
+          <span v-if="!showDetails" title="open student report card" class="material-icons">expand_more</span>
+          <span v-else-if="showDetails" title="close student report card" class="material-icons">expand_less</span>
         </div>
       </div>
       <transition name="fade">

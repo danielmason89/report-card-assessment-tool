@@ -12,10 +12,8 @@
                         :to="{ name: 'TeacherClasslist' }">Teacher</router-link></li>
                 <li><router-link v-show="isAuthenticated" title="Parent" class="link"
                         :to="{ name: 'Parent' }">Parent</router-link></li>
-                <li><router-link title="About" class="flex items-center link" :to="{ name: 'About' }"><font-awesome-icon
-                            icon="user" class="fa-icon" aria-hidden="true" />About Us</router-link></li>
-                <li><router-link title="Contact" class="link" :to="{ name: 'Contact' }"><font-awesome-icon icon="envelope"
-                            class="fa-icon" aria-hidden="true" />Contact</router-link></li>
+                <li><router-link :to="{ name: 'Contact' }" title="Contact" class="link"><font-awesome-icon
+                            icon="address-card" class="fa-icon" aria-hidden="true" />Contact</router-link></li>
                 <li><router-link :to="{ name: 'Home' }" title="Home" class="link"><font-awesome-icon icon="home"
                             class="fa-icon" aria-hidden="true" />Home</router-link></li>
             </ul>
@@ -31,16 +29,11 @@
             </div>
             <transition name="ShowMobileMenu slide">
                 <ul v-show="showMobileMenu" class="pt-20 pb-3 pl-6 mb-5 dropdown-nav">
+
                     <li><router-link :to="{ name: 'Home' }" title="Home" class="link"><font-awesome-icon icon="home"
                                 class="fa-icon" aria-label="Home Link" aria-hidden="true" />Home</router-link></li>
-                    <li>
-                        <router-link title="About" class="link" :to="{ name: 'About' }"><font-awesome-icon icon="user"
-                                aria-label="About Us Link" class="fa-icon" aria-hidden="true" />About
-                            Us</router-link>
-                    </li>
-                    <li><router-link title="Contact" class="link" :to="{ name: 'Contact' }"><font-awesome-icon
-                                icon="envelope" class="fa-icon" aria-label="Contact Link"
-                                aria-hidden="true" />Contact</router-link></li>
+                    <li><router-link :to="{ name: 'Contact' }" title="Contact" class="link"><font-awesome-icon
+                                icon="address-card" class="fa-icon" aria-hidden="true" />Contact</router-link></li>
                     <li><router-link v-if="isAuthenticated" title="Dashboard" class="link"
                             :to="{ name: 'Dashboard' }">Dashboard</router-link>
                     </li>
@@ -261,8 +254,7 @@ header {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 0.25rem;
-            margin-top: 0.001rem;
+            margin: 0 0.45rem;
         }
 
         .dropdown-nav {

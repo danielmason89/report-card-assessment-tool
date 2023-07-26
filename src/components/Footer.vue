@@ -29,30 +29,26 @@
             <li>
               <router-link
                 class="px-0 transition-colors rounded-full hover:text-accent focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-accent"
-                :to="{ name: 'About' }" title="About Us">Press</router-link>
-            </li>
-            <li>
-              <router-link
-                class="px-0 transition-colors rounded-full hover:text-accent focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-accent"
                 :to="{ name: 'About' }" title="About Us">News</router-link>
             </li>
           </ul>
         </div>
         <div class="grid gap-3">
-          <p class="px-0 font-bold tracking-wide decoration-accent decoration-4 -offset-2">Locations
-          </p>
+          <a class="px-0 font-bold tracking-wide decoration-accent decoration-4 -offset-2">Locations
+          </a>
           <ul aria-label="Assessify's Office Locations">
             <li>
-              <p class="px-0 transition-colors rounded-full hover:text-accent focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-accent"
-                title="North America">North America</p>
+              <router-link
+                class="px-0 transition-colors rounded-full hover:text-accent focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-accent"
+                :to="{ name: 'Home' }" title="North America">North America</router-link>
             </li>
             <li>
-              <p class="px-0 transition-colors rounded-full hover:text-accent focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-accent"
-                title="Central Europe">Central Europe</p>
+              <router-link class="px-0 transition-colors rounded-full hover:text-accent focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-accent"
+              :to="{ name: 'Home' }" title="Central Europe">Central Europe</router-link>
             </li>
             <li>
-              <p class="px-0 transition-colors rounded-full hover:text-accent focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-accent"
-                title="South Korea">South Korea</p>
+              <router-link class="px-0 transition-colors rounded-full hover:text-accent focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-accent"
+              :to="{ name: 'Home' }" title="South Korea">South Korea</router-link>
             </li>
           </ul>
         </div>
@@ -61,31 +57,31 @@
           </p>
           <ul aria-label="Contact Assessify">
             <li>
-              <a href="#"
+              <a href="mailto:info@assessify.com"
                 class="px-0 transition-colors rounded-full hover:text-accent focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-accent">
                 {{ mail }}</a>
             </li>
             <li>
-              <p
+              <a href="tel:06.00.00.00.00"
                 class="px-0 transition-colors rounded-full hover:text-accent focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-accent">
-                {{ phone }}</p>
+                {{ phone }}</a>
             </li>
             <li>
-              <a href="#"
+              <a href="https://www.instagram.com/" target=”_blank” rel=”noopener”
                 class="px-0 transition-colors rounded-full hover:text-accent focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-accent">
                 Instagram
               </a>
             </li>
             <li>
-              <a href="#"
+              <a href="https://www.facebook.com/" target=”_blank” rel=”noopener”
                 class="px-0 transition-colors rounded-full hover:text-accent focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-accent">
                 Facebook
               </a>
             </li>
             <li>
-              <a href="#"
+              <a href="https://www.linkedin.com/" target=”_blank” rel=”noopener”
                 class="px-0 transition-colors rounded-full hover:text-accent focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-accent">
-                Twitter
+                Linkedin
               </a>
             </li>
           </ul>

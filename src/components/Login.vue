@@ -6,8 +6,12 @@
         </p>
         <p class="flex items-center" v-if="isAuthenticated">
             <button class="bn39" @click="handleLogout"><span class="bn39span">Logout</span></button>
-            <span class="pl-2 text-xs text-white ">Welcome to Assessify!<br /> You are successfully logged in {{ user.name
-            }}!</span>
+            <transition name="fade">
+                <span v-if="showWelcomeMessage" class="pl-2 text-xs text-white ">Welcome back to Assessify!<br /> You are
+                    successfully logged in {{
+                        user.name
+                    }}!</span>
+            </transition>
         </p>
     </div>
 </template>
@@ -26,6 +30,9 @@ export default {
         const isAuthenticated = ref(false);
         const store = useStore();
         const isLoggingIn = ref(false);
+        const showWelcomeMessage = ref(false);
+        const lastLoginAttempt = ref(0);
+        const delay = 2000;
 
         const config = {
             auth: {
@@ -49,30 +56,37 @@ export default {
                     isAuthenticated.value = true;
                     store.dispatch("loginAction", user.value);
                     router.push({ path: "/dashboard" });
+                    showWelcomeMessage.value = true;
+                    setTimeout(() => {
+                        showWelcomeMessage.value = false;
+                    }, 5000);
+                    isLoggingIn.value = false;
                 }
             });
         });
 
         async function handleLogin() {
-            if (isLoggingIn.value) return;
-            isLoggingIn.value = true;
-            try {
-                const response = await authInstance.value.loginRedirect({
-                    scopes: ["openid", "profile"],
-                });
-                if (response) {
-                    user.value = response.account;
-                    isAuthenticated.value = true;
-                    store.dispatch("loginAction", user.value);
-                    localStorage.setItem("user", JSON.stringify(user.value));
-                    localStorage.setItem("isAuthenticated", isAuthenticated.value);
-                    router.push({ path: "/dashboard" });
-                }
-            } catch (err) {
-                console.log(err);
-            } finally {
-                isLoggingIn.value = false;
+            const now = Date.now();
+            if (isLoggingIn.value || now - lastLoginAttempt.value < delay) {
+                return;
             }
+            isLoggingIn.value = true;
+            lastLoginAttempt.value = now;
+            if (isLoggingIn.value)
+                try {
+                    const response = await authInstance.value.loginRedirect({
+                        scopes: ["openid", "profile"],
+                    });
+                    if (response) {
+                        user.value = response.account;
+                        isAuthenticated.value = true;
+                        store.dispatch("loginAction", user.value);
+                        localStorage.setItem("user", JSON.stringify(user.value));
+                        localStorage.setItem("isAuthenticated", isAuthenticated.value);
+                    }
+                } catch (err) {
+                    console.log(err);
+                }
         }
 
         async function signup() {
@@ -82,12 +96,9 @@ export default {
 
         async function handleLogout() {
             try {
-                router.push({ path: "/" });
                 authInstance.value.logout();
-                user.value = null;
-                isAuthenticated.value = false;
+                user.value = "";
                 store.dispatch("logoutAction");
-                router.push({ path: "/dashboard" });
             }
             catch (err) {
                 console.log(err);
@@ -100,7 +111,8 @@ export default {
             handleLogout,
             user,
             isAuthenticated,
-            isLoggingIn
+            isLoggingIn,
+            showWelcomeMessage
         };
     }
 };
@@ -119,7 +131,7 @@ export default {
     padding: 2px;
     position: relative;
     text-decoration: none;
-    width: 3.85rem;
+    width: 4.5rem;
     z-index: 2;
 
     &:active {
@@ -145,5 +157,20 @@ export default {
 
 .bn39:hover .bn39span {
     background: transparent;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 1s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+    opacity: 1;
 }
 </style>

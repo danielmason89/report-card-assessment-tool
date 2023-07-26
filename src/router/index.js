@@ -30,6 +30,15 @@ const routes = [
     },
   },
   {
+    path: "/quiz",
+    name: "Quiz",
+    component: () => import("@/views/Quiz.vue"),
+    meta: {
+      permission: "any",
+      fail: "/error",
+    },
+  },
+  {
     path: "/login",
     name: "Login",
     component: () => import("@/components/Login.vue"),

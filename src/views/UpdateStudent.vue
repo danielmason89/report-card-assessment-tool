@@ -43,8 +43,10 @@
         <input type="checkbox" required>
         <label>All Options are Checked</label>
       </div>
-      <div class="submit">
-        <button class="hover:shadow-xl" title="click here to update details">Update Student Info</button>
+      <div class="flex items-center justify-center space-x-[20px]">
+        <button class="hover:shadow-xl" title="click here to reset details" type="button"
+          @click.prevent="resetForm">Reset</button>
+        <button class="hover:shadow-xl" title="click here to update details">Update</button>
       </div>
     </form>
   </main>
@@ -59,9 +61,9 @@ const router = useRouter();
 
 const studentId = ref(undefined);
 const mark = ref("");
-const grade = ref(undefined);
-const subject = ref(undefined);
-const gender = ref(undefined);
+const grade = ref();
+const subject = ref("");
+const gender = ref("");
 const text2Error = ref(null);
 const uri = `http://localhost:3000/teacherClasslist/${props.id}`;
 
@@ -73,10 +75,17 @@ const fetchStudent = async () => {
     grade.value = data.grade;
     gender.value = data.gender;
     subject.value = data.subject;
+    mark.value = data.mark;
   } catch (err) {
     console.error(err);
   }
 };
+
+const resetForm = async () => {
+  grade.value = "";
+  subject.value = "";
+  mark.value = "";
+}
 
 const handleSubmit = async (e) => {
   try {
@@ -118,10 +127,11 @@ defineExpose({
 <style lang="scss" scoped>
 main {
   padding: 10rem 2.5rem;
+  padding-bottom: 0rem;
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 120vh;
+  min-height: 105svh;
   width: 100%;
 
   header h1 {
@@ -187,10 +197,6 @@ button {
   &:active {
     transform: translateY(1px);
   }
-}
-
-.submit {
-  text-align: center;
 }
 
 .error {

@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "concurrently \"npm run json:server\" \"vite\"",
     "build": "vite build",
-    "json:server": "json-server --watch data/db.json"
+    "json:server": "json-server --watch data/db.json data/quiz.json",
+    "lint": "eslint --ext main.js --fix"
   },
   "dependencies": {
     "@auth0/auth0-vue": "^2.2.0",
@@ -47,7 +48,7 @@
     "autoprefixer": "^10.4.13",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-vue": "^9.10.0",
+    "eslint-plugin-vue": "^9.15.1",
     "node-sass": "^8.0.0",
     "postcss": "^8.4.21",
     "postcss-flexbugs-fixes": "^5.0.2",
@@ -57,8 +58,10 @@
     "prettier": "^2.8.7",
     "sass-loader": "^13.2.0",
     "tailwindcss": "^3.2.4",
+    "unplugin-vue-router": "^0.6.4",
     "vite": "^4.0.4",
     "vite-plugin-ejs": "^1.6.4",
+    "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-pwa": "^0.14.6"
   }
 }

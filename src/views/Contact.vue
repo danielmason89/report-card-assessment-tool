@@ -13,12 +13,12 @@
                         <div class="inline-flex items-center space-x-2">
                             <font-awesome-icon class="items-start justify-between pr-2 text-xl font-awesome-icon max-w-fit"
                                 icon="phone" />
-                            <span class="font-awesome-icon">555-555-5555</span>
+                            <a href="tel:06.00.00.00.00" class="phone font-awesome-icon">{{ phone }}</a>
                         </div>
                         <div class="inline-flex items-center space-x-2">
                             <font-awesome-icon class="items-start justify-between pr-2 text-xl font-awesome-icon max-w-fit"
                                 icon="envelope" />
-                            <span class="font-awesome-icon">info@reportcardsoftware.com</span>
+                            <a href="mailto:info@assessify.com" class="mail font-awesome-icon">{{ mail }}</a>
                         </div>
                         <div class="inline-flex items-center space-x-2">
                             <font-awesome-icon class="items-start justify-between pr-2 text-xl font-awesome-icon max-w-fit"
@@ -27,16 +27,13 @@
                         </div>
                     </section>
                     <section class="flex space-x-4 text-lg">
-                        <a href="https://www.twitter.com/" target=”_blank”>
-                            <font-awesome-icon class="text-xl text-dark" :icon="['fab', 'twitter']" />
-                        </a>
-                        <a href="https://www.linkedin.com/" target=”_blank”>
+                        <a href="https://www.linkedin.com/" target=”_blank” rel=”noopener”>
                             <font-awesome-icon class="text-xl text-white" :icon="['fab', 'linkedin']" />
                         </a>
-                        <a href="https://www.instagram.com/" target=”_blank”>
+                        <a href="https://www.instagram.com/" target=”_blank” rel=”noopener”>
                             <font-awesome-icon class="text-xl text-accent" :icon="['fab', 'instagram']" />
                         </a>
-                        <a href="https://www.facebook.com/" target=”_blank”>
+                        <a href="https://www.facebook.com/" target=”_blank” rel=”noopener”>
                             <font-awesome-icon class="text-xl text-dark" :icon="['fab', 'facebook']" />
                         </a>
                     </section>
@@ -49,12 +46,14 @@
                             <div>
                                 <label for="name" class="text-sm font-bold font-awesome-icon">Your Name</label>
                                 <input type="text" placeholder="Your Name"
-                                    class="w-full px-4 py-2 mt-2 rounded-md outline-none ring-1 ring-gray-300 focus:ring-2 focus:ring-accent">
+                                    class="w-full px-4 py-2 mt-2 rounded-md outline-none ring-1 ring-gray-300 focus:ring-2 focus:ring-accent"
+                                    required>
                             </div>
                             <div>
                                 <label for="name" class="text-sm font-bold font-awesome-icon">Email Address</label>
                                 <input type="email" multiple placeholder="Your Email Address"
-                                    class="w-full px-4 py-2 mt-2 rounded-md outline-none ring-1 ring-gray-300 focus:ring-2 focus:ring-accent">
+                                    class="w-full px-4 py-2 mt-2 rounded-md outline-none ring-1 ring-gray-300 focus:ring-2 focus:ring-accent"
+                                    required>
                             </div>
                             <div>
                                 <label for="name" class="text-sm font-bold font-awesome-icon">Message</label>
@@ -76,6 +75,9 @@
 <script setup>
 import { ref } from 'vue';
 
+const mail = ref('Email | info@assessify.com');
+const phone = ref('Phone | 06.00.00.00.00');
+const mention = ref('Copyright Assessify - 2023 | All rights reserved');
 const count = ref(0);
 </script>
   
@@ -94,6 +96,11 @@ p {
     color: var(--text-primary-color);
 }
 
+.phone,
+.mail {
+    padding: 0.25rem;
+}
+
 .font-awesome-icon {
     color: var(--text-primary-color);
 }
@@ -109,11 +116,24 @@ button {
 
     &:hover {
         background-color: var(--background-color-secondary);
+        color: var(--text-primary-color);
         box-shadow: 0 0 0 2px var(--background-color-primary);
     }
 
     &:active {
         transform: translateY(1px);
+    }
+}
+
+.phone,
+.mail {
+    color: var(--text-primary-color);
+
+    &:hover {
+        color: var(--accent-color);
+        box-shadow: 0 0 0 0.5px var(--accent-color);
+        padding: 0.25rem;
+        border-radius: 2px 4px 2px;
     }
 }
 </style>

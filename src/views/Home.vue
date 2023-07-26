@@ -14,10 +14,10 @@
           <article id="featured">
             <img class="object-cover w-full hero-img" src="/assets/group.png" alt="landing-page-logo"
               aria-label="Assessify Logo/Home" />
-            <router-link :to="{ name: 'Dashboard' }" title="Dashboard"
-              class="flex items-center px-8 py-3 space-x-2 font-medium transition-shadow border rounded-full branding bg-muted text-bkg border-bkg focus:outline-none focus-visible:ring-4 ring-accent ring-offset-bkg ring-offset-2 hover:bg-accent/90 active:bg-accent/50 hover:drop-shadow-none ">
-              <button class="font-bold tracking-wide uppercase">Get started Today</button>
-            </router-link>
+            <button title="Quiz" @click="startQuiz()"
+              class="flex items-center px-8 py-3 space-x-2 font-bold tracking-wide uppercase transition-shadow border rounded-full branding bg-muted text-bkg border-bkg focus:outline-none focus-visible:ring-4 ring-accent ring-offset-bkg ring-offset-2 hover:bg-accent/90 active:bg-accent/50 hover:drop-shadow-none">
+              Get started Today
+            </button>
           </article>
         </section>
       </div>
@@ -30,15 +30,7 @@
           <h2 id="headline" class="text-3xl font-bold tracking-wide drop-shadow-text-md">Digital Solution for Today's
             Digital Organizations</h2>
         </div>
-        <p class="text-muted drop-shadow-text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis amet
-          alias necessitatibus saepe iure laudantium temporibus quasi earum recusandae odit. Esse adipisci molestiae,
-          quia possimus illum excepturi facere autem similique?
-          Debitis alias, quisquam numquam odio obcaecati ut voluptate. Perferendis, rerum magnam aliquam dolores nemo
-          praesentium excepturi ea. Eligendi amet dicta et, praesentium adipisci deserunt enim quae cupiditate
-          exercitationem est veritatis.
-          Velit pariatur exercitationem eum optio aliquam veritatis ducimus repudiandae eveniet. Omnis magni, quis id
-          aliquam, molestiae a, rerum odit rem assumenda est amet! Rem dolorum expedita quas tempore! Maxime,
-          consequuntur.
+        <p class="text-muted drop-shadow-text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
           Corrupti recusandae hic officia. Nostrum repellendus dolorum ut culpa nobis voluptate atque nihil! Error nam,
           dignissimos sunt consectetur alias exercitationem ipsum nesciunt eius, magnam et iusto quo fugiat, repellat
           architecto.</p>
@@ -53,19 +45,12 @@
               Relationships</h2>
           </div>
           <div class="flex flex-wrap items-center justify-center space-x-4 space-y-4 lg:flex-nowrap lg:justify-between">
-            <p class="text-muted md:max-w-xl drop-shadow-text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing
-              elit.
-              Quis amet
-              alias necessitatibus saepe iure laudantium temporibus quasi earum recusandae odit. Esse adipisci
+            <p class="pb-4 text-muted md:max-w-xl drop-shadow-text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing
+              elit. Esse adipisci
               molestiae,
               quia possimus illum excepturi facere autem similique?
-              Debitis alias, quisquam numquam odio obcaecati ut voluptate. Perferendis, rerum magnam aliquam dolores
-              nemo
-              praesentium excepturi ea. Eligendi amet dicta et, praesentium adipisci deserunt enim quae cupiditate
-              exercitationem est veritatis.
-              Velit pariatur exercitationem eum optio aliquam veritatis ducimus repudiandae eveniet. Omnis magni, quis
-              id
-              aliquam, molestiae a, rerum odit rem assumenda est amet! Rem dolorum expedita quas tempore! Maxime,
+              Velit pariatur exercitationem eum optio aliquam veritatis ducimus repudiandae eveniet. Rem dolorum expedita
+              quas tempore! Maxime,
               consequuntur.</p>
             <div class="flex space-x-10">
               <button data-slideBtn id="prev" @click="prevSlide" aria-label="show previous image"
@@ -87,7 +72,7 @@
             :image="slide.image" :title="slide.title"
             class="relative flex-grow flex-shrink-0 w-full slide-info xs:w-auto xs:basis-96">
             <img loading="lazy"
-              class="carousel-image object-cover h-full [@media(hover:hover)]:grayscale-0 hover:grayscale-50 transition-all peer"
+              class="carousel-image rounded-md object-cover h-full [@media(hover:hover)]:grayscale-0 hover:grayscale-50 transition-all peer"
               :src="slide.image" alt="slide.title" />
             <p
               class="absolute bottom-4 py-2 px-4 left-4 bg-bkg text-muted font-bold text-lg pointer-events-none tracking-wide [@media(hover:hover)]:opacity-100 peer-hover:opacity-0 transition-opacity">
@@ -96,10 +81,8 @@
         </Carousel>
       </div>
       <section aria-labelledby="info"
-        class="container flex flex-col flex-wrap items-start justify-between md:space-x-16 md:space-y-0">
-        <img src="/assets/pexels-august-de-richelieu-4260325-min.jpg" alt="mentor and mentee" width="400"
-          class="grow md:flex-1" loading="lazy" />
-        <article class="grid gap-4 text-center md:text-left grow md:flex-1">
+        class="container flex flex-wrap items-start justify-between md:flex-nowrap md:space-y-0 ">
+        <article class="grid gap-4 pb-4 text-center md:text-left grow md:flex-1">
           <div class="relative">
             <div class="absolute hidden w-8 h-full md:block bg-accent/10 -left-4"></div>
             <h2 id="info" class="text-3xl font-bold tracking-wide">
@@ -111,13 +94,11 @@
           </div>
           <p class="max-w-2xl text-muted drop-shadow-text-sm">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, in minus labore rerum esse doloribus ullam
-            aspernatur voluptates, aliquam similique cupiditate ipsa laudantium cum dignissimos! Nihil ut quia eum
-            numquam.
-            At reprehenderit, eius doloremque dolorum commodi deleniti! Eius, maiores? Doloribus quis libero architecto
-            delectus, dolore modi corrupti harum cupiditate consectetur repellat ratione eligendi ut adipisci, blanditiis
-            nam laborum in officia!
+            aspernatur voluptates, aliquam similique cupiditate ipsa laudantium cum dignissimos!
           </p>
         </article>
+        <img src="/assets/pexels-august-de-richelieu-4260325-min.jpg" alt="a mentor and their mentee" width="100"
+          class="rounded-md grow md:flex-1 md:order-1 w-fit h-fit lg:items-center" loading="lazy" />
       </section>
       <Cta />
     </main>
@@ -130,7 +111,9 @@ import Slide from "../components/Slide.vue";
 import Cta from "../components/Cta.vue";
 import { PhArrowCircleLeft, PhArrowCircleRight } from "@phosphor-icons/vue";
 import { provide, ref } from "vue";
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const carouselRef = ref();
 const nextSlide = () => carouselRef.value.nextSlide();
 const prevSlide = () => carouselRef.value.prevSlide();
@@ -157,6 +140,10 @@ const carouselSlides = [{
   title: "Teacher/Child",
   image: "/assets/pexels-karolina-grabowska-7692549-min.jpg"
 }]
+
+let startQuiz = () => {
+  router.push({ path: '/quiz' });
+};
 
 provide("color", "#171819")
 provide("size", 36)
@@ -325,6 +312,23 @@ provide("mirrored", false)
     object-fit: cover;
     object-position: center;
     align-items: center;
+  }
+}
+
+@media (min-width: 768px) {
+  section[aria-labelledby="info"] {
+    article {
+      margin: -1rem 2rem;
+    }
+
+    img {
+      width: 25vw;
+      transition: transform 0.3s;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
   }
 }
 </style>

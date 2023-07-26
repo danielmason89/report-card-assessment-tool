@@ -78,11 +78,10 @@ const handleSubmit = async () => {
 
 <style lang="scss" scoped>
 main {
-  padding: 8rem 2.5rem;
+  padding: 8.5rem 2.5rem;
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 110vh;
   width: 100%;
 
   header h1 {
