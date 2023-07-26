@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import { createPinia } from 'pinia'
 import { registerSW } from "virtual:pwa-register";
 import {
   faTwitter,
@@ -32,8 +33,10 @@ router.beforeEach((to, from, next) => {
   }
 });
 
+
 const app = createApp(App);
 app.use(store);
 app.use(router);
 app.component("font-awesome-icon", FontAwesomeIcon);
+app.use(createPinia())
 app.mount("#app");

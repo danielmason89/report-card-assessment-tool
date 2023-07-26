@@ -8,7 +8,7 @@ module.exports = {
     "./src/views/**/*.{vue,ts,tsx,js}",
   ],
   media: false, // or 'media' or 'class'
-  content: ["./src/**/*.{html,js,vue,ts}"],
+  content: ["./index.html", "./src/**/*.{html,js,vue,ts}"],
   theme: {
     extend: {
       screens: {
