@@ -57,17 +57,19 @@
 <script setup>
 import DarkModeToggle from "./DarkModeToggle.vue"
 import Login from "./Login.vue"
-import store from '@/store/index.js';
-import { ref, onMounted, onUnmounted, computed } from 'vue';
-import { watch } from 'vue'
+import { useLoginStore } from '@/store/loginStore.js';
+import { ref, onMounted, onUnmounted, computed, watch } from 'vue';
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
 const enabled = ref(false)
+const store = useLoginStore()
 const scrolledNav = ref(null);
 const mobile = ref(null);
 const windowWidth = ref(null);
-const isAuthenticated = computed(() => store.getters.isAuthenticated);
+const isAuthenticated = computed(() => {
+    return store.loggedIn;
+});
 const showMobileMenu = ref(false);
 const toggleMobileMenu = () => {
     showMobileMenu.value = !showMobileMenu.value;
@@ -82,24 +84,10 @@ const updateScroll = () => {
     scrolledNav.value = false;
 };
 
-const clickOutside = {
-    beforeMount: (el, binding) => {
-        el.clickOutsideEvent = event => {
-            if (!(el == event.target || el.contains(event.target))) {
-                binding.value()
-            }
-        }
-        onMounted(() => {
-            document.addEventListener("click", el.clickOutsideEvent)
-        })
-        onUnmounted(() => {
-            document.removeEventListener("click", el.clickOutsideEvent)
-        })
-    },
-}
-
-const closeMenu = () => {
-    showMobileMenu.value = false;
+const closeMenu = (event) => {
+    if (showMobileMenu.value && !event.target.closest('ul.dropdown-nav')) {
+        showMobileMenu.value = false;
+    }
 }
 
 const checkScreen = () => {

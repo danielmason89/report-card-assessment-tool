@@ -71,6 +71,22 @@
       "mark": "Not Completed",
       "subject": "Computer Science",
       "id": 43
+    },
+    {
+      "studentId": "Alex",
+      "gender": "LGBTQ+",
+      "subject": "Computer Science",
+      "grade": "10",
+      "mark": "Not Completed",
+      "id": 44
+    },
+    {
+      "studentId": "Sam",
+      "gender": "Girl",
+      "subject": "Computer Science",
+      "grade": "9",
+      "mark": "Not Completed",
+      "id": 45
     }
   ],
   "questionsList": [

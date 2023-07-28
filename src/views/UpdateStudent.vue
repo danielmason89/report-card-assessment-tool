@@ -3,7 +3,7 @@
     <header>
       <h1>Update Student Details </h1>
     </header>
-    <form class="form" @submit.prevent="handleSubmit">
+    <vee-form class="form" @submit="handleSubmit" :validation-schema="schema">
       <label>Student Name:</label>
       <input type="studentId" v-model="studentId" required>
       <div v-if="text2Error" class="error">{{ text2Error }}</div>
@@ -16,7 +16,7 @@
         <option value="LGBTQ+">LGBTQ+</option>
       </select>
       <label>Student Grade:</label>
-      <select v-model="grade" required>
+      <select v-model="grade" name="grade" required>
         <option disabled value>Please Update Grade, if needed</option>
         <option value="8">8</option>
         <option value="9">9</option>
@@ -40,21 +40,24 @@
         <option value="Not Completed">Not Completed</option>
       </select>
       <div class="terms">
-        <input type="checkbox" required>
+        <vee-field class="checkbox" type="checkbox" value="1" name="tos" />
         <label>All Options are Checked</label>
+        <br />
+        <ErrorMessage class="p-2 text-red-600 error-text" name="tos" />
       </div>
       <div class="flex items-center justify-center space-x-[20px]">
         <button class="hover:shadow-xl" title="click here to reset details" type="button"
           @click.prevent="resetForm">Reset</button>
         <button class="hover:shadow-xl" title="click here to update details">Update</button>
       </div>
-    </form>
+    </vee-form>
   </main>
 </template>
 
 <script setup>
-import { ref, onMounted, defineProps } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { useForm } from 'vee-validate';
 
 const props = defineProps(['id']);
 const router = useRouter();
@@ -65,7 +68,16 @@ const grade = ref();
 const subject = ref("");
 const gender = ref("");
 const text2Error = ref(null);
+const { handleSubmit: handleVeeSubmit } = useForm();
 const uri = `http://localhost:3000/teacherClasslist/${props.id}`;
+
+let schema = {
+  name: "requiredStudentName|min:3|max:15|alpha_spaces|excluded:name|excluded:test",
+  grade: "requiredStudent|min_value:8|max_value:11|excluded:Please Select A Grade",
+  subject: "requiredStudent|excluded:Please Select A Subject",
+  gender: "requiredStudent|excluded:Please Select A Gender",
+  "tos": "AllOptionsRequired"
+}
 
 const fetchStudent = async () => {
   try {
@@ -199,10 +211,10 @@ button {
   }
 }
 
-.error {
+.error-text {
   color: #ff0062;
   margin-top: 10px;
-  font-size: 0.8rem;
+  font-size: 0.65rem;
   font-weight: bold;
 }
 

@@ -4,8 +4,9 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import App from "./App.vue";
 import router from "./router";
-import store from "./store";
-import { createPinia } from 'pinia'
+import { useLoginStore } from "@/store/loginStore";
+import { createPinia } from "pinia";
+import VeeValidatePlugin from "./plugins/validation";
 import { registerSW } from "virtual:pwa-register";
 import {
   faTwitter,
@@ -22,21 +23,23 @@ if ("serviceWorker" in navigator) {
 library.add(fas, faTwitter, faLinkedin, faInstagram, faFacebook);
 
 router.beforeEach((to, from, next) => {
-  const isAuthenticated = store.getters["isAuthenticated"];
-  if (isAuthenticated === true) {
-    console.log("isAuthenticated", isAuthenticated);
-    next();
-  } else if (["Home", "About", "Contact", "Quiz"].includes(to.name)) {
+  const loginStore = useLoginStore();
+  const isAuthenticated = loginStore.loggedIn;
+
+  if (
+    ["Home", "About", "Contact", "Quiz"].includes(to.name) ||
+    isAuthenticated
+  ) {
     next();
   } else {
     next({ name: "Home", query: { redirect: to.fullPath } });
   }
 });
 
-
 const app = createApp(App);
-app.use(store);
+
+app.use(createPinia());
 app.use(router);
 app.component("font-awesome-icon", FontAwesomeIcon);
-app.use(createPinia())
+app.use(VeeValidatePlugin);
 app.mount("#app");

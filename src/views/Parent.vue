@@ -7,25 +7,28 @@
       </transition>
     </header>
     <section>
-      <form class="form" @submit.prevent="handleSubmit">
+      <vee-form class="form" @submit.prevent="handleSubmit" :validation-schema="schema">
         <label title="Student Name">Student Name:</label>
-        <select v-model="teacherClasslist" required>
+        <vee-field class="select" as="select" v-model="teacherClasslist" name="name" required>
           <option value="" disabled selected>Please Select A Student</option>
           <option :title="student.studentId" v-for="student in studentsList" :key="student.studentId"
             :value="student.studentId">
             {{ student.studentId }}
           </option>
-        </select>
+        </vee-field>
+        <ErrorMessage class="p-2 text-red-600" name="name" />
         <div class="terms">
-          <input type="checkbox" v-model="isChecked" required>
+          <vee-field type="checkbox" value="1" v-model="isChecked" name="options not checked" />
           <label>I'm not a robot 🤖 </label>
+          <br />
+          <ErrorMessage class="p-2 text-red-600" name="options not checked" />
         </div>
         <div class="flex items-center justify-center space-x-[20px]">
           <button class="hover:shadow-xl" title="Reset" type="button" @click.prevent="resetForm">Reset</button>
           <button type="submit" class="transition duration-300 ease-out transform hover:bg-opacity-50 hover:shadow-xl"
             title="Search Classlist For Child">Search Classlist</button>
         </div>
-      </form>
+      </vee-form>
     </section>
     <section @click="showDetails = !showDetails" v-if="results" class="report-card">
       <header>
@@ -49,6 +52,8 @@
 import { ref, onMounted } from 'vue';
 import gsap from 'gsap';
 
+
+
 const teacherClasslist = ref("");
 const studentsList = ref([]);
 const formData = ref({
@@ -60,6 +65,11 @@ const formData = ref({
 const showDetails = ref(false);
 const results = ref(false);
 const isChecked = ref(false);
+
+let schema = {
+  name: "required",
+  "options not checked": "required"
+}
 
 const beforeEnter = (el) => {
   el.style.transform = 'translateY(-60px)';
@@ -188,7 +198,7 @@ label {
 }
 
 input,
-select {
+.select {
   display: block;
   padding: 20px 6px;
   width: 100%;

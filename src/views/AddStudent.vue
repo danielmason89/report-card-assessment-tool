@@ -1,41 +1,58 @@
 <template>
   <main>
     <header>
-      <h1>Add New Student to Class List</h1>
+      <h1 class="text-center text-md sm:text-left">Add New Student to Class List</h1>
     </header>
-    <form class="form" @submit.prevent="handleSubmit">
-      <label>Student Name:</label>
-      <input type="studentId" v-model="studentId" required>
-      <div v-if="text2Error" class="error">{{ text2Error }}</div>
-      <label>Student Gender:</label>
-      <select v-model="gender" required>
-        <option disabled value>Please Select A Gender</option>
-        <option value="Girl">Girl</option>
-        <option value="Boy">Boy</option>
-        <option value="Non-Binary">Non-Binary</option>
-        <option value="LGBTQ+">LGBTQ+</option>
-      </select>
-      <label>Student Grade:</label>
-      <select v-model="grade" required>
-        <option disabled value>Please Select A Grade</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-      </select>
-      <label>Class Subject:</label>
-      <select v-model="subject" required>
-        <option disabled value>Please Select a Subject</option>
-        <option value="Computer Science">Computer Science</option>
-      </select>
+    <vee-form class="form" @submit="onSubmit" :validation-schema="schema" :initial-values="userData">
+      <section>
+        <label>Student Name:</label>
+        <vee-field :bails="false" name="name" v-slot="{ field, errors }">
+          <input type="text" placeholder="Enter Student's Name" class="vee-field" v-model="studentId"
+            title="Enter Student's Name" aria-label="Enter Student's Name" v-bind="field" />
+          <div class="p-2 text-xs text-red-600" v-for="error in errors" :key="error">{{ error }}</div>
+        </vee-field>
+      </section>
+      <section>
+        <label>Student Gender:</label>
+        <vee-field as="select" class="select" name="gender" v-model="gender">
+          <option disabled value="">Please Select A Gender</option>
+          <option value="Girl">Girl</option>
+          <option value="Boy">Boy</option>
+          <option value="Non-Binary">Non-Binary</option>
+          <option value="LGBTQ+">LGBTQ+</option>
+        </vee-field>
+        <ErrorMessage class="p-2 text-xs text-red-600" name="gender" />
+      </section>
+      <section>
+        <label>Student Grade:</label>
+        <vee-field as="select" class="select" v-model="grade" name="grade">
+          <option disabled value>Please Select A Grade</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+        </vee-field>
+        <ErrorMessage class="p-2 text-xs text-red-600" name="grade" />
+      </section>
+      <section>
+        <label>Class Subject:</label>
+        <vee-field as="select" class="select" v-model="subject" name="subject">
+          <option disabled value>Please Select a Subject</option>
+          <option value="Computer Science">Computer Science</option>
+        </vee-field>
+        <ErrorMessage class="p-2 text-xs text-red-600" name="subject" />
+      </section>
       <div class="terms">
-        <input type="checkbox" required>
+        <vee-field class="checkbox" type="checkbox" value="1" name="tos" />
         <label>All Options are Checked</label>
+        <br />
+        <ErrorMessage class="p-2 text-xs text-red-600" name="tos" />
       </div>
-      <div class="submit">
+      <div class="submit space-x-[20px]">
+        <button class="hover:shadow-xl" title="Reset" type="button" @click.prevent="resetForm">Reset</button>
         <button title="click here to add student to classlist">Add Student</button>
       </div>
-    </form>
+    </vee-form>
   </main>
 </template>
 
@@ -43,6 +60,7 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
+import { useForm } from 'vee-validate';
 
 const router = useRouter();
 const studentId = ref('');
@@ -50,30 +68,39 @@ const gender = ref('');
 const subject = ref('');
 const grade = ref('');
 const mark = ref('Not Completed');
-const text2Error = ref(null);
+const { handleSubmit: handleVeeSubmit } = useForm();
 
-const handleSubmit = async () => {
+let schema = {
+  name: "requiredStudentName|min:3|max:15|alpha_spaces|excluded:name|excluded:test",
+  grade: "requiredStudent|min_value:8|max_value:11|excluded:Please Select A Grade",
+  subject: "requiredStudent|excluded:Please Select A Subject",
+  gender: "requiredStudent|excluded:Please Select A Gender",
+  "tos": "AllOptionsRequired"
+}
+
+let userData = {
+  grade: "Please Select A Grade",
+  subject: "Please Select A Subject",
+  gender: "Please Select A Gender"
+}
+
+const onSubmit = handleVeeSubmit(async () => {
+  const student = {
+    studentId: studentId.value,
+    gender: gender.value,
+    subject: subject.value,
+    grade: grade.value,
+    mark: mark.value
+  };
   try {
-    text2Error.value = studentId.value.length >= 2 ? '' : 'Please Enter a Valid Student Name';
-
-    if (!text2Error.value) {
-      let student = {
-        studentId: studentId.value,
-        gender: gender.value,
-        grade: grade.value,
-        mark: mark.value,
-        subject: subject.value,
-      };
-
-      await axios.post('http://localhost:3000/teacherClasslist', student)
-        .then(() => {
-          router.push('/teacher-classlist');
-        });
-    }
-  } catch (err) {
-    console.log(err);
+    await axios.post('http://localhost:3000/teacherClasslist', student);
+    router.push('/teacher-classlist');
+  } catch (error) {
+    console.error("Error while adding student:", error);
   }
-};
+})
+
+const resetForm = async () => { }
 </script>
 
 <style lang="scss" scoped>
@@ -86,7 +113,7 @@ main {
 
   header h1 {
     font-size: 2rem;
-    font-style: bold;
+    font-style: normal;
   }
 
 }
@@ -95,9 +122,6 @@ main {
   border-left: .5rem #add solid;
   border-radius: 4px;
   box-shadow: 1px 2px 3px rgb(0 0 0 / 50%);
-}
-
-form {
   width: 420px;
   margin: 30px auto;
   background: white;
@@ -116,8 +140,8 @@ label {
   font-weight: bold;
 }
 
-input,
-select {
+.vee-field,
+.select {
   display: block;
   padding: 20px 6px;
   width: 100%;

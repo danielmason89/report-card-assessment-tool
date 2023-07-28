@@ -42,18 +42,18 @@
                     <span class="absolute z-0 w-40 h-40 rounded-full circles -right-28 -top-28"></span>
                     <span class="absolute z-0 w-40 h-40 rounded-full circles -left-28 -bottom-20"></span>
                     <section class="relative z-10 p-8 text-gray-600 bg-white shadow-lg rounded-xl md:w-70">
-                        <form action="" class="flex flex-col space-y-4">
+                        <vee-form action="" class="flex flex-col space-y-4" :validation-schema="schema">
                             <div>
                                 <label for="name" class="text-sm font-bold font-awesome-icon">Your Name</label>
-                                <input type="text" placeholder="Your Name"
-                                    class="w-full px-4 py-2 mt-2 rounded-md outline-none ring-1 ring-gray-300 focus:ring-2 focus:ring-accent"
-                                    required>
+                                <vee-field type="text" name="name" placeholder="Your Name"
+                                    class="w-full px-4 py-2 mt-2 rounded-md outline-none ring-1 ring-gray-300 focus:ring-2 focus:ring-accent" />
+                                <ErrorMessage class="text-red-600" name="name" />
                             </div>
                             <div>
                                 <label for="name" class="text-sm font-bold font-awesome-icon">Email Address</label>
-                                <input type="email" multiple placeholder="Your Email Address"
-                                    class="w-full px-4 py-2 mt-2 rounded-md outline-none ring-1 ring-gray-300 focus:ring-2 focus:ring-accent"
-                                    required>
+                                <vee-field type="email" name="email" multiple placeholder="Your Email Address"
+                                    class="w-full px-4 py-2 mt-2 rounded-md outline-none ring-1 ring-gray-300 focus:ring-2 focus:ring-accent" />
+                                <ErrorMessage class="text-red-600" name="email" />
                             </div>
                             <div>
                                 <label for="name" class="text-sm font-bold font-awesome-icon">Message</label>
@@ -63,7 +63,7 @@
                             <button
                                 class="self-center inline-block px-6 py-2 text-sm font-bold text-white rounded-lg md:self-start bg-accent">Submit
                                 Message</button>
-                        </form>
+                        </vee-form>
                     </section>
                 </span>
             </div>
@@ -77,8 +77,14 @@ import { ref } from 'vue';
 
 const mail = ref('Email | info@assessify.com');
 const phone = ref('Phone | 06.00.00.00.00');
-const mention = ref('Copyright Assessify - 2023 | All rights reserved');
-const count = ref(0);
+
+let schema = {
+    name: "required|min:3|max:100|alpha_spaces",
+    email: "required|min:3|max:100|email"
+}
+
+
+
 </script>
   
 <style lang="scss" scoped>
