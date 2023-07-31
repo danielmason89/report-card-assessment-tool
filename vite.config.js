@@ -4,6 +4,7 @@ import vue from "@vitejs/plugin-vue";
 import { ViteEjsPlugin } from "vite-plugin-ejs";
 import { VitePWA } from "vite-plugin-pwa";
 import eslint from "vite-plugin-eslint";
+// import { visualizer } from "rollup-plugin-visualizer"
 import VueRouter from "unplugin-vue-router/vite";
 
 // https://vitejs.dev/config/
@@ -39,6 +40,9 @@ export default defineConfig({
     ViteEjsPlugin({
       title: "Assessify",
     }),
+    // visualizer({
+    //   open : true
+    // }),
   ],
   build: {
     sourcemap: true,

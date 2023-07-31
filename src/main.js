@@ -11,17 +11,21 @@ import Icon from "./directives/icon";
 import { registerSW } from "virtual:pwa-register";
 import i18n from "./includes/i18n";
 import GlobalComponents from "./includes/_globals";
+import progressBar from "./includes/progress-bar";
 import {
   faTwitter,
   faLinkedin,
   faInstagram,
   faFacebook,
 } from "@fortawesome/free-brands-svg-icons";
+import "nprogress/nprogress.css"
 
 if ("serviceWorker" in navigator) {
   // && !/localhost/.test(window.location)) {
   registerSW({ immediate: true });
 }
+
+progressBar(router);
 
 library.add(fas, faTwitter, faLinkedin, faInstagram, faFacebook);
 
