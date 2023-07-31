@@ -7,7 +7,9 @@ import router from "./router";
 import { useLoginStore } from "@/store/loginStore";
 import { createPinia } from "pinia";
 import VeeValidatePlugin from "./plugins/validation";
+import Icon from "./directives/icon";
 import { registerSW } from "virtual:pwa-register";
+import i18n from "./includes/i18n";
 import {
   faTwitter,
   faLinkedin,
@@ -42,4 +44,6 @@ app.use(createPinia());
 app.use(router);
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.use(VeeValidatePlugin);
+app.use(i18n);
+app.directive("icon", Icon);
 app.mount("#app");

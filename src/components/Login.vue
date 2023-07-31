@@ -7,7 +7,8 @@
         </p>
         <p class="flex items-center" v-if="loginStore.loggedIn">
             <transition name="fade">
-                <span v-if="showWelcomeMessage" class="pr-2 text-xs text-white">Welcome back to Assessify!<br /> You are
+                <span v-if="showWelcomeMessage" class="pr-2 text-xs text-white normal-case">Welcome back to Assessify!<br />
+                    You are
                     successfully logged in {{ username }}!</span>
             </transition>
             <button class="auth-button" @click="handleLogout"><span class="auth-buttonspan">Logout</span></button>
@@ -29,7 +30,7 @@ export default {
         const username = computed(() => loginStore.username);
         const showWelcomeMessage = ref(false);
         const lastLoginAttempt = ref(0);
-        const delay = 2000;
+        const delay = 3000;
         const loggedIn = ref(false);
 
         const config = {
@@ -79,7 +80,7 @@ export default {
                     loginStore.SET_USER(resp.account);
                     setStoredItem("currentUser", JSON.stringify(resp.account));
                     setStoredItem("loggedIn", "true");
-                    router.push({ path: "/dashboard" });
+                    router.push({ name: "Dashboard" });
                     showWelcomeMessage.value = true;
                     setTimeout(() => {
                         showWelcomeMessage.value = false;
@@ -122,7 +123,7 @@ export default {
                 loginStore.REMOVE_USER();
                 localStorage.removeItem("currentUser");
                 setStoredItem("loggedIn", "false");
-                router.push({ path: '/' });
+                router.push({ name: "Home" });
             }
             catch (err) {
                 console.error("Error during logout:", err);

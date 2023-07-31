@@ -6,8 +6,8 @@
           <h1 class="mt-4 text-5xl tracking-wide font-logoText drop-shadow-text-sm lg:drop-shadow-text-lg">Assessify</h1>
           <hr />
           <h2 class="font-medium tracking-small drop-shadow-text-sm lg:drop-shadow-text-lg">
-            Your Report Card. <br />
-            Digitalization Solution.
+            {{ $t("home.listen1") }} <br />
+            {{ $t("home.listen2") }}
           </h2>
         </section>
         <section class="grid-container">

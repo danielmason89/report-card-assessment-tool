@@ -17,19 +17,8 @@
                 <li><router-link :to="{ name: 'Home' }" title="Home" class="link"><font-awesome-icon icon="home"
                             class="fa-icon" aria-hidden="true" />Home</router-link></li>
             </ul>
-            <div class="icon">
-                <span class="sr-only">Open main menu</span>
-                <a v-if="mobile" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
-                    data-target="navbarBasicExample" :class="{ 'is-active': showMobileMenu }"
-                    @click.prevent.stop="toggleMobileMenu">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </div>
             <transition name="ShowMobileMenu slide">
                 <ul v-show="showMobileMenu" class="pt-20 pb-3 pl-6 mb-5 dropdown-nav">
-
                     <li><router-link :to="{ name: 'Home' }" title="Home" class="link"><font-awesome-icon icon="home"
                                 class="fa-icon" aria-label="Home Link" aria-hidden="true" />Home</router-link></li>
                     <li><router-link :to="{ name: 'Contact' }" title="Contact" class="link"><font-awesome-icon
@@ -44,12 +33,30 @@
                             :to="{ name: 'Parent' }">Parent</router-link></li>
                 </ul>
             </transition>
-            <span class="flex items-center xxs:px-4 lg:pr-4 xxs:mr-10 switch lg:mr-12">
-                <Login />
-            </span>
-            <span class="flex items-center py-2 switch">
-                <DarkModeToggle />
-            </span>
+            <ul class="flex items-center ml-auto">
+                <li class="flex items-center">
+                    <Login />
+                </li>
+                <li class="locale-button">
+                    <a class="normal-case" href="#" @click.prevent="changeLocale">{{
+                        currentLocale }}</a>
+                </li>
+                <li class="flex items-center pr-5">
+                    <DarkModeToggle />
+                </li>
+                <li>
+                    <div class="icon">
+                        <span class="sr-only">Open main menu</span>
+                        <a v-if="mobile" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                            data-target="navbarBasicExample" :class="{ 'is-active': showMobileMenu }"
+                            @click.prevent.stop="toggleMobileMenu">
+                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
         </nav>
     </header>
 </template>
@@ -60,6 +67,7 @@ import Login from "./Login.vue"
 import { useLoginStore } from '@/store/loginStore.js';
 import { ref, onMounted, onUnmounted, computed, watch } from 'vue';
 import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n';
 
 const route = useRoute()
 const enabled = ref(false)
@@ -67,6 +75,7 @@ const store = useLoginStore()
 const scrolledNav = ref(null);
 const mobile = ref(null);
 const windowWidth = ref(null);
+const i18n = useI18n();
 const isAuthenticated = computed(() => {
     return store.loggedIn;
 });
@@ -118,6 +127,13 @@ onUnmounted(() => {
     window.removeEventListener("resize", checkScreen);
     window.removeEventListener("scroll", updateScroll);
     window.removeEventListener('click', closeMenu)
+});
+
+const changeLocale = () => {
+    i18n.locale.value = i18n.locale.value === 'fr' ? 'en' : 'fr';
+};
+const currentLocale = computed(() => {
+    return i18n.locale.value === 'fr' ? 'French' : 'English';
 });
 </script>
 
@@ -289,6 +305,46 @@ header {
         }
     }
 
+}
+
+.locale-button {
+    background-image: linear-gradient(135deg, #00afea, rgb(178, 162, 162));
+    border-radius: 6px;
+    box-sizing: border-box;
+    color: #f3f3f3;
+    display: block;
+    height: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 2px;
+    position: relative;
+    text-decoration: none;
+    z-index: 2;
+
+    &:active {
+        transform: translateY(1px);
+    }
+}
+
+.locale-button:hover {
+    color: #fff;
+}
+
+.locale-button a {
+    align-items: center;
+    background: #0e0e10;
+    border-radius: 0.15rem;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    padding: 0 0.5rem;
+    transition: background 0.5s ease;
+    width: 100%;
+    color: white;
+}
+
+.locale-button:hover a {
+    background: transparent;
 }
 
 

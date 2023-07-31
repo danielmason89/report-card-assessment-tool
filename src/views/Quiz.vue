@@ -9,7 +9,7 @@
             <button v-if="questionsAnswered > 0 && questionsAnswered < questionsList.length" type="button"
                 class="rounded-md reset-btn" @click.prevent="previousQuestion()">Previous</button>
             <button v-if="questionsAnswered === questionsList.length" type="button" class="rounded-md reset-btn"
-                @click.prevent="resetQuiz()">Submit</button>
+                @click.prevent="resetQuiz()">Finish</button>
         </div>
     </div>
 </template>

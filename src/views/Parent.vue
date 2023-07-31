@@ -7,7 +7,7 @@
       </transition>
     </header>
     <section>
-      <vee-form class="form" @submit.prevent="handleSubmit" :validation-schema="schema">
+      <vee-form class="form" @submit="handleSubmit" :validation-schema="schema">
         <label title="Student Name">Student Name:</label>
         <vee-field class="select" as="select" v-model="teacherClasslist" name="name" required>
           <option value="" disabled selected>Please Select A Student</option>
@@ -24,7 +24,7 @@
           <ErrorMessage class="p-2 text-red-600" name="options not checked" />
         </div>
         <div class="flex items-center justify-center space-x-[20px]">
-          <button class="hover:shadow-xl" title="Reset" type="button" @click.prevent="resetForm">Reset</button>
+          <button class="hover:shadow-xl" title="Reset" type="button" @click="resetForm">Reset</button>
           <button type="submit" class="transition duration-300 ease-out transform hover:bg-opacity-50 hover:shadow-xl"
             title="Search Classlist For Child">Search Classlist</button>
         </div>

@@ -43,12 +43,24 @@
                 :to="{ name: 'Home' }" title="North America">North America</router-link>
             </li>
             <li>
-              <router-link class="px-0 transition-colors rounded-full hover:text-accent focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-accent"
-              :to="{ name: 'Home' }" title="Central Europe">Central Europe</router-link>
+              <router-link
+                class="px-0 transition-colors rounded-full hover:text-accent focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-accent"
+                :to="{ name: 'Home' }" title="Central Europe">Central Europe</router-link>
             </li>
             <li>
-              <router-link class="px-0 transition-colors rounded-full hover:text-accent focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-accent"
-              :to="{ name: 'Home' }" title="South Korea">South Korea</router-link>
+              <router-link
+                class="px-0 transition-colors rounded-full hover:text-accent focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-accent"
+                :to="{ name: 'Home' }" title="South Korea">South Korea</router-link>
+            </li>
+            <li>
+              <router-link
+                class="px-0 transition-colors rounded-full hover:text-accent focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-accent"
+                :to="{ name: 'Home' }" title="Vietnam">Vietnam</router-link>
+            </li>
+            <li>
+              <router-link
+                class="px-0 transition-colors rounded-full hover:text-accent focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-accent"
+                :to="{ name: 'Home' }" title="Japan">Japan</router-link>
             </li>
           </ul>
         </div>
