@@ -12,7 +12,17 @@ export default defineConfig({
     VueRouter(),
     vue(),
     VitePWA({
-      manifest: {},
+      manifest: {
+        name: "Assessify",
+        theme_color: "#ffffff",
+        icons: [
+          {
+            src: "./public/ios/192.png",
+            sizes: "192x192",
+            type: "image/png",
+          },
+        ],
+      },
       base: "/",
       registerType: "autoUpdate",
       strategies: "injectManifest", // Change the mode to "injectManifest"
@@ -22,7 +32,9 @@ export default defineConfig({
       },
       srcDir: "src", // Use 'srcDir' property instead of 'swSrc'
       outDir: "dist", // Use 'outDir' property instead of 'swDest'
-      workbox: {},
+      workbox: {
+        globPatterns: ["**/*.{js,css,html.png,jpg,jpeg,svg}"],
+      },
     }),
     ViteEjsPlugin({
       title: "Assessify",

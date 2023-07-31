@@ -10,6 +10,7 @@ import VeeValidatePlugin from "./plugins/validation";
 import Icon from "./directives/icon";
 import { registerSW } from "virtual:pwa-register";
 import i18n from "./includes/i18n";
+import GlobalComponents from "./includes/_globals";
 import {
   faTwitter,
   faLinkedin,
@@ -19,7 +20,7 @@ import {
 
 if ("serviceWorker" in navigator) {
   // && !/localhost/.test(window.location)) {
-  registerSW();
+  registerSW({ immediate: true });
 }
 
 library.add(fas, faTwitter, faLinkedin, faInstagram, faFacebook);
@@ -45,5 +46,6 @@ app.use(router);
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.use(VeeValidatePlugin);
 app.use(i18n);
+app.use(GlobalComponents);
 app.directive("icon", Icon);
 app.mount("#app");
