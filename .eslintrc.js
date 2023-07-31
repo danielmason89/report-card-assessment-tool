@@ -9,6 +9,18 @@ module.exports = {
       files: ["cypress/e2e/**.{cy,spec}.{js,ts,jsx,tsx}"],
       extends: ["plugin: cypress/recommended"],
     },
+    {
+      files: ["src/components/**/*.spec.js"],
+      globals: {
+        "test": "readonly",
+        "expect": "readonly",
+        "it": "readonly",
+        "vi": "readonly",
+        "describe": "readonly",
+        "beforeEach": "readonly",
+        "afterEach": "readonly",
+      }
+    }
   ],
   env: {
     node: "true",
