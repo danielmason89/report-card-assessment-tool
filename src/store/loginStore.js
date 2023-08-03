@@ -19,21 +19,21 @@ export const useLoginStore = defineStore("login", {
     },
   },
   actions: {
-    SET_USER(user) {
+    async SET_USER(user) {
       this.$state.user = user;
       this.$state.isAuthenticated = true;
     },
-    REMOVE_USER() {
+    async REMOVE_USER() {
       this.$state.user = null;
       this.$state.isAuthenticated = false;
     },
-    SET_LOGIN_STATE(state) {
+    async SET_LOGIN_STATE(state) {
       this.$state.isAuthenticated = state;
     },
-    loginAction(user) {
+    async loginAction(user) {
       this.SET_USER(user);
     },
-    logoutAction() {
+    async logoutAction() {
       this.REMOVE_USER(user);
     },
   },

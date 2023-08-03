@@ -11,6 +11,7 @@ import VueRouter from "unplugin-vue-router/vite";
 export default defineConfig({
   test: {
     globals: true,
+    environment: "jsdom"
   },
   plugins: [
     VueRouter(),

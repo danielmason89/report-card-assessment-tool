@@ -50,7 +50,7 @@
       </div>
       <div class="submit space-x-[20px]">
         <button class="hover:shadow-xl" title="Reset" type="button" @click.prevent="resetForm">Reset</button>
-        <button title="click here to add student to classlist">Add Student</button>
+        <button class="hover:shadow-xl" title="click here to add student to classlist">Add Student</button>
       </div>
     </vee-form>
   </main>

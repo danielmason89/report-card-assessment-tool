@@ -2,9 +2,10 @@
   <footer class="py-1 border-t border-accent sm:py-0 sm:pt-3 md:py-0 md:pt-5">
     <div class="container flex flex-wrap items-center gap-12 md:justify-between md:items-start md:gap-4 sm:gap-4">
       <div class="grid gap-2 sm:gap-1 grow justify-items-center md:justify-items-start basis-full md:basis-1/4">
-        <router-link :to="{ name: 'Home' }" title="Home" class="footer-branding">
-          <img class="w-12 rounded-full sm:w-12 lg:w-12 hero-img" src="/assets/logo.png" alt="landing-page-logo"
-            aria-label="Assessify Logo/Home" />
+        <router-link :to="{ name: 'Home' }" title="Home"
+          class="p-2 m-1 mr-1 transition-shadow rounded-full footer-branding focus:outline-none focus-visible:ring-4">
+          <img class="w-10 rounded-full sm:w-12 lg:w-12 hero-img" src="/windows11/StoreLogo.scale-150.png"
+            alt="landing-page-logo" aria-label="Assessify Logo/Home" />
           <span
             class="pl-1 pr-2 ml-0 tracking-wide text-accent navigation font-logoText drop-shadow-text-sm">Assessify</span>
         </router-link>
@@ -24,7 +25,7 @@
             <li>
               <router-link
                 class="px-0 transition-colors rounded-full hover:text-accent focus:outline-none focus-visible:ring-4 ring-offset-2 ring-offset-bkg ring-accent"
-                :to="{ name: 'Contact' }" title="Contact Us">Contact</router-link>
+                :to="{ name: 'Contact' }" title="Contact Us">Support</router-link>
             </li>
             <li>
               <router-link
@@ -128,6 +129,10 @@ footer {
   margin-top: auto;
 }
 
+.hero-img {
+  background: whitesmoke;
+}
+
 .copyright {
   color: rgb(178, 162, 162);
 }
@@ -137,6 +142,12 @@ footer {
   padding-top: 0.5rem;
   display: flex;
   align-items: center;
+
+  &:hover {
+    transition: 0.2s ease-in all;
+    background-color: #2d2d30;
+    border-radius: 25px;
+  }
 }
 
 #contacts--social {

@@ -6,7 +6,7 @@
                 <div class="flex flex-col justify-between space-y-8">
                     <header>
                         <h1 class="text-2xl font-bold tracking-wide text-center md:text-left">Contact Us</h1>
-                        <p class="pt-2 text-center sm:text-sm md:text-left">Feel free to contact us with any questions or
+                        <p class="pt-2 text-center sm:text-sm md:text-left">Feel free to reach out with any questions or
                             concerns.</p>
                     </header>
                     <section class="flex flex-col space-y-6">
@@ -23,7 +23,7 @@
                         <div class="inline-flex items-center space-x-2">
                             <font-awesome-icon class="items-start justify-between pr-2 text-xl font-awesome-icon max-w-fit"
                                 icon="location-dot" />
-                            <span class="font-awesome-icon">123 Lisgar St, Ontario, Canada</span>
+                            <span class="font-awesome-icon">123 Lisgar St. - Ottawa, Ontario, Canada</span>
                         </div>
                     </section>
                     <section class="flex space-x-4 text-lg">
@@ -44,7 +44,7 @@
                     <section class="relative z-10 p-8 text-gray-600 bg-white shadow-lg rounded-xl md:w-70">
                         <vee-form action="" class="flex flex-col space-y-4" :validation-schema="schema">
                             <div>
-                                <label for="name" class="text-sm font-bold font-awesome-icon">Your Name</label>
+                                <label for="name" class="text-sm font-bold font-awesome-icon">Name</label>
                                 <vee-field type="text" name="name" placeholder="Your Name"
                                     class="w-full px-4 py-2 mt-2 rounded-md outline-none ring-1 ring-gray-300 focus:ring-2 focus:ring-accent" />
                                 <ErrorMessage class="text-red-600" name="name" />
@@ -57,8 +57,10 @@
                             </div>
                             <div>
                                 <label for="name" class="text-sm font-bold font-awesome-icon">Message</label>
-                                <textarea rows="4" maxlength="100" minlength="50" placeholder="Your Name"
-                                    class="w-full px-4 py-2 mt-2 rounded-md outline-none ring-1 ring-gray-300 focus:ring-2 focus:ring-accent"></textarea>
+                                <vee-field as="textarea" type="text" name="message" rows="4" maxlength="100" minlength="50"
+                                    placeholder="Your Message"
+                                    class="w-full px-4 py-2 mt-2 rounded-md outline-none ring-1 ring-gray-300 focus:ring-2 focus:ring-accent" />
+                                <ErrorMessage class="text-red-600" name="message" />
                             </div>
                             <button
                                 class="self-center inline-block px-6 py-2 text-sm font-bold text-white rounded-lg md:self-start bg-accent">Submit
@@ -79,8 +81,9 @@ const mail = ref('Email | info@assessify.com');
 const phone = ref('Phone | 06.00.00.00.00');
 
 let schema = {
-    name: "required|min:3|max:100|alpha_spaces",
-    email: "required|min:3|max:100|email"
+    name: "requiredContactName|min:10|max:15|alpha_spaces",
+    email: "requiredContactEmail|min:15|max:25|email",
+    message: "requiredContactMessage|min:50|max:100",
 }
 
 

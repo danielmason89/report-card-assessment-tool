@@ -20,7 +20,7 @@
 
 <script setup>
 
-const { questions, questionsAnswered } = defineProps(['questions', 'questionsAnswered']);
+const { questions = [], questionsAnswered = 0 } = defineProps(['questions', 'questionsAnswered']);
 const emit = defineEmits();
 
 const selectAnswer = (is_correct) => {

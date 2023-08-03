@@ -25,6 +25,9 @@ export default {
     defineRule("required", required);
     defineRule("requiredStudent", required);
     defineRule("requiredStudentName", required);
+    defineRule("requiredContactName", required);
+    defineRule("requiredContactEmail", required);
+    defineRule("requiredContactMessage", required);
     defineRule("AllOptionsRequired", required);
     defineRule("max", max);
     defineRule("min", min);
@@ -39,13 +42,16 @@ export default {
         const messages = {
           required: `The field ${ctx.field} is required.`,
           requiredStudentName: `The student name entered ${ctx.field} is not valid.`,
+          requiredContactName: `The ${ctx.field} entered is not valid.`,
+          requiredContactEmail: `The ${ctx.field} entered is not valid.`,
+          requiredContactMessage: `The ${ctx.field} entered is not valid.`,
           requiredStudent: `This ${ctx.field} field requires a chosen ${ctx.field}`,
-          min: `The field ${ctx.field} is too short.`,
-          max: `The field ${ctx.field} is too long.`,
-          alpha_spaces: `The field ${ctx.field} may only contain alphabetic characters and spaces.`,
-          email: `The field ${ctx.field} must be a valid email.`,
-          min_value: `The field ${ctx.field} is too low.`,
-          max_value: `The field ${ctx.field} is too high.`,
+          min: `The ${ctx.field} field is too short.`,
+          max: `The ${ctx.field} field is too long.`,
+          alpha_spaces: `The ${ctx.field} field may only contain alphabetic characters and spaces.`,
+          email: `The ${ctx.field} field must be a valid email.`,
+          min_value: `The ${ctx.field} field is too low.`,
+          max_value: `The ${ctx.field} field is too high.`,
           excluded: `You are not allowed to use this value for the field ${ctx.field}.`,
           AllOptionsRequired: `You must select all options for this form to be submitted.`,
         };

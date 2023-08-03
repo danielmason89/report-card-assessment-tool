@@ -13,7 +13,7 @@
                 <li><router-link v-show="isAuthenticated" title="Parent" class="link"
                         :to="{ name: 'Parent' }">Parent</router-link></li>
                 <li><router-link :to="{ name: 'Contact' }" title="Contact" class="link"><font-awesome-icon
-                            icon="address-card" class="fa-icon" aria-hidden="true" />Contact</router-link></li>
+                            icon="address-card" class="fa-icon" aria-hidden="true" />Support</router-link></li>
                 <li><router-link :to="{ name: 'Home' }" title="Home" class="link"><font-awesome-icon icon="home"
                             class="fa-icon" aria-hidden="true" />Home</router-link></li>
             </ul>
