@@ -1,5 +1,5 @@
 <template>
-    <section aria-labelledby="cta" class="container grid gap-4 text-center">
+    <section aria-labelledby="cta" class="container grid h-auto gap-4 text-center">
         <div>
             <small class="tracking-widest uppercase text-accent">
                 It's time to explore, the future of assessment.

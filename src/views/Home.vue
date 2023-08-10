@@ -66,7 +66,7 @@
           </div>
         </div>
       </section>
-      <div class="container -mt-10 sm:-mt-20 lg:-mt-46 xs:w-90">
+      <section class="container -mt-10 sm:-mt-20 lg:-mt-46 xs:w-90">
         <Carousel ref="carouselRef" class="flex transition-transform duration-500 carousel" v-slot="{ currentSlide }">
           <Slide v-show="currentSlide === id + 1" v-for="(slide, id) in carouselSlides" :key="id" :index="id"
             :image="slide.image" :title="slide.title"
@@ -79,9 +79,14 @@
               {{ slide.title }}</p>
           </Slide>
         </Carousel>
-      </div>
-      <section aria-labelledby="info"
-        class="container flex flex-wrap items-start justify-between md:flex-nowrap md:space-y-0 ">
+      </section>
+      <section>
+        <header>
+          <h2 class="text-3xl font-bold tracking-wide text-center drop-shadow-text-md">Our Testimonials</h2>
+        </header>
+        <Testimonials />
+      </section>
+      <section aria-labelledby="info" class="container flex flex-wrap items-start justify-between h-full md:flex-nowrap md:space-y-0 ">
         <article class="grid gap-4 pb-4 text-center md:text-left grow md:flex-1">
           <div class="relative">
             <div class="absolute hidden w-8 h-full md:block bg-accent/10 -left-4"></div>
@@ -100,6 +105,7 @@
         <img src="/assets/pexels-august-de-richelieu-4260325-min.jpg" alt="a mentor and their mentee" width="100"
           class="rounded-md grow md:flex-1 md:order-1 w-fit h-fit lg:items-center" loading="lazy" />
       </section>
+
       <Cta />
     </main>
   </div>
@@ -109,8 +115,9 @@
 import Carousel from "../components/Carousel.vue";
 import Slide from "../components/Slide.vue";
 import Cta from "../components/Cta.vue";
+import Testimonials from "../components/Testimonials.vue";
 import { PhArrowCircleLeft, PhArrowCircleRight } from "@phosphor-icons/vue";
-import { provide, ref } from "vue";
+import { provide, ref, onMounted } from "vue";
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -144,6 +151,28 @@ const carouselSlides = [{
 let startQuiz = () => {
   router.push({ path: '/quiz' });
 };
+
+onMounted(() => {
+  const sections = document.querySelectorAll('section');
+
+  const checkSections = () => {
+    const triggerBottom = window.innerHeight / 5 * 4;
+
+    sections.forEach((section) => {
+      const sectionTop = section.getBoundingClientRect().top;
+
+      if (sectionTop < triggerBottom) {
+        section.classList.add('show');
+      } else {
+        section.classList.remove('show');
+      }
+    });
+  };
+
+  window.addEventListener('scroll', checkSections);
+
+  checkSections();
+});
 
 provide("color", "#171819")
 provide("size", 36)
@@ -247,6 +276,21 @@ provide("mirrored", false)
     }
 
   }
+}
+
+section {
+  opacity: 0;
+  transform: translateX(400%);
+  transition: transform 0.65s ease;
+}
+
+section:nth-of-type(even) {
+  transform: translateX(-400%);
+}
+
+section.show {
+  transform: translateX(0);
+  opacity: 1;
 }
 
 @media (max-width: 1350px) {

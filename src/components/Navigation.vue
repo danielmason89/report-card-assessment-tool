@@ -12,17 +12,15 @@
                         :to="{ name: 'TeacherClasslist' }">Teacher</router-link></li>
                 <li><router-link v-show="isAuthenticated" title="Parent" class="link"
                         :to="{ name: 'Parent' }">Parent</router-link></li>
-                <li><router-link :to="{ name: 'Contact' }" title="Contact" class="link"><font-awesome-icon
-                            icon="address-card" class="fa-icon" aria-hidden="true" />Support</router-link></li>
                 <li><router-link :to="{ name: 'Home' }" title="Home" class="link"><font-awesome-icon icon="home"
                             class="fa-icon" aria-hidden="true" />Home</router-link></li>
+                <li><base-dropmenu /></li>
             </ul>
             <transition name="ShowMobileMenu slide">
-                <ul v-show="showMobileMenu" class="pt-20 pb-3 pl-6 mb-5 dropdown-nav">
+                <ul v-show="showMobileMenu" class="pt-20 pl-6 dropdown-nav">
                     <li><router-link :to="{ name: 'Home' }" title="Home" class="link"><font-awesome-icon icon="home"
-                                class="fa-icon" aria-label="Home Link" aria-hidden="true" />Home</router-link></li>
-                    <li><router-link :to="{ name: 'Contact' }" title="Contact" class="link"><font-awesome-icon
-                                icon="address-card" class="fa-icon" aria-hidden="true" />Contact</router-link></li>
+                                class="fa-icon p-1" aria-label="Home Link" aria-hidden="true" />Home</router-link></li>
+                    <li><base-dropmenu /></li>
                     <li><router-link v-if="isAuthenticated" title="Dashboard" class="link"
                             :to="{ name: 'Dashboard' }">Dashboard</router-link>
                     </li>
@@ -61,7 +59,7 @@
     </header>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import DarkModeToggle from "./DarkModeToggle.vue"
 import Login from "./Login.vue"
 import { useLoginStore } from '@/store/loginStore.js';
@@ -70,14 +68,13 @@ import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n';
 
 const route = useRoute()
-const enabled = ref(false)
 const store = useLoginStore()
 const scrolledNav = ref(null);
 const mobile = ref(null);
 const windowWidth = ref(null);
 const i18n = useI18n();
 const isAuthenticated = computed(() => {
-    return store.loggedIn;
+    return store.isAuthenticated;
 });
 const showMobileMenu = ref(false);
 const toggleMobileMenu = () => {
@@ -186,9 +183,9 @@ header {
 
         .link {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
-            font-size: .8rem;
+            font-size: 1rem;
             font-weight: bold;
             transition: .5s ease all;
             padding-bottom: 4px;
@@ -258,7 +255,7 @@ header {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 0.45rem;
+            margin: 0.15rem 0.45rem;
         }
 
         .dropdown-nav {

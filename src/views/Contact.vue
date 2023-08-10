@@ -70,7 +70,6 @@
                 </span>
             </div>
         </div>
-        <section></section>
     </main>
 </template>
   
@@ -94,7 +93,7 @@ let schema = {
 main {
     padding: 10rem 2.5rem;
     padding-bottom: 3rem;
-    min-height: 75vh;
+    min-height: 90svh;
 }
 
 h1 {

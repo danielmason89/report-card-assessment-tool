@@ -59,6 +59,15 @@ const routes = [
     },
   },
   {
+    path: "/faq",
+    name: "Faq",
+    component: () => import("@/views/Faq.vue"),
+    meta: {
+      permission: "any",
+      fail: "/error",
+    },
+  },
+  {
     path: "/parent",
     name: "Parent",
     component: () => import("@/views/Parent.vue"),

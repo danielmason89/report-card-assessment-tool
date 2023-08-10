@@ -18,7 +18,9 @@ import {
   faInstagram,
   faFacebook,
 } from "@fortawesome/free-brands-svg-icons";
-import "nprogress/nprogress.css"
+import "nprogress/nprogress.css";
+import "floating-vue/dist/style.css";
+import "@fortawesome/fontawesome-free/css/all.css";
 
 if ("serviceWorker" in navigator) {
   // && !/localhost/.test(window.location)) {
@@ -34,7 +36,7 @@ router.beforeEach((to, from, next) => {
   const isAuthenticated = loginStore.loggedIn;
 
   if (
-    ["Home", "About", "Contact", "Quiz"].includes(to.name) ||
+    ["Home", "About", "Contact", "Quiz", "Faq"].includes(to.name) ||
     isAuthenticated
   ) {
     next();

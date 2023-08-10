@@ -41,7 +41,7 @@ export default {
       generateMessage: (ctx) => {
         const messages = {
           required: `The field ${ctx.field} is required.`,
-          requiredStudentName: `The student name entered ${ctx.field} is not valid.`,
+          requiredStudentName: `The student ${ctx.field} entered is not valid.`,
           requiredContactName: `The ${ctx.field} entered is not valid.`,
           requiredContactEmail: `The ${ctx.field} entered is not valid.`,
           requiredContactMessage: `The ${ctx.field} entered is not valid.`,
