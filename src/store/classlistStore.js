@@ -9,7 +9,7 @@ import {
 const classlist = {
   state: {
     teacherClasslist: [],
-    studentId: null,
+    name: null,
     mark: null,
     grade: null,
     gender: null,

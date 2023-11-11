@@ -3,9 +3,9 @@
     <header>
       <h1>Update Student Details </h1>
     </header>
-    <vee-form class="form" @submit="handleSubmit" :validation-schema="schema">
+    <vee-form class="form" @submit.prevent="handleSubmit" :validation-schema="schema">
       <label>Student Name:</label>
-      <input type="studentId" v-model="studentId" required>
+      <input type="name" v-model="name" required>
       <div v-if="text2Error" class="error">{{ text2Error }}</div>
       <label>Student Gender:</label>
       <select v-model="gender" required>
@@ -62,7 +62,7 @@ import { useForm } from 'vee-validate';
 const props = defineProps(['id']);
 const router = useRouter();
 
-const studentId = ref(undefined);
+const name = ref(undefined);
 const mark = ref("");
 const grade = ref();
 const subject = ref("");
@@ -83,7 +83,7 @@ const fetchStudent = async () => {
   try {
     const response = await fetch(uri);
     const data = await response.json();
-    studentId.value = data.studentId;
+    name.value = data.name;
     grade.value = data.grade;
     gender.value = data.gender;
     subject.value = data.subject;
@@ -101,11 +101,11 @@ const resetForm = async () => {
 
 const handleSubmit = async (e) => {
   try {
-    text2Error.value = studentId.value.length >= 2 ? '' : 'Please Update with a Valid Student Name';
+    text2Error.value = name.value.length >= 2 ? '' : 'Please Update with a Valid Student Name';
     e.preventDefault();
     if (!text2Error.value) {
       const student = {
-        studentId: studentId.value,
+        name: name.value,
         gender: gender.value,
         grade: grade.value,
         mark: mark.value,
@@ -126,7 +126,7 @@ const handleSubmit = async (e) => {
 onMounted(fetchStudent);
 
 defineExpose({
-  studentId,
+  name,
   mark,
   grade,
   subject,

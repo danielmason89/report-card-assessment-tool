@@ -6,11 +6,11 @@
             <section class="flex flex-col">
                 <div class="user">
                     <img id="testimonial-image" :src="panel.userImage" alt="picture of user"
-                        class="user-image rounded-4xl p-14 top-0 left-0">
+                        class="top-0 left-0 user-image rounded-4xl p-14">
                 </div>
                 <div class="quote-container">
                     <div class="fas fa-quote-right fa-quote" />
-                    <p class="testimonials text-black p-2 relative">{{ panel.testimonial }}</p>
+                    <p class="relative p-2 text-black testimonials">{{ panel.testimonial }}</p>
                     <div class="fas fa-quote-left fa-quote" />
                 </div>
             </section>
@@ -31,8 +31,8 @@ const panels = ref([
     { id: 0, profession: "Educational Data Analyst", image: "/assets/topography.svg", testimonial: "Donec sit amet pretium nulla, id sagittis." },
     { id: 1, profession: "Special Education Coordinator", image: "/assets/bubbles.svg", testimonial: "In ultrices vitae justo a finibus." },
     { id: 2, profession: "District Assessment Coordinator", image: "/assets/topography.svg", testimonial: "ultrices vitae facilisis leo facilisis leo." },
-    { id: 3, profession: "School Technology Integration Specialist", image: "/assets/bubbles.svg", testimonial: "Phasellus ultrices vitae  ultrices vitae mattis." },
-    { id: 4, profession: "Student Counselor", image: "/assets/topography.svg", testimonial: "Morbi malesuada sapien gravida molestie." },
+    { id: 3, profession: "School Technology Integration Specialist", image: "/assets/bubbles.svg", testimonial: "Phasellus ultrices vitae mattis." },
+    { id: 4, profession: "Student Counselor", image: "/assets/topography.svg", testimonial: "testtesttesttesttesttesttesttesttest" },
 ]);
 const activePanel = ref(panels.value.length > 0 ? panels.value[0]?.id : null);
 const setActivePanel = (id) => {

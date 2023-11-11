@@ -45,7 +45,7 @@ export default {
           requiredContactName: `The ${ctx.field} entered is not valid.`,
           requiredContactEmail: `The ${ctx.field} entered is not valid.`,
           requiredContactMessage: `The ${ctx.field} entered is not valid.`,
-          requiredStudent: `This ${ctx.field} field requires a chosen ${ctx.field}`,
+          requiredStudent: `This field requires a chosen ${ctx.field}`,
           min: `The ${ctx.field} field is too short.`,
           max: `The ${ctx.field} field is too long.`,
           alpha_spaces: `The ${ctx.field} field may only contain alphabetic characters and spaces.`,

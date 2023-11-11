@@ -7,13 +7,12 @@
       </transition>
     </header>
     <section>
-      <vee-form class="form" @submit="handleSubmit" :validation-schema="schema">
+      <vee-form class="form" @submit="handleSubmit" ref="formRef" :validation-schema="schema">
         <label title="Student Name">Student Name:</label>
         <vee-field class="select" as="select" v-model="teacherClasslist" name="name" required>
           <option value="" disabled selected>Please Select A Student</option>
-          <option :title="student.studentId" v-for="student in studentsList" :key="student.studentId"
-            :value="student.studentId">
-            {{ student.studentId }}
+          <option :title="student.name" v-for="student in studentsList" :key="student.name" :value="student.name">
+            {{ student.name }}
           </option>
         </vee-field>
         <ErrorMessage class="p-2 text-red-600" name="name" />
@@ -38,10 +37,10 @@
       </header>
       <transition name="fade" mode="out-in">
         <div v-if="showDetails" class="details">
-          <p :title="results.studentId" class="font-bold">{{ results.studentId }}</p>
+          <p :title="results.name" class="font-normal"><span title="Student Name">Name:</span> {{ results.name }}</p>
           <p :title="results.id"><span title="Student ID">Student ID:</span> {{ results.id }}</p>
           <p :title="results.grade"><span title="Student Grade">Student Grade:</span> {{ results.grade }}</p>
-          <p :title="results.mark"><span :title="results.subject">{{ results.subject }}</span> : {{ results.mark }}</p>
+          <p :title="results.mark"><span :title="results.subject">{{ results.subject }}:</span> {{ results.mark }}</p>
         </div>
       </transition>
     </section>
@@ -52,19 +51,15 @@
 import { ref, onMounted } from 'vue';
 import gsap from 'gsap';
 
-
-
 const teacherClasslist = ref("");
-const studentsList = ref([]);
-const formData = ref({
-  mark: '',
-  studentId: '',
-  grade: '',
-  subject: '',
-});
+const studentsList = ref();
+const formRef = ref(null);
 const showDetails = ref(false);
 const results = ref(false);
 const isChecked = ref(false);
+const formData = ref({
+  name: "",
+});
 
 let schema = {
   name: "required",
@@ -103,20 +98,25 @@ const fetchTeacherClasslist = async () => {
 
 const resetForm = async () => {
   formData.value = {
-    mark: '',
-    studentId: '',
-    grade: '',
-    subject: '',
-  };
+    name: "",
+  }
   teacherClasslist.value = "";
   isChecked.value = false;
   results.value = null;
   showDetails.value = false;
+  if (formRef.value && formRef.value.errors) {
+    formRef.value.errors.clear();
+  }
+
+  // Reset the vee-validate form state
+  if (formRef.value) {
+    formRef.value.resetForm();
+  }
 }
 
 const handleSubmit = async () => {
   try {
-    const response = await fetch(`http://localhost:3000/teacherClasslist?studentId=${teacherClasslist.value}`);
+    const response = await fetch(`http://localhost:3000/teacherClasslist?name=${teacherClasslist.value}`);
     const data = await response.json();
     results.value = data[0];
   } catch (err) {
@@ -128,7 +128,6 @@ onMounted(fetchTeacherClasslist);
 
 defineExpose({
   teacherClasslist,
-  formData,
   showDetails,
   results,
   handleSubmit,

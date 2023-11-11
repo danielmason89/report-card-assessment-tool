@@ -6,7 +6,7 @@
             <button
                 class="nav-link text-center pb-3 px-1.5 leading-tight transition duration-150 ease-in-out rounded dropdown-trigger p-1"
                 @click="toggleDropdown" title="Support">
-                <font-awesome-icon icon="address-card" class="fa-icon pr-3 pt-0 pb-1" aria-hidden="true" />Support
+                <font-awesome-icon icon="address-card" class="fa-icon pr-2 pt-0 pb-1" aria-hidden="true" />Support
             </button>
 
             <!-- Dropdown content -->

@@ -9,16 +9,17 @@
         <section v-if="teacherClasslist.length">
             <transition name="list" @before-enter="pageBeforeEnter" @enter="pageEnter" appear>
                 <div class="overflow-hidden classlist">
-                    <router-link :to="{ name: 'AddStudent' }" title="Add a student to Classlist" tag="button"
+                    <router-link :to="{ name: 'AddStudent' }" title="Add Student to Class" tag="button"
                         class="material-icons students">
-                        <h3>Add Student to Class</h3>add
+                        <h3>Add Student</h3>add
                     </router-link>
                 </div>
             </transition>
             <transition-group name="list" @before-enter="pageBeforeEnter" @enter="pageEnter" appear>
                 <div v-for="(student, index) in teacherClasslist" :key="student.id" :data-index="index" class="classlist">
-                    <router-link :to="{ name: 'TeacherClasslistDetails', params: { id: student.id } }">
-                        <h2 @delete="handleDelete">{{ student.studentId }}</h2>
+                    <router-link :title="student.name" :aria-label="student.name"
+                        :to="{ name: 'TeacherClasslistDetails', params: { id: student.id } }">
+                        <h2 @delete="handleDelete">{{ student.name }}</h2>
                     </router-link>
                 </div>
             </transition-group>

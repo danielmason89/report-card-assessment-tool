@@ -11,11 +11,17 @@ import VueRouter from "unplugin-vue-router/vite";
 export default defineConfig({
   test: {
     globals: true,
-    environment: "jsdom"
+    environment: "jsdom",
   },
   plugins: [
     VueRouter(),
     vue(),
+    vueI18n({
+      include: resolve(
+        dirname(fileURLToPath(import.meta.url)),
+        "./src/locales"
+      ),
+    }),
     VitePWA({
       manifest: {
         name: "Assessify",

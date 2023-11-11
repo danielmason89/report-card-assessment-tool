@@ -25,12 +25,13 @@
     <main class="relative grid gap-16 pb-16 mt-16 -mb-16 overflow-hidden text-base sm:mt-24 lg:mt-10 sm:gap-24 lg:gap-20">
       <section class="container grid min-h-full gap-4 text-center max-w-prose" aria-label="headline">
         <div>
-          <small class="tracking-widest uppercase text-accent drop-shadow-text-sm">Industry-Grade Assessment Tooling.
-          </small>
+          <span class="tracking-widest uppercase text-md text-accent drop-shadow-text-sm">Industry-Grade Assessment
+            Tooling.
+          </span>
           <h2 id="headline" class="text-3xl font-bold tracking-wide drop-shadow-text-md">Digital Solution for Today's
             Digital Organizations</h2>
         </div>
-        <p class="text-muted drop-shadow-text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+        <p class="text-black drop-shadow-text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
           Corrupti recusandae hic officia. Nostrum repellendus dolorum ut culpa nobis voluptate atque nihil! Error nam,
           dignissimos sunt consectetur alias exercitationem ipsum nesciunt eius, magnam et iusto quo fugiat, repellat
           architecto.</p>
@@ -39,13 +40,13 @@
         <div class="relative">
           <div class="absolute hidden w-8 h-full lg:block bg-accent/10 -left-4"></div>
           <div>
-            <small class="tracking-widest uppercase text-accent drop-shadow-text-sm">Assessment Toolings for Modern
-              Organizations.</small>
+            <span class="tracking-widest uppercase text-accent drop-shadow-text-sm text-md">Assessment Toolings for Modern
+              Organizations.</span>
             <h2 id="slider" class="text-3xl font-bold tracking-wide drop-shadow-text-md">Get back Time for Better
               Relationships</h2>
           </div>
           <div class="flex flex-wrap items-center justify-center space-x-4 space-y-4 lg:flex-nowrap lg:justify-between">
-            <p class="pb-4 text-muted md:max-w-xl drop-shadow-text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing
+            <p class="pb-4 text-black md:max-w-xl drop-shadow-text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing
               elit. Esse adipisci
               molestiae,
               quia possimus illum excepturi facere autem similique?
@@ -68,14 +69,14 @@
       </section>
       <section class="container -mt-10 sm:-mt-20 lg:-mt-46 xs:w-90">
         <Carousel ref="carouselRef" class="flex transition-transform duration-500 carousel" v-slot="{ currentSlide }">
-          <Slide v-show="currentSlide === id + 1" v-for="(slide, id) in carouselSlides" :key="id" :index="id"
+          <Slide v-show="currentSlide === id + 1" v-for="(slide, id) in carouselSlides" :key="slide.id" :index="id"
             :image="slide.image" :title="slide.title"
             class="relative flex-grow flex-shrink-0 w-full slide-info xs:w-auto xs:basis-96">
             <img loading="lazy"
               class="carousel-image rounded-md object-cover h-full [@media(hover:hover)]:grayscale-0 hover:grayscale-50 transition-all peer"
               :src="slide.image" alt="slide.title" />
             <p
-              class="absolute bottom-4 py-2 px-4 left-4 bg-bkg text-muted font-bold text-lg pointer-events-none tracking-wide [@media(hover:hover)]:opacity-100 peer-hover:opacity-0 transition-opacity">
+              class="absolute bottom-4 py-2 px-4 left-4 bg-bkg font-bold text-lg pointer-events-none tracking-wide [@media(hover:hover)]:opacity-100 peer-hover:opacity-0 transition-opacity">
               {{ slide.title }}</p>
           </Slide>
         </Carousel>
@@ -86,7 +87,8 @@
         </header>
         <Testimonials />
       </section>
-      <section aria-labelledby="info" class="container flex flex-wrap items-start justify-between h-full md:flex-nowrap md:space-y-0 ">
+      <section aria-labelledby="info"
+        class="container flex flex-wrap items-start justify-between h-full md:flex-nowrap md:space-y-0 ">
         <article class="grid gap-4 pb-4 text-center md:text-left grow md:flex-1">
           <div class="relative">
             <div class="absolute hidden w-8 h-full md:block bg-accent/10 -left-4"></div>
@@ -97,7 +99,7 @@
               Hello
             </small>
           </div>
-          <p class="max-w-2xl text-muted drop-shadow-text-sm">
+          <p class="max-w-2xl text-black drop-shadow-text-sm">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, in minus labore rerum esse doloribus ullam
             aspernatur voluptates, aliquam similique cupiditate ipsa laudantium cum dignissimos!
           </p>
@@ -105,7 +107,6 @@
         <img src="/assets/pexels-august-de-richelieu-4260325-min.jpg" alt="a mentor and their mentee" width="100"
           class="rounded-md grow md:flex-1 md:order-1 w-fit h-fit lg:items-center" loading="lazy" />
       </section>
-
       <Cta />
     </main>
   </div>
@@ -204,8 +205,12 @@ provide("mirrored", false)
       border-radius: 25%;
       margin-left: 2rem;
       margin-right: 2rem;
-      zoom: .65;
+      zoom: 0.85;
     }
+  }
+
+  p {
+    color: var(--text-primary-color);
   }
 
   button {
@@ -244,7 +249,6 @@ provide("mirrored", false)
     padding: 0 3rem;
     padding-top: 8rem;
 
-
     h1 {
       text-transform: uppercase;
       font-size: 2.5rem;
@@ -257,7 +261,7 @@ provide("mirrored", false)
       font-size: 1.5rem;
 
       @media (min-width: 550px) {
-        font-size: 2.5rem;
+        font-size: 3.5rem;
       }
 
     }

@@ -130,7 +130,7 @@ const changeLocale = () => {
     i18n.locale.value = i18n.locale.value === 'fr' ? 'en' : 'fr';
 };
 const currentLocale = computed(() => {
-    return i18n.locale.value === 'fr' ? 'French' : 'English';
+    return i18n.locale.value === 'fr' ? 'English' : 'French';
 });
 </script>
 
