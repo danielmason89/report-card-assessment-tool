@@ -1,6 +1,8 @@
 import { fileURLToPath } from "url";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import VueI18nPlugin from "@intlify/unplugin-vue-i18n/vite";
+import path from "path";
 import { ViteEjsPlugin } from "vite-plugin-ejs";
 import { VitePWA } from "vite-plugin-pwa";
 import eslint from "vite-plugin-eslint";
@@ -16,11 +18,8 @@ export default defineConfig({
   plugins: [
     VueRouter(),
     vue(),
-    vueI18n({
-      include: resolve(
-        dirname(fileURLToPath(import.meta.url)),
-        "./src/locales"
-      ),
+    VueI18nPlugin({
+      include: path.resolve(__dirname, "./src/locales/**"),
     }),
     VitePWA({
       manifest: {
