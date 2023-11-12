@@ -1,20 +1,20 @@
 <template>
   <main class="about-page">
-    <h1>About Us</h1>
+    <h1>Our Story</h1>
     <section class="intro-section">
       <figcaption>
         <h2>Welcome to Assessify!</h2>
         <p>We're a SASS company that provides a Report Card Software</p>
       </figcaption>
       <figure class="about-banner">
-        <img src="../../public/assets/undraw_Educator_re_ju47.png" width="800" height="580" loading="lazy"
-          alt="about banner" class="w-100">
+        <img src="/assets/undraw_Educator_re_ju47.png" width="800" height="580" loading="lazy" alt="about banner"
+          class="w-100">
       </figure>
     </section>
     <section class="about" aria-labelledby="about-label">
       <div class="about-content">
         <section>
-          <h2>Our Story</h2>
+          <h2>About Us</h2>
           <p>We are dedicated to providing the best report card software tool on the market.</p>
           <p>Report Card Software was founded in 2023. Since then, we continue to aid organization and schools
             streamline

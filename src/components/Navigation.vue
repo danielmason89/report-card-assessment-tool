@@ -12,35 +12,15 @@
                         :to="{ name: 'TeacherClasslist' }">Teacher</router-link></li>
                 <li><router-link v-show="isAuthenticated" title="Parent" class="link"
                         :to="{ name: 'Parent' }">Parent</router-link></li>
-                <li><router-link title="About" class="flex items-center link" :to="{ name: 'About' }"><font-awesome-icon
-                            icon="user" class="fa-icon" aria-hidden="true" />About Us</router-link></li>
-                <li><router-link title="Contact" class="link" :to="{ name: 'Contact' }"><font-awesome-icon icon="envelope"
-                            class="fa-icon" aria-hidden="true" />Contact</router-link></li>
                 <li><router-link :to="{ name: 'Home' }" title="Home" class="link"><font-awesome-icon icon="home"
                             class="fa-icon" aria-hidden="true" />Home</router-link></li>
+                <li><base-dropmenu /></li>
             </ul>
-            <div class="icon">
-                <span class="sr-only">Open main menu</span>
-                <a v-if="mobile" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
-                    data-target="navbarBasicExample" :class="{ 'is-active': showMobileMenu }"
-                    @click.prevent.stop="toggleMobileMenu">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </div>
             <transition name="ShowMobileMenu slide">
-                <ul v-show="showMobileMenu" class="pt-20 pb-3 pl-6 mb-5 dropdown-nav">
+                <ul v-show="showMobileMenu" class="pt-20 pl-6 dropdown-nav">
                     <li><router-link :to="{ name: 'Home' }" title="Home" class="link"><font-awesome-icon icon="home"
-                                class="fa-icon" aria-label="Home Link" aria-hidden="true" />Home</router-link></li>
-                    <li>
-                        <router-link title="About" class="link" :to="{ name: 'About' }"><font-awesome-icon icon="user"
-                                aria-label="About Us Link" class="fa-icon" aria-hidden="true" />About
-                            Us</router-link>
-                    </li>
-                    <li><router-link title="Contact" class="link" :to="{ name: 'Contact' }"><font-awesome-icon
-                                icon="envelope" class="fa-icon" aria-label="Contact Link"
-                                aria-hidden="true" />Contact</router-link></li>
+                                class="fa-icon p-1" aria-label="Home Link" aria-hidden="true" />Home</router-link></li>
+                    <li><base-dropmenu /></li>
                     <li><router-link v-if="isAuthenticated" title="Dashboard" class="link"
                             :to="{ name: 'Dashboard' }">Dashboard</router-link>
                     </li>
@@ -51,30 +31,51 @@
                             :to="{ name: 'Parent' }">Parent</router-link></li>
                 </ul>
             </transition>
-            <span class="flex items-center xxs:px-4 lg:pr-4 xxs:mr-10 switch lg:mr-12">
-                <Login />
-            </span>
-            <span class="flex items-center py-2 switch">
-                <DarkModeToggle />
-            </span>
+            <ul class="flex items-center ml-auto">
+                <li class="flex items-center">
+                    <Login />
+                </li>
+                <li class="locale-button">
+                    <a class="normal-case" href="#" @click.prevent="changeLocale">{{
+                        currentLocale }}</a>
+                </li>
+                <li class="flex items-center pr-5">
+                    <DarkModeToggle />
+                </li>
+                <li>
+                    <div class="icon">
+                        <span class="sr-only">Open main menu</span>
+                        <a v-if="mobile" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                            data-target="navbarBasicExample" :class="{ 'is-active': showMobileMenu }"
+                            @click.prevent.stop="toggleMobileMenu">
+                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
         </nav>
     </header>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import DarkModeToggle from "./DarkModeToggle.vue"
 import Login from "./Login.vue"
-import store from '@/store/index.js';
-import { ref, onMounted, onUnmounted, computed } from 'vue';
-import { watch } from 'vue'
+import { useLoginStore } from '@/store/loginStore.js';
+import { ref, onMounted, onUnmounted, computed, watch } from 'vue';
 import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n';
 
 const route = useRoute()
-const enabled = ref(false)
+const store = useLoginStore()
 const scrolledNav = ref(null);
 const mobile = ref(null);
 const windowWidth = ref(null);
-const isAuthenticated = computed(() => store.getters.isAuthenticated);
+const i18n = useI18n();
+const isAuthenticated = computed(() => {
+    return store.isAuthenticated;
+});
 const showMobileMenu = ref(false);
 const toggleMobileMenu = () => {
     showMobileMenu.value = !showMobileMenu.value;
@@ -89,24 +90,10 @@ const updateScroll = () => {
     scrolledNav.value = false;
 };
 
-const clickOutside = {
-    beforeMount: (el, binding) => {
-        el.clickOutsideEvent = event => {
-            if (!(el == event.target || el.contains(event.target))) {
-                binding.value()
-            }
-        }
-        onMounted(() => {
-            document.addEventListener("click", el.clickOutsideEvent)
-        })
-        onUnmounted(() => {
-            document.removeEventListener("click", el.clickOutsideEvent)
-        })
-    },
-}
-
-const closeMenu = () => {
-    showMobileMenu.value = false;
+const closeMenu = (event) => {
+    if (showMobileMenu.value && !event.target.closest('ul.dropdown-nav')) {
+        showMobileMenu.value = false;
+    }
 }
 
 const checkScreen = () => {
@@ -137,6 +124,13 @@ onUnmounted(() => {
     window.removeEventListener("resize", checkScreen);
     window.removeEventListener("scroll", updateScroll);
     window.removeEventListener('click', closeMenu)
+});
+
+const changeLocale = () => {
+    i18n.locale.value = i18n.locale.value === 'fr' ? 'en' : 'fr';
+};
+const currentLocale = computed(() => {
+    return i18n.locale.value === 'fr' ? 'English' : 'French';
 });
 </script>
 
@@ -189,9 +183,9 @@ header {
 
         .link {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
-            font-size: .8rem;
+            font-size: 1rem;
             font-weight: bold;
             transition: .5s ease all;
             padding-bottom: 4px;
@@ -261,8 +255,7 @@ header {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 0.25rem;
-            margin-top: 0.001rem;
+            margin: 0.15rem 0.45rem;
         }
 
         .dropdown-nav {
@@ -309,6 +302,46 @@ header {
         }
     }
 
+}
+
+.locale-button {
+    background-image: linear-gradient(135deg, #00afea, rgb(178, 162, 162));
+    border-radius: 6px;
+    box-sizing: border-box;
+    color: #f3f3f3;
+    display: block;
+    height: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 2px;
+    position: relative;
+    text-decoration: none;
+    z-index: 2;
+
+    &:active {
+        transform: translateY(1px);
+    }
+}
+
+.locale-button:hover {
+    color: #fff;
+}
+
+.locale-button a {
+    align-items: center;
+    background: #0e0e10;
+    border-radius: 0.15rem;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    padding: 0 0.5rem;
+    transition: background 0.5s ease;
+    width: 100%;
+    color: white;
+}
+
+.locale-button:hover a {
+    background: transparent;
 }
 
 

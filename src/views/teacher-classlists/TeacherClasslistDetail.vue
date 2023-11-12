@@ -5,19 +5,20 @@
     </header>
     <section class="student" v-if="teacherClasslist">
       <div @click="showDetails = !showDetails" class="actions">
-        <h2 class="font-bold">{{ teacherClasslist.studentId }}</h2>
+        <h2 class="font-bold">{{ teacherClasslist.name }}</h2>
         <div class="icons">
           <router-link :to="{ name: 'UpdateStudent', params: { id: teacherClasslist.id } }">
             <span @click="updateStudent" class="material-icons" title="click to update student details">edit</span>
           </router-link>
           <span @click="deleteStudent" class="material-icons"
             title="click to delete student from class list">delete</span>
-          <span title="see student details/report card" class="material-icons">expand_more</span>
+          <span v-if="!showDetails" title="open student report card" class="material-icons">expand_more</span>
+          <span v-else-if="showDetails" title="close student report card" class="material-icons">expand_less</span>
         </div>
       </div>
       <transition name="fade">
         <section v-if="showDetails" class="details">
-          <p>Student Id: {{ teacherClasslist.id }}</p>
+          <p>Student ID: {{ teacherClasslist.id }}</p>
           <p>Gender: {{ teacherClasslist.gender }}</p>
           <p>Grade: {{ teacherClasslist.grade }}</p>
           <p>{{ teacherClasslist.subject }} : {{ teacherClasslist.mark }}</p>

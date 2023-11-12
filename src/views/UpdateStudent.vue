@@ -3,9 +3,9 @@
     <header>
       <h1>Update Student Details </h1>
     </header>
-    <form class="form" @submit.prevent="handleSubmit">
+    <vee-form class="form" @submit.prevent="handleSubmit" :validation-schema="schema">
       <label>Student Name:</label>
-      <input type="studentId" v-model="studentId" required>
+      <input type="name" v-model="name" required>
       <div v-if="text2Error" class="error">{{ text2Error }}</div>
       <label>Student Gender:</label>
       <select v-model="gender" required>
@@ -16,7 +16,7 @@
         <option value="LGBTQ+">LGBTQ+</option>
       </select>
       <label>Student Grade:</label>
-      <select v-model="grade" required>
+      <select v-model="grade" name="grade" required>
         <option disabled value>Please Update Grade, if needed</option>
         <option value="8">8</option>
         <option value="9">9</option>
@@ -40,51 +40,72 @@
         <option value="Not Completed">Not Completed</option>
       </select>
       <div class="terms">
-        <input type="checkbox" required>
+        <vee-field class="checkbox" type="checkbox" value="1" name="tos" />
         <label>All Options are Checked</label>
+        <br />
+        <ErrorMessage class="p-2 text-red-600 error-text" name="tos" />
       </div>
-      <div class="submit">
-        <button class="hover:shadow-xl" title="click here to update details">Update Student Info</button>
+      <div class="flex items-center justify-center space-x-[20px]">
+        <button class="hover:shadow-xl" title="click here to reset details" type="button"
+          @click.prevent="resetForm">Reset</button>
+        <button class="hover:shadow-xl" title="click here to update details">Update</button>
       </div>
-    </form>
+    </vee-form>
   </main>
 </template>
 
 <script setup>
-import { ref, onMounted, defineProps } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { useForm } from 'vee-validate';
 
 const props = defineProps(['id']);
 const router = useRouter();
 
-const studentId = ref(undefined);
+const name = ref(undefined);
 const mark = ref("");
-const grade = ref(undefined);
-const subject = ref(undefined);
-const gender = ref(undefined);
+const grade = ref();
+const subject = ref("");
+const gender = ref("");
 const text2Error = ref(null);
+const { handleSubmit: handleVeeSubmit } = useForm();
 const uri = `http://localhost:3000/teacherClasslist/${props.id}`;
+
+let schema = {
+  name: "requiredStudentName|min:3|max:15|alpha_spaces|excluded:name|excluded:test",
+  grade: "requiredStudent|min_value:8|max_value:11|excluded:Please Select A Grade",
+  subject: "requiredStudent|excluded:Please Select A Subject",
+  gender: "requiredStudent|excluded:Please Select A Gender",
+  "tos": "AllOptionsRequired"
+}
 
 const fetchStudent = async () => {
   try {
     const response = await fetch(uri);
     const data = await response.json();
-    studentId.value = data.studentId;
+    name.value = data.name;
     grade.value = data.grade;
     gender.value = data.gender;
     subject.value = data.subject;
+    mark.value = data.mark;
   } catch (err) {
     console.error(err);
   }
 };
 
+const resetForm = async () => {
+  grade.value = "";
+  subject.value = "";
+  mark.value = "";
+}
+
 const handleSubmit = async (e) => {
   try {
-    text2Error.value = studentId.value.length >= 2 ? '' : 'Please Update with a Valid Student Name';
+    text2Error.value = name.value.length >= 2 ? '' : 'Please Update with a Valid Student Name';
     e.preventDefault();
     if (!text2Error.value) {
       const student = {
-        studentId: studentId.value,
+        name: name.value,
         gender: gender.value,
         grade: grade.value,
         mark: mark.value,
@@ -105,7 +126,7 @@ const handleSubmit = async (e) => {
 onMounted(fetchStudent);
 
 defineExpose({
-  studentId,
+  name,
   mark,
   grade,
   subject,
@@ -118,10 +139,11 @@ defineExpose({
 <style lang="scss" scoped>
 main {
   padding: 10rem 2.5rem;
+  padding-bottom: 0rem;
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 120vh;
+  min-height: 105svh;
   width: 100%;
 
   header h1 {
@@ -189,14 +211,10 @@ button {
   }
 }
 
-.submit {
-  text-align: center;
-}
-
-.error {
+.error-text {
   color: #ff0062;
   margin-top: 10px;
-  font-size: 0.8rem;
+  font-size: 0.65rem;
   font-weight: bold;
 }
 

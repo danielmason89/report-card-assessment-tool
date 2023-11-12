@@ -1,23 +1,15 @@
 {
   "teacherClasslist": [
     {
-      "studentId": "Vu-Hoang",
+      "name": "Vu-Hoang",
       "gender": "Girl",
-      "grade": 9,
+      "grade": "8",
       "id": 24,
       "subject": "Computer Science",
-      "mark": "A"
+      "mark": "Not Completed"
     },
     {
-      "studentId": "Daniel",
-      "gender": "Boy",
-      "grade": 9,
-      "id": 25,
-      "subject": "Computer Science",
-      "mark": "C"
-    },
-    {
-      "studentId": "Candice",
+      "name": "Candice",
       "gender": "Girl",
       "grade": 10,
       "id": 26,
@@ -25,7 +17,7 @@
       "mark": "A"
     },
     {
-      "studentId": "Benjamin",
+      "name": "Benjamin",
       "gender": "Boy",
       "grade": 9,
       "subject": "Computer Science",
@@ -33,7 +25,7 @@
       "mark": "C"
     },
     {
-      "studentId": "Ben",
+      "name": "Ben",
       "gender": "Boy",
       "grade": 9,
       "subject": "Computer Science",
@@ -41,7 +33,7 @@
       "mark": "C"
     },
     {
-      "studentId": "Molly",
+      "name": "Molly",
       "gender": "Girl",
       "grade": 9,
       "subject": "Computer Science",
@@ -49,15 +41,7 @@
       "id": 34
     },
     {
-      "studentId": "Thomas",
-      "gender": "Boy",
-      "grade": 9,
-      "subject": "Computer Science",
-      "mark": "B",
-      "id": 35
-    },
-    {
-      "studentId": "Timothy",
+      "name": "Timothy",
       "gender": "Boy",
       "grade": 9,
       "mark": "A",
@@ -65,7 +49,7 @@
       "id": 36
     },
     {
-      "studentId": "Hallumi",
+      "name": "Hallumi",
       "gender": "Boy",
       "grade": 9,
       "mark": "Not Completed",
@@ -73,28 +57,198 @@
       "id": 37
     },
     {
-      "studentId": "Alana",
-      "gender": "Girl",
-      "grade": 9,
-      "mark": "Not Completed",
-      "subject": "Computer Science",
-      "id": 39
-    },
-    {
-      "studentId": "Finny",
-      "gender": "Girl",
-      "grade": "8",
-      "mark": "C",
-      "subject": "Computer Science",
-      "id": 40
-    },
-    {
-      "studentId": "Me Thuy",
+      "name": "Me Thuy",
       "gender": "Girl",
       "grade": 10,
       "mark": "A",
       "subject": "Computer Science",
       "id": 42
+    },
+    {
+      "name": "Daniel M.",
+      "gender": "Boy",
+      "grade": "8",
+      "mark": "Not Completed",
+      "subject": "Computer Science",
+      "id": 43
+    },
+    {
+      "name": "Alex",
+      "gender": "LGBTQ+",
+      "subject": "Computer Science",
+      "grade": "10",
+      "mark": "Not Completed",
+      "id": 44
+    },
+    {
+      "name": "Stevie Wyatt",
+      "gender": "Girl",
+      "subject": "Computer Science",
+      "grade": "9",
+      "mark": "Not Completed",
+      "id": 46
+    },
+    {
+      "name": "Wayatt",
+      "gender": "LGBTQ+",
+      "subject": "Computer Science",
+      "grade": "9",
+      "mark": "Not Completed",
+      "id": 47
+    },
+    {
+      "name": "Kathy",
+      "gender": "Girl",
+      "subject": "Computer Science",
+      "grade": "8",
+      "mark": "Not Completed",
+      "id": 49
+    },
+    {
+      "name": "Quinn",
+      "gender": "Boy",
+      "subject": "Computer Science",
+      "grade": "9",
+      "mark": "Not Completed",
+      "id": 50
+    },
+    {
+      "name": "Cathy",
+      "gender": "Girl",
+      "subject": "Computer Science",
+      "grade": "8",
+      "mark": "Not Completed",
+      "id": 51
+    },
+    {
+      "name": "Erika",
+      "gender": "Girl",
+      "subject": "Computer Science",
+      "grade": "8",
+      "mark": "Not Completed",
+      "id": 52
+    },
+    {
+      "name": "Marissa",
+      "gender": "Girl",
+      "subject": "Computer Science",
+      "grade": "8",
+      "mark": "Not Completed",
+      "id": 53
+    },
+    {
+      "name": "Richard",
+      "gender": "Girl",
+      "subject": "Computer Science",
+      "grade": "8",
+      "mark": "Not Completed",
+      "id": 54
+    },
+    {
+      "name": "Ricky",
+      "gender": "Girl",
+      "subject": "Computer Science",
+      "grade": "8",
+      "mark": "Not Completed",
+      "id": 55
+    },
+    {
+      "name": "Alexey",
+      "gender": "Girl",
+      "subject": "Computer Science",
+      "grade": "9",
+      "mark": "Not Completed",
+      "id": 56
+    },
+    {
+      "name": "Samoth",
+      "gender": "Non-Binary",
+      "subject": "Computer Science",
+      "grade": "9",
+      "mark": "Not Completed",
+      "id": 57
+    }
+  ],
+  "questionsList": [
+    {
+      "q": "What is your primary role in relation to the report card assessment tool?",
+      "id": 1,
+      "answers": [
+        {
+          "text": " I create and manage report cards for my students.",
+          "is_correct": true
+        },
+        {
+          "text": "I oversee the report card system at a higher level and ensure its successful implementation across classes or schools.",
+          "is_correct": false
+        },
+        {
+          "text": "I review report cards to understand my child's academic performance.",
+          "is_correct": false
+        },
+        {
+          "text": "I use the tool to access and understand my own report cards.",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "q": "How frequently would you need access to the report card assessment tool?",
+      "id": 2,
+      "answers": [
+        {
+          "text": "Daily",
+          "is_correct": false
+        },
+        {
+          "text": "Weekly",
+          "is_correct": false
+        },
+        {
+          "text": "Monthly",
+          "is_correct": true
+        },
+        {
+          "text": "At the end of each academic term...",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "q": "What is your primary goal when using the report card assessment tool?",
+      "id": 3,
+      "answers": [
+        {
+          "text": "Creating or editing report cards: I actively manage and modify student assessments.",
+          "is_correct": false
+        },
+        {
+          "text": "Viewing or analyzing performance: I'm more interested in insights, trends, or summaries.",
+          "is_correct": true
+        },
+        {
+          "text": "Communication: I use it as a medium to discuss or comment on student performance.",
+          "is_correct": false
+        },
+        {
+          "text": "Technical management: I handle integrations, backups, updates, or other IT-related tasks.",
+          "is_correct": false
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "min": 0,
+      "max": 2,
+      "title": "Try again!",
+      "desc": "Welcome to the Report Card Assessment Tool! Let's see how much you know about it."
+    },
+    {
+      "min": 4,
+      "max": 4,
+      "title": "Wow, you're a genius!",
+      "desc": "You know everything about the Report Card Assessment Tool!"
     }
   ]
 }

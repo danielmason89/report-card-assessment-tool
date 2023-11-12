@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import AddStudent from "../views/AddStudent.vue";
-import store from "../store"; // Replace this with your actual authentication method or store
+import { useLoginStore } from "@/store/loginStore";
 
 const requireAuth = (to, from, next) => {
-  if (store.getters["isAuthenticated"]) {
+  const store = useLoginStore();
+  if (store.loggedIn) {
     next();
   } else {
     next({ name: "Home" });
@@ -30,9 +31,13 @@ const routes = [
     },
   },
   {
-    path: "/login",
-    name: "Login",
-    component: () => import("@/components/Login.vue"),
+    path: "/quiz",
+    name: "Quiz",
+    component: () => import("@/views/Quiz.vue"),
+    meta: {
+      permission: "any",
+      fail: "/error",
+    },
   },
   {
     path: "/dashboard",
@@ -54,16 +59,27 @@ const routes = [
     },
   },
   {
+    path: "/faq",
+    name: "Faq",
+    component: () => import("@/views/Faq.vue"),
+    meta: {
+      permission: "any",
+      fail: "/error",
+    },
+  },
+  {
     path: "/parent",
     name: "Parent",
     component: () => import("@/views/Parent.vue"),
     beforeEnter: (to, from, next) => requireAuth(to, from, next),
+    fail: "/error",
   },
   {
     path: "/teacher-classlist",
     name: "TeacherClasslist",
     component: () => import("@/views/teacher-classlists/TeacherClasslist.vue"),
     beforeEnter: (to, from, next) => requireAuth(to, from, next),
+    fail: "/error",
   },
   {
     path: "/teacher-classlist/:id(\\d+)",
@@ -72,38 +88,45 @@ const routes = [
       import("@/views/teacher-classlists/TeacherClasslistDetail.vue"),
     beforeEnter: (to, from, next) => requireAuth(to, from, next),
     props: true,
+    fail: "/error",
   },
   {
-    path: "/teacher-classlist/:id(\\d+)",
+    path: "/update-student/:id(\\d+)",
     name: "UpdateStudent",
     component: () => import("@/views/UpdateStudent.vue"),
     props: true,
     beforeEnter: (to, from, next) => {
-      requireAuth;
-      const isValidId = Number.isInteger(Number(to.params.id));
-      next(isValidId);
+      requireAuth(to, from, () => {
+        const isValidId = Number.isInteger(Number(to.params.id));
+        next(isValidId);
+      });
     },
+    fail: "/error",
   },
   {
     path: "/all-teacher-classlist",
     redirect: "/teacher-classlist",
+    fail: "/error",
   },
   {
-    path: "/add",
+    path: "/add-student",
     name: "AddStudent",
     component: AddStudent,
     beforeEnter: (to, from, next) => requireAuth(to, from, next),
+    fail: "/error",
   },
   {
     path: "/:catchAll(.*)",
     name: "404",
     component: () => import("@/views/404.vue"),
+    fail: "/error",
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
+  linkActiveClass: "active",
 });
 
 export default router;

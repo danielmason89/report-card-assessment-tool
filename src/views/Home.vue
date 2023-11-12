@@ -6,18 +6,18 @@
           <h1 class="mt-4 text-5xl tracking-wide font-logoText drop-shadow-text-sm lg:drop-shadow-text-lg">Assessify</h1>
           <hr />
           <h2 class="font-medium tracking-small drop-shadow-text-sm lg:drop-shadow-text-lg">
-            Your Report Card. <br />
-            Digitalization Solution.
+            {{ $t("home.listen1") }} <br />
+            {{ $t("home.listen2") }}
           </h2>
         </section>
         <section class="grid-container">
           <article id="featured">
             <img class="object-cover w-full hero-img" src="/assets/group.png" alt="landing-page-logo"
               aria-label="Assessify Logo/Home" />
-            <router-link :to="{ name: 'Dashboard' }" title="Dashboard"
-              class="flex items-center px-8 py-3 space-x-2 font-medium transition-shadow border rounded-full branding bg-muted text-bkg border-bkg focus:outline-none focus-visible:ring-4 ring-accent ring-offset-bkg ring-offset-2 hover:bg-accent/90 active:bg-accent/50 hover:drop-shadow-none ">
-              <button class="font-bold tracking-wide uppercase">Get started Today</button>
-            </router-link>
+            <button title="Quiz" @click="startQuiz()"
+              class="flex items-center px-8 py-3 space-x-2 font-bold tracking-wide uppercase transition-shadow border rounded-full branding bg-muted text-bkg border-bkg focus:outline-none focus-visible:ring-4 ring-accent ring-offset-bkg ring-offset-2 hover:bg-accent/90 active:bg-accent/50 hover:drop-shadow-none">
+              Get started Today
+            </button>
           </article>
         </section>
       </div>
@@ -25,20 +25,13 @@
     <main class="relative grid gap-16 pb-16 mt-16 -mb-16 overflow-hidden text-base sm:mt-24 lg:mt-10 sm:gap-24 lg:gap-20">
       <section class="container grid min-h-full gap-4 text-center max-w-prose" aria-label="headline">
         <div>
-          <small class="tracking-widest uppercase text-accent drop-shadow-text-sm">Industry-Grade Assessment Tooling.
-          </small>
+          <span class="tracking-widest uppercase text-md text-accent drop-shadow-text-sm">Industry-Grade Assessment
+            Tooling.
+          </span>
           <h2 id="headline" class="text-3xl font-bold tracking-wide drop-shadow-text-md">Digital Solution for Today's
             Digital Organizations</h2>
         </div>
-        <p class="text-muted drop-shadow-text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis amet
-          alias necessitatibus saepe iure laudantium temporibus quasi earum recusandae odit. Esse adipisci molestiae,
-          quia possimus illum excepturi facere autem similique?
-          Debitis alias, quisquam numquam odio obcaecati ut voluptate. Perferendis, rerum magnam aliquam dolores nemo
-          praesentium excepturi ea. Eligendi amet dicta et, praesentium adipisci deserunt enim quae cupiditate
-          exercitationem est veritatis.
-          Velit pariatur exercitationem eum optio aliquam veritatis ducimus repudiandae eveniet. Omnis magni, quis id
-          aliquam, molestiae a, rerum odit rem assumenda est amet! Rem dolorum expedita quas tempore! Maxime,
-          consequuntur.
+        <p class="text-black drop-shadow-text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
           Corrupti recusandae hic officia. Nostrum repellendus dolorum ut culpa nobis voluptate atque nihil! Error nam,
           dignissimos sunt consectetur alias exercitationem ipsum nesciunt eius, magnam et iusto quo fugiat, repellat
           architecto.</p>
@@ -47,25 +40,18 @@
         <div class="relative">
           <div class="absolute hidden w-8 h-full lg:block bg-accent/10 -left-4"></div>
           <div>
-            <small class="tracking-widest uppercase text-accent drop-shadow-text-sm">Assessment Toolings for Modern
-              Organizations.</small>
+            <span class="tracking-widest uppercase text-accent drop-shadow-text-sm text-md">Assessment Toolings for Modern
+              Organizations.</span>
             <h2 id="slider" class="text-3xl font-bold tracking-wide drop-shadow-text-md">Get back Time for Better
               Relationships</h2>
           </div>
           <div class="flex flex-wrap items-center justify-center space-x-4 space-y-4 lg:flex-nowrap lg:justify-between">
-            <p class="text-muted md:max-w-xl drop-shadow-text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing
-              elit.
-              Quis amet
-              alias necessitatibus saepe iure laudantium temporibus quasi earum recusandae odit. Esse adipisci
+            <p class="pb-4 text-black md:max-w-xl drop-shadow-text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing
+              elit. Esse adipisci
               molestiae,
               quia possimus illum excepturi facere autem similique?
-              Debitis alias, quisquam numquam odio obcaecati ut voluptate. Perferendis, rerum magnam aliquam dolores
-              nemo
-              praesentium excepturi ea. Eligendi amet dicta et, praesentium adipisci deserunt enim quae cupiditate
-              exercitationem est veritatis.
-              Velit pariatur exercitationem eum optio aliquam veritatis ducimus repudiandae eveniet. Omnis magni, quis
-              id
-              aliquam, molestiae a, rerum odit rem assumenda est amet! Rem dolorum expedita quas tempore! Maxime,
+              Velit pariatur exercitationem eum optio aliquam veritatis ducimus repudiandae eveniet. Rem dolorum expedita
+              quas tempore! Maxime,
               consequuntur.</p>
             <div class="flex space-x-10">
               <button data-slideBtn id="prev" @click="prevSlide" aria-label="show previous image"
@@ -81,25 +67,29 @@
           </div>
         </div>
       </section>
-      <div class="container -mt-10 sm:-mt-20 lg:-mt-46 xs:w-90">
+      <section class="container -mt-10 sm:-mt-20 lg:-mt-46 xs:w-90">
         <Carousel ref="carouselRef" class="flex transition-transform duration-500 carousel" v-slot="{ currentSlide }">
-          <Slide v-show="currentSlide === id + 1" v-for="(slide, id) in carouselSlides" :key="id" :index="id"
+          <Slide v-show="currentSlide === id + 1" v-for="(slide, id) in carouselSlides" :key="slide.id" :index="id"
             :image="slide.image" :title="slide.title"
             class="relative flex-grow flex-shrink-0 w-full slide-info xs:w-auto xs:basis-96">
             <img loading="lazy"
-              class="carousel-image object-cover h-full [@media(hover:hover)]:grayscale-0 hover:grayscale-50 transition-all peer"
+              class="carousel-image rounded-md object-cover h-full [@media(hover:hover)]:grayscale-0 hover:grayscale-50 transition-all peer"
               :src="slide.image" alt="slide.title" />
             <p
-              class="absolute bottom-4 py-2 px-4 left-4 bg-bkg text-muted font-bold text-lg pointer-events-none tracking-wide [@media(hover:hover)]:opacity-100 peer-hover:opacity-0 transition-opacity">
+              class="absolute bottom-4 py-2 px-4 left-4 bg-bkg font-bold text-lg pointer-events-none tracking-wide [@media(hover:hover)]:opacity-100 peer-hover:opacity-0 transition-opacity">
               {{ slide.title }}</p>
           </Slide>
         </Carousel>
-      </div>
+      </section>
+      <section>
+        <header>
+          <h2 class="text-3xl font-bold tracking-wide text-center drop-shadow-text-md">Our Testimonials</h2>
+        </header>
+        <Testimonials />
+      </section>
       <section aria-labelledby="info"
-        class="container flex flex-col flex-wrap items-start justify-between md:space-x-16 md:space-y-0">
-        <img src="/assets/pexels-august-de-richelieu-4260325-min.jpg" alt="mentor and mentee" width="400"
-          class="grow md:flex-1" loading="lazy" />
-        <article class="grid gap-4 text-center md:text-left grow md:flex-1">
+        class="container flex flex-wrap items-start justify-between h-full md:flex-nowrap md:space-y-0 ">
+        <article class="grid gap-4 pb-4 text-center md:text-left grow md:flex-1">
           <div class="relative">
             <div class="absolute hidden w-8 h-full md:block bg-accent/10 -left-4"></div>
             <h2 id="info" class="text-3xl font-bold tracking-wide">
@@ -109,15 +99,13 @@
               Hello
             </small>
           </div>
-          <p class="max-w-2xl text-muted drop-shadow-text-sm">
+          <p class="max-w-2xl text-black drop-shadow-text-sm">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, in minus labore rerum esse doloribus ullam
-            aspernatur voluptates, aliquam similique cupiditate ipsa laudantium cum dignissimos! Nihil ut quia eum
-            numquam.
-            At reprehenderit, eius doloremque dolorum commodi deleniti! Eius, maiores? Doloribus quis libero architecto
-            delectus, dolore modi corrupti harum cupiditate consectetur repellat ratione eligendi ut adipisci, blanditiis
-            nam laborum in officia!
+            aspernatur voluptates, aliquam similique cupiditate ipsa laudantium cum dignissimos!
           </p>
         </article>
+        <img src="/assets/pexels-august-de-richelieu-4260325-min.jpg" alt="a mentor and their mentee" width="100"
+          class="rounded-md grow md:flex-1 md:order-1 w-fit h-fit lg:items-center" loading="lazy" />
       </section>
       <Cta />
     </main>
@@ -128,9 +116,12 @@
 import Carousel from "../components/Carousel.vue";
 import Slide from "../components/Slide.vue";
 import Cta from "../components/Cta.vue";
+import Testimonials from "../components/Testimonials.vue";
 import { PhArrowCircleLeft, PhArrowCircleRight } from "@phosphor-icons/vue";
-import { provide, ref } from "vue";
+import { provide, ref, onMounted } from "vue";
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const carouselRef = ref();
 const nextSlide = () => carouselRef.value.nextSlide();
 const prevSlide = () => carouselRef.value.prevSlide();
@@ -157,6 +148,32 @@ const carouselSlides = [{
   title: "Teacher/Child",
   image: "/assets/pexels-karolina-grabowska-7692549-min.jpg"
 }]
+
+let startQuiz = () => {
+  router.push({ path: '/quiz' });
+};
+
+onMounted(() => {
+  const sections = document.querySelectorAll('section');
+
+  const checkSections = () => {
+    const triggerBottom = window.innerHeight / 5 * 4;
+
+    sections.forEach((section) => {
+      const sectionTop = section.getBoundingClientRect().top;
+
+      if (sectionTop < triggerBottom) {
+        section.classList.add('show');
+      } else {
+        section.classList.remove('show');
+      }
+    });
+  };
+
+  window.addEventListener('scroll', checkSections);
+
+  checkSections();
+});
 
 provide("color", "#171819")
 provide("size", 36)
@@ -188,8 +205,12 @@ provide("mirrored", false)
       border-radius: 25%;
       margin-left: 2rem;
       margin-right: 2rem;
-      zoom: .65;
+      zoom: 0.85;
     }
+  }
+
+  p {
+    color: var(--text-primary-color);
   }
 
   button {
@@ -228,7 +249,6 @@ provide("mirrored", false)
     padding: 0 3rem;
     padding-top: 8rem;
 
-
     h1 {
       text-transform: uppercase;
       font-size: 2.5rem;
@@ -241,7 +261,7 @@ provide("mirrored", false)
       font-size: 1.5rem;
 
       @media (min-width: 550px) {
-        font-size: 2.5rem;
+        font-size: 3.5rem;
       }
 
     }
@@ -260,6 +280,21 @@ provide("mirrored", false)
     }
 
   }
+}
+
+section {
+  opacity: 0;
+  transform: translateX(400%);
+  transition: transform 0.65s ease;
+}
+
+section:nth-of-type(even) {
+  transform: translateX(-400%);
+}
+
+section.show {
+  transform: translateX(0);
+  opacity: 1;
 }
 
 @media (max-width: 1350px) {
@@ -325,6 +360,23 @@ provide("mirrored", false)
     object-fit: cover;
     object-position: center;
     align-items: center;
+  }
+}
+
+@media (min-width: 768px) {
+  section[aria-labelledby="info"] {
+    article {
+      margin: -1rem 2rem;
+    }
+
+    img {
+      width: 25vw;
+      transition: transform 0.3s;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
   }
 }
 </style>

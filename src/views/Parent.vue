@@ -7,36 +7,40 @@
       </transition>
     </header>
     <section>
-      <form class="form" @submit.prevent="handleSubmit">
+      <vee-form class="form" @submit="handleSubmit" ref="formRef" :validation-schema="schema">
         <label title="Student Name">Student Name:</label>
-        <select v-model="teacherClasslist.studentId" required>
-          <option disabled selected>Please Select A Student</option>
-          <option :title="studentId.studentId
-            " v-for="studentId in teacherClasslist" :key="studentId.studentId" :value="studentId.studentId">
-            {{ studentId.studentId }}
+        <vee-field class="select" as="select" v-model="teacherClasslist" name="name" required>
+          <option value="" disabled selected>Please Select A Student</option>
+          <option :title="student.name" v-for="student in studentsList" :key="student.name" :value="student.name">
+            {{ student.name }}
           </option>
-        </select>
+        </vee-field>
+        <ErrorMessage class="p-2 text-red-600" name="name" />
         <div class="terms">
-          <input type="checkbox" required>
-          <label>All Options are Checked</label>
+          <vee-field type="checkbox" value="1" v-model="isChecked" name="options not checked" />
+          <label>I'm not a robot 🤖 </label>
+          <br />
+          <ErrorMessage class="p-2 text-red-600" name="options not checked" />
         </div>
-        <div class="submit">
-          <button class="transition duration-300 ease-out transform hover:bg-opacity-50 hover:shadow-xl"
-            title="click here to search classlist for child">Search Classlist</button>
+        <div class="flex items-center justify-center space-x-[20px]">
+          <button class="hover:shadow-xl" title="Reset" type="button" @click="resetForm">Reset</button>
+          <button type="submit" class="transition duration-300 ease-out transform hover:bg-opacity-50 hover:shadow-xl"
+            title="Search Classlist For Child">Search Classlist</button>
         </div>
-      </form>
+      </vee-form>
     </section>
     <section @click="showDetails = !showDetails" v-if="results" class="report-card">
       <header>
         <h3 title="Student Report Card" class="text-xl text-black-400">Student Report Card</h3>
-        <span title="see student details/report card" class="material-icons">expand_more</span>
+        <span v-if="!showDetails" title="open student's report card" class="material-icons">expand_more</span>
+        <span v-else-if="showDetails" title="close student's report card" class="material-icons">expand_less</span>
       </header>
-      <transition name="fade">
+      <transition name="fade" mode="out-in">
         <div v-if="showDetails" class="details">
-          <p :title="results.studentId" class="font-bold">{{ results.studentId }}</p>
+          <p :title="results.name" class="font-normal"><span title="Student Name">Name:</span> {{ results.name }}</p>
           <p :title="results.id"><span title="Student ID">Student ID:</span> {{ results.id }}</p>
           <p :title="results.grade"><span title="Student Grade">Student Grade:</span> {{ results.grade }}</p>
-          <p :title="results.mark"><span :title="results.subject">{{ results.subject }}</span> : {{ results.mark }}</p>
+          <p :title="results.mark"><span :title="results.subject">{{ results.subject }}:</span> {{ results.mark }}</p>
         </div>
       </transition>
     </section>
@@ -47,15 +51,20 @@
 import { ref, onMounted } from 'vue';
 import gsap from 'gsap';
 
-const teacherClasslist = ref('');
-const formData = ref({
-  mark: '',
-  studentId: '',
-  grade: '',
-  subject: '',
-});
-const showDetails = ref(null);
+const teacherClasslist = ref("");
+const studentsList = ref();
+const formRef = ref(null);
+const showDetails = ref(false);
 const results = ref(false);
+const isChecked = ref(false);
+const formData = ref({
+  name: "",
+});
+
+let schema = {
+  name: "required",
+  "options not checked": "required"
+}
 
 const beforeEnter = (el) => {
   el.style.transform = 'translateY(-60px)';
@@ -81,15 +90,33 @@ const fetchTeacherClasslist = async () => {
   try {
     const response = await fetch('http://localhost:3000/teacherClasslist');
     const data = await response.json();
-    teacherClasslist.value = data;
+    studentsList.value = data;
   } catch (err) {
     console.log(err.message);
   }
 };
 
+const resetForm = async () => {
+  formData.value = {
+    name: "",
+  }
+  teacherClasslist.value = "";
+  isChecked.value = false;
+  results.value = null;
+  showDetails.value = false;
+  if (formRef.value && formRef.value.errors) {
+    formRef.value.errors.clear();
+  }
+
+  // Reset the vee-validate form state
+  if (formRef.value) {
+    formRef.value.resetForm();
+  }
+}
+
 const handleSubmit = async () => {
   try {
-    const response = await fetch(`http://localhost:3000/teacherClasslist?studentId=${teacherClasslist.value.studentId}`);
+    const response = await fetch(`http://localhost:3000/teacherClasslist?name=${teacherClasslist.value}`);
     const data = await response.json();
     results.value = data[0];
   } catch (err) {
@@ -101,7 +128,6 @@ onMounted(fetchTeacherClasslist);
 
 defineExpose({
   teacherClasslist,
-  formData,
   showDetails,
   results,
   handleSubmit,
@@ -116,11 +142,11 @@ defineExpose({
 
 <style lang="scss" scoped>
 main {
-  padding: 12rem 2.5rem;
+  padding: 10rem 2.5rem;
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 110vh;
+  min-height: 95svh;
   width: 100%;
 
   header {
@@ -171,7 +197,7 @@ label {
 }
 
 input,
-select {
+.select {
   display: block;
   padding: 20px 6px;
   width: 100%;
@@ -210,10 +236,6 @@ button {
   }
 }
 
-.submit {
-  text-align: center;
-}
-
 .error {
   color: #ff0062;
   margin-top: 10px;
@@ -231,8 +253,6 @@ button {
 .material-icons:hover {
   color: #add;
 }
-
-/* Animation */
 
 /* Animations */
 .fade-enter-from {
