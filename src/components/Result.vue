@@ -7,14 +7,20 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, watchEffect } from "vue";
-
 const { results, totalCorrect } = defineProps(['results', 'totalCorrect']);
+
+interface Result {
+    min: number;
+    max: number;
+    title: string;
+    desc: string;
+}
 
 let resultIndex = ref(0);
 watchEffect(() => {
-    results.forEach((e, i) => {
+    results.forEach((e: Result, i: number) => {
         if (e.min <= totalCorrect && e.max >= totalCorrect) {
             resultIndex.value = i;
         }

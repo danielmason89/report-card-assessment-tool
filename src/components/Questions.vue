@@ -18,12 +18,12 @@
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 
 const { questions = [], questionsAnswered = 0 } = defineProps(['questions', 'questionsAnswered']);
 const emit = defineEmits();
 
-const selectAnswer = (is_correct) => {
+const selectAnswer = (is_correct: boolean) => {
     emit('question-answered', is_correct);
 }
 
