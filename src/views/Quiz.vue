@@ -14,7 +14,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from "vue";
 import Questions from "../components/Questions.vue";
 import Result from "../components/Result.vue";
@@ -26,7 +26,7 @@ let questionsAnswered = ref(0);
 let totalCorrect = ref(0);
 let results = ref([]);
 
-let questionAnswered = (is_correct) => {
+let questionAnswered = (is_correct: boolean) => {
     if (is_correct) {
         totalCorrect.value++;
     }
@@ -47,7 +47,6 @@ const fetchQuestionsList = async () => {
         const res = await fetch('http://localhost:3000/questionsList');
         const data = await res.json();
         questionsList.value = data;
-        console.log(questionsList.value);
     } catch (err) {
         console.log(err.message);
     }
@@ -58,7 +57,6 @@ const fetchResultsList = async () => {
         const res = await fetch('http://localhost:3000/results');
         const data = await res.json();
         results.value = data;
-        console.log(results.value);
     } catch (err) {
         console.log(err.message);
     }
@@ -79,7 +77,6 @@ defineExpose({
     questionsAnswered,
     results
 });
-
 </script>
 
 <style lang="scss" scoped>

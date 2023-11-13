@@ -16,11 +16,11 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import { useRouter } from 'vue-router'
 import { PublicClientApplication } from "@azure/msal-browser";
 import { ref, onMounted, watch, computed } from 'vue';
-import { useLoginStore } from "@/store/loginStore.js"
+import { useLoginStore } from "@/store/loginStore"
 
 export default {
     setup() {

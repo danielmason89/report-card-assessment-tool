@@ -1,6 +1,5 @@
 <template>
     <div>
-
         <Dropdown popper-class="w-25 bg-white border rounded-lg shadow-md">
             <!-- Dropdown trigger -->
             <button
@@ -13,12 +12,12 @@
             <template #popper="{ hide }">
                 <ul class="text-gray-70">
                     <li>
-                        <router-link :to="{ name: 'Contact' }" title="Contact Us"
+                        <router-link :to="'/contact'" title="Contact Us"
                             class="link block px-4 py-2 outline-none hover:bg-gray-100 focus:bg-gray-100 uppercase"
                             @click="hide">Contact Us</router-link>
                     </li>
                     <li>
-                        <router-link :to="{ name: 'Faq' }"
+                        <router-link :to="'/faq'"
                             class="link block px-4 py-2 outline-none hover:bg-gray-100 focus:bg-gray-100 uppercase"
                             title="Faq" @click="hide">FAQ</router-link>
                     </li>
@@ -28,7 +27,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Dropdown from './Dropdown.vue';
 </script>
 

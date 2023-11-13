@@ -24,7 +24,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 
 const panels = ref([
@@ -32,7 +32,7 @@ const panels = ref([
     { id: 1, profession: "Special Education Coordinator", image: "/assets/bubbles.svg", testimonial: "In ultrices vitae justo a finibus." },
     { id: 2, profession: "District Assessment Coordinator", image: "/assets/topography.svg", testimonial: "ultrices vitae facilisis leo facilisis leo." },
     { id: 3, profession: "School Technology Integration Specialist", image: "/assets/bubbles.svg", testimonial: "Phasellus ultrices vitae mattis." },
-    { id: 4, profession: "Student Counselor", image: "/assets/topography.svg", testimonial: "testtesttesttesttesttesttesttesttest" },
+    { id: 4, profession: "Student Counselor", image: "/assets/topography.svg", testimonial: "vitae facilisis leo facilisis" },
 ]);
 const activePanel = ref(panels.value.length > 0 ? panels.value[0]?.id : null);
 const setActivePanel = (id) => {

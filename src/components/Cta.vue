@@ -55,7 +55,7 @@
     </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { PhPaperPlaneTilt } from "@phosphor-icons/vue";
 
@@ -63,7 +63,7 @@ let email = ref("");
 let contactBtnContent = ref("Signup");
 let formState = ref("idle");
 
-const postEmailToDatabase = (email) => {
+const postEmailToDatabase = (email: string) => {
     console.info(`Your email is ${email}`);
     return new Promise(resolve => setTimeout(resolve, 2000));
 }
@@ -84,7 +84,7 @@ const contactBtnOptions = {
     </span>`,
 };
 
-const handleFormSubmit = async (e) => {
+const handleFormSubmit = async (e: Event) => {
     formState.value = "idle";
     formState.value = "pending";
     contactBtnContent.value = contactBtnOptions.pending;

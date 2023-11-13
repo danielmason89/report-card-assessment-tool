@@ -9,7 +9,7 @@
     </FloatingVueDropdown>
 </template>
   
-<script setup>
+<script setup lang="ts">
 import { Dropdown as FloatingVueDropdown } from 'floating-vue';
 import { onBeforeUnmount, ref } from 'vue';
 

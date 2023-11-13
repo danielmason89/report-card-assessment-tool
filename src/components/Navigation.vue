@@ -1,34 +1,34 @@
 <template>
     <header :class="{ 'scrolled-nav': scrolledNav }">
         <nav role="navigation" aria-label="main navigation" :class="{ 'is-active': showMobileMenu }">
-            <router-link :to="{ name: 'Home' }" title="Home" class="branding">
+            <router-link :to="'/'" title="Home" class="branding">
                 <img class="p-.5 m-4 mr-1 focus:outline-none focus-visible:ring-4 rounded-full transition-shadow"
                     src="/windows11/StoreLogo.scale-150.png" aria-label="Go Home" alt="Assessify-Logo">
             </router-link>
             <ul v-show="!mobile" class="navigation not-mobile-nav">
                 <li><router-link v-show="isAuthenticated" title="Dashboard" class="link"
-                        :to="{ name: 'Dashboard' }">Dashboard</router-link></li>
+                        :to="'/dashboard'">Dashboard</router-link></li>
                 <li><router-link v-show="isAuthenticated" title="Teacher" class="link"
-                        :to="{ name: 'TeacherClasslist' }">Teacher</router-link></li>
-                <li><router-link v-show="isAuthenticated" title="Parent" class="link"
-                        :to="{ name: 'Parent' }">Parent</router-link></li>
-                <li><router-link :to="{ name: 'Home' }" title="Home" class="link"><font-awesome-icon icon="home"
-                            class="fa-icon" aria-hidden="true" />Home</router-link></li>
+                        :to="'/teacher-classlist'">Teacher</router-link></li>
+                <li><router-link v-show="isAuthenticated" title="Parent" class="link" :to="'/parent'">Parent</router-link>
+                </li>
+                <li><router-link :to="'/'" title="Home" class="link"><font-awesome-icon icon="home" class="fa-icon"
+                            aria-hidden="true" />Home</router-link></li>
                 <li><base-dropmenu /></li>
             </ul>
             <transition name="ShowMobileMenu slide">
                 <ul v-show="showMobileMenu" class="pt-20 pl-6 dropdown-nav">
-                    <li><router-link :to="{ name: 'Home' }" title="Home" class="link"><font-awesome-icon icon="home"
-                                class="fa-icon p-1" aria-label="Home Link" aria-hidden="true" />Home</router-link></li>
+                    <li><router-link :to="'/'" title="Home" class="link"><font-awesome-icon icon="home" class="fa-icon p-1"
+                                aria-label="Home Link" aria-hidden="true" />Home</router-link></li>
                     <li><base-dropmenu /></li>
                     <li><router-link v-if="isAuthenticated" title="Dashboard" class="link"
-                            :to="{ name: 'Dashboard' }">Dashboard</router-link>
+                            :to="'/dashboard'">Dashboard</router-link>
                     </li>
                     <li><router-link v-if="isAuthenticated" title="Teacher" class="link"
-                            :to="{ name: 'TeacherClasslist' }">Teacher</router-link>
+                            :to="'/teacher-classlist'">Teacher</router-link>
                     </li>
-                    <li><router-link v-if="isAuthenticated" title="Parent" class="link"
-                            :to="{ name: 'Parent' }">Parent</router-link></li>
+                    <li><router-link v-if="isAuthenticated" title="Parent" class="link" :to="'/parent'">Parent</router-link>
+                    </li>
                 </ul>
             </transition>
             <ul class="flex items-center ml-auto">
@@ -90,8 +90,9 @@ const updateScroll = () => {
     scrolledNav.value = false;
 };
 
-const closeMenu = (event) => {
-    if (showMobileMenu.value && !event.target.closest('ul.dropdown-nav')) {
+const closeMenu = (event: MouseEvent | TouchEvent) => {
+    const target = event.target as Element;
+    if (showMobileMenu.value && !target.closest('ul.dropdown-nav')) {
         showMobileMenu.value = false;
     }
 }
