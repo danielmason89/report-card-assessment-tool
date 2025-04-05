@@ -22,12 +22,12 @@
 <br />
 <div align="center">
 
-# Report-Card-Assessment-Tool-Capstone - Assessify
+# Assessify - A Report Card Assessment Tool
 
 ### 📓 About the Project 📓
 
   <div align="center">
-    <p>Welcome to Assessify's Repo</p>
+    <p>Welcome to Assessify's GitHub Repo</p>
     <p>An Assessment website/platform tool for corporatations, and other organizations.  
     </div>
     <br />
