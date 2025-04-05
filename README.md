@@ -42,7 +42,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://assessify.netlify.app/)
 
-[product-screenshot]: 
+[product-screenshot]: https://github.com/danielmason89/report-card-assessment-tool/blob/4370d1373fcb314160864a06636265d00a155942/assessify_screen.png
 
 <!-- TABLE OF CONTENTS -->
 <details>
